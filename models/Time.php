@@ -15,7 +15,7 @@ use Yii;
  *
  * @property Plan[] $plans
  */
-class Time extends \yii\db\ActiveRecord
+class Time extends Base
 {
     /**
      * @inheritdoc

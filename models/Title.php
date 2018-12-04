@@ -14,7 +14,7 @@ use Yii;
  *
  * @property Plan[] $plans
  */
-class Title extends \yii\db\ActiveRecord
+class Title extends Base
 {
     /**
      * @inheritdoc
