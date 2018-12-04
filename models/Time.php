@@ -31,8 +31,9 @@ class Time extends Base
     public function rules()
     {
         return [
-            [['name', 'number', 'created_at', 'updated_at'], 'required'],
-            [['number', 'created_at', 'updated_at'], 'integer'],
+            [['name', 'number'], 'required'],
+            ['number', 'integer'],
+            [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 64],
         ];
     }

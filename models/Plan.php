@@ -33,8 +33,9 @@ class Plan extends Base
     public function rules()
     {
         return [
-            [['title_id', 'time_id', 'created_at', 'updated_at'], 'required'],
-            [['title_id', 'time_id', 'status', 'created_at', 'updated_at'], 'integer'],
+            [['title_id', 'time_id'], 'required'],
+            [['title_id', 'time_id', 'status'], 'integer'],
+            [['created_at', 'updated_at'], 'safe'],
             [['time_id'], 'exist', 'skipOnError' => true, 'targetClass' => Time::className(), 'targetAttribute' => ['time_id' => 'id']],
             [['title_id'], 'exist', 'skipOnError' => true, 'targetClass' => Title::className(), 'targetAttribute' => ['title_id' => 'id']],
         ];
