@@ -43,14 +43,20 @@ class Title extends Base
                 'safe'
             ],
             [
-                [
-                    'name'
-                ],
+                'name',
                 'string',
                 'max' => 64
             ],
             [
-                'content',
+                'branch',
+                'string',
+                'max' => 10
+            ],
+            [
+                [
+                    'content',
+                    'branch',
+                ],
                 'default',
                 'value' => null,
             ],
@@ -71,6 +77,7 @@ class Title extends Base
             'id' => 'ID',
             'name' => 'Имя',
             'content' => 'Содержание',
+            'branch' => 'Ветка',
             'created_at' => 'Создано',
             'updated_at' => 'Обновлено',
         ];
