@@ -31,9 +31,34 @@ class Title extends Base
     public function rules()
     {
         return [
-            ['name', 'required'],
-            [['created_at', 'updated_at'], 'safe'],
-            [['name'], 'string', 'max' => 64],
+            [
+                'name',
+                'required'
+            ],
+            [
+                [
+                    'created_at',
+                    'updated_at'
+                ],
+                'safe'
+            ],
+            [
+                [
+                    'name'
+                ],
+                'string',
+                'max' => 64
+            ],
+            [
+                'content',
+                'default',
+                'value' => null,
+            ],
+            [
+                'content',
+                'string',
+                'max' => 255
+            ],
         ];
     }
 
@@ -44,9 +69,10 @@ class Title extends Base
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'name' => 'Имя',
+            'content' => 'Содержание',
+            'created_at' => 'Создано',
+            'updated_at' => 'Обновлено',
         ];
     }
 
