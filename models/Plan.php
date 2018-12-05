@@ -20,6 +20,13 @@ use Yii;
 class Plan extends Base
 {
     /**
+     * Constants
+     */
+    const STATUS_NEW = 1;
+    const STATUS_IN_WORK = 2;
+    const STATUS_DONE = 3;
+
+    /**
      * @inheritdoc
      */
     public static function tableName()
@@ -70,5 +77,47 @@ class Plan extends Base
     public function getTitle()
     {
         return $this->hasOne(Title::className(), ['id' => 'title_id']);
+    }
+
+    /**
+     * Returns statuses
+     *
+     * @return array
+     */
+    public static function getStatuses()
+    {
+        return [
+            self::STATUS_NEW,
+            self::STATUS_IN_WORK,
+            self::STATUS_DONE,
+        ];
+    }
+
+    /**
+     * Returns status labels
+     *
+     * @return array
+     */
+    public static function getStatusLabels()
+    {
+        return [
+            self::STATUS_NEW => 'new',
+            self::STATUS_IN_WORK => 'in work',
+            self::STATUS_DONE => 'done',
+        ];
+    }
+
+    /**
+     * Returns status for css
+     *
+     * @return array
+     */
+    public static function getStatusCss()
+    {
+        return [
+            self::STATUS_NEW => 'success',
+            self::STATUS_IN_WORK => 'info',
+            self::STATUS_DONE => 'default',
+        ];
     }
 }
