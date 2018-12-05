@@ -27,6 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'name',
             'content',
+            'branch',
             'created_at:date',
             'updated_at:date',
 
