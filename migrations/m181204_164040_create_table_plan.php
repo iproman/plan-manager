@@ -25,7 +25,7 @@ class m181204_164040_create_table_plan extends Migration
             self::TABLE_NAME,
             [
                 'id' => $this->primaryKey(11)->unsigned()->comment('ID'),
-                'title_id' => $this->integer(11)->unsigned()->notNull()->comment('Title'),
+                'title_id' => $this->integer(11)->unsigned()->notNull()->comment('Title')->unique(),
                 'time_id' => $this->integer(11)->unsigned()->notNull()->comment('Time'),
                 'status' => $this->smallInteger(1)->unsigned()->notNull()->defaultValue(0)->comment('Состояние'),
                 'created_at' => $this->integer(11)->unsigned()->notNull()->comment('Создано'),
