@@ -21,7 +21,7 @@ class Title extends Base
      */
     public static function tableName()
     {
-        return 'title';
+        return '{{%title}}';
     }
 
     /**

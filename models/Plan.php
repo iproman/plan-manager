@@ -31,7 +31,7 @@ class Plan extends Base
      */
     public static function tableName()
     {
-        return 'plan';
+        return '{{%plan}}';
     }
 
     /**

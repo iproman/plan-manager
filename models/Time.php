@@ -22,7 +22,7 @@ class Time extends Base
      */
     public static function tableName()
     {
-        return 'time';
+        return '{{%time}}';
     }
 
     /**
