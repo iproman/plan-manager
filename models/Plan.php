@@ -40,11 +40,53 @@ class Plan extends Base
     public function rules()
     {
         return [
-            [['title_id', 'time_id'], 'required'],
-            [['title_id', 'time_id', 'status'], 'integer'],
-            [['created_at', 'updated_at'], 'safe'],
-            [['time_id'], 'exist', 'skipOnError' => true, 'targetClass' => Time::className(), 'targetAttribute' => ['time_id' => 'id']],
-            [['title_id'], 'exist', 'skipOnError' => true, 'targetClass' => Title::className(), 'targetAttribute' => ['title_id' => 'id']],
+            [
+                [
+                    'title_id',
+                    'time_id'
+                ],
+                'required'
+            ],
+            [
+                [
+                    'title_id',
+                    'time_id',
+                ],
+                'integer'
+            ],
+            [
+                [
+                    'created_at',
+                    'updated_at'
+                ],
+                'safe'
+            ],
+            [
+
+                'time_id',
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Time::className(),
+                'targetAttribute' => [
+                    'time_id' => 'id'
+                ]
+            ],
+            [
+
+                'title_id',
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Title::className(),
+                'targetAttribute' =>
+                    [
+                        'title_id' => 'id'
+                    ]
+            ],
+            [
+                'status',
+                'in',
+                'range' => array_keys(self::getStatuses()),
+            ]
         ];
     }
 
