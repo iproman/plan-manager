@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "time".
@@ -58,5 +59,15 @@ class Time extends Base
     public function getPlans()
     {
         return $this->hasMany(Plan::className(), ['time_id' => 'id']);
+    }
+
+    /**
+     * @return array
+     */
+    public static function getTimeNumbers()
+    {
+        $timeList = Time::find()->asArray()->all();
+
+        return ArrayHelper::map($timeList, 'id', 'number');
     }
 }
