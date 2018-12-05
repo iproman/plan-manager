@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\models\Plan;
+use app\models\Time;
+use app\models\Title;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Plan */
@@ -12,11 +15,11 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'title_id')->textInput() ?>
+    <?= $form->field($model, 'title_id')->dropDownList(Title::getTitleNames()) ?>
 
-    <?= $form->field($model, 'time_id')->textInput() ?>
+    <?= $form->field($model, 'time_id')->dropDownList(Time::getTimeNumbers()) ?>
 
-    <?= $form->field($model, 'status')->textInput() ?>
+    <?= $form->field($model, 'status')->dropDownList(Plan::getStatuses()) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
