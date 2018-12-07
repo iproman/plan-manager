@@ -18,7 +18,7 @@ class ProjectSearch extends Project
     public function rules()
     {
         return [
-            [['id', 'title_id', 'time_id', 'status', 'created_at', 'updated_at'], 'integer'],
+            [['id', 'title_id', 'time_id', 'created_at', 'updated_at'], 'integer'],
         ];
     }
 
@@ -61,7 +61,6 @@ class ProjectSearch extends Project
             'id' => $this->id,
             'title_id' => $this->title_id,
             'time_id' => $this->time_id,
-            'status' => $this->status,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);

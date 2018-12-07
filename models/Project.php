@@ -10,7 +10,6 @@ use Yii;
  * @property int $id ID
  * @property int $title_id Title
  * @property int $time_id Time
- * @property int $status Состояние
  * @property int $created_at Создано
  * @property int $updated_at Обновлено
  *
@@ -19,12 +18,6 @@ use Yii;
  */
 class Project extends Base
 {
-    /**
-     * Constants
-     */
-    const STATUS_NEW = 1;
-    const STATUS_IN_WORK = 2;
-    const STATUS_DONE = 3;
 
     /**
      * @inheritdoc
@@ -82,11 +75,6 @@ class Project extends Base
                         'title_id' => 'id'
                     ]
             ],
-            [
-                'status',
-                'in',
-                'range' => array_keys(self::getStatuses()),
-            ]
         ];
     }
 
@@ -99,7 +87,6 @@ class Project extends Base
             'id' => 'ID',
             'title_id' => 'Title ID',
             'time_id' => 'Time ID',
-            'status' => 'Status',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
@@ -121,45 +108,4 @@ class Project extends Base
         return $this->hasOne(Title::className(), ['id' => 'title_id']);
     }
 
-    /**
-     * Returns statuses
-     *
-     * @return array
-     */
-    public static function getStatuses()
-    {
-        return [
-            self::STATUS_NEW,
-            self::STATUS_IN_WORK,
-            self::STATUS_DONE,
-        ];
-    }
-
-    /**
-     * Returns status labels
-     *
-     * @return array
-     */
-    public static function getStatusLabels()
-    {
-        return [
-            self::STATUS_NEW => 'new',
-            self::STATUS_IN_WORK => 'in work',
-            self::STATUS_DONE => 'done',
-        ];
-    }
-
-    /**
-     * Returns status for css
-     *
-     * @return array
-     */
-    public static function getStatusCss()
-    {
-        return [
-            self::STATUS_NEW => 'success',
-            self::STATUS_IN_WORK => 'info',
-            self::STATUS_DONE => 'default',
-        ];
-    }
 }
