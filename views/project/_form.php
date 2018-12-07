@@ -19,8 +19,6 @@ use app\models\Title;
 
     <?= $form->field($model, 'time_id')->dropDownList(Time::getTimeNumbers()) ?>
 
-    <?= $form->field($model, 'status')->dropDownList(Project::getStatuses()) ?>
-
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
     </div>
