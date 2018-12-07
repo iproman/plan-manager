@@ -22,7 +22,7 @@ use app\models\Title;
     <?= $form->field($model, 'status')->dropDownList(Plan::getStatuses()) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
