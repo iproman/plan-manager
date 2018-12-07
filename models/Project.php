@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "plan".
+ * This is the model class for table "project".
  *
  * @property int $id ID
  * @property int $title_id Title
@@ -17,7 +17,7 @@ use Yii;
  * @property Time $time
  * @property Title $title
  */
-class Plan extends Base
+class Project extends Base
 {
     /**
      * Constants
@@ -31,7 +31,7 @@ class Plan extends Base
      */
     public static function tableName()
     {
-        return '{{%plan}}';
+        return '{{%project}}';
     }
 
     /**

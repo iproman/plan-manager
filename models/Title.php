@@ -13,7 +13,7 @@ use yii\helpers\ArrayHelper;
  * @property int $created_at Создано
  * @property int $updated_at Обновлено
  *
- * @property Plan[] $plans
+ * @property Project[] $projects
  */
 class Title extends Base
 {
@@ -86,9 +86,9 @@ class Title extends Base
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPlans()
+    public function getProjects()
     {
-        return $this->hasMany(Plan::className(), ['title_id' => 'id']);
+        return $this->hasMany(Project::className(), ['title_id' => 'id']);
     }
 
     /**

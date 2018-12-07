@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Plan;
+use app\models\Project;
 
 /**
- * PlanSearch represents the model behind the search form of `app\models\Plan`.
+ * ProjectSearch represents the model behind the search form of `app\models\Project`.
  */
-class PlanSearch extends Plan
+class ProjectSearch extends Project
 {
     /**
      * @inheritdoc
@@ -40,7 +40,7 @@ class PlanSearch extends Plan
      */
     public function search($params)
     {
-        $query = Plan::find();
+        $query = Project::find();
 
         // add conditions that should always apply here
 
