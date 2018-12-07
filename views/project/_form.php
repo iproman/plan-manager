@@ -2,12 +2,12 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use app\models\Plan;
+use app\models\Project;
 use app\models\Time;
 use app\models\Title;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Plan */
+/* @var $model app\models\Project */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -19,7 +19,7 @@ use app\models\Title;
 
     <?= $form->field($model, 'time_id')->dropDownList(Time::getTimeNumbers()) ?>
 
-    <?= $form->field($model, 'status')->dropDownList(Plan::getStatuses()) ?>
+    <?= $form->field($model, 'status')->dropDownList(Project::getStatuses()) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
