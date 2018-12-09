@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\StringHelper;
+use app\models\Title;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\TitleSearch */
@@ -21,12 +23,24 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
+            'id',
             'name',
-            'content',
+            [
+                'attribute' => 'content',
+                'value' => function($model) {
+                    return StringHelper::truncateWords($model->content, 5, '...');
+                }
+            ],
+            [
+                'attribute' => 'status',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    /** @var \app\models\Title $model */
+                    return Title::printStatus($model->status);
+                },
+            ],
             'branch',
             'created_at:date',
             'updated_at:date',

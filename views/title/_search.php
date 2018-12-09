@@ -21,6 +21,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'content') ?>
 
+    <?= $form->field($model, 'status') ?>
+
     <?= $form->field($model, 'branch') ?>
 
     <div class="form-group">

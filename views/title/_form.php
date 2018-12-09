@@ -14,7 +14,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'content')->textarea(['maxlength' => true]) ?>
+    <?= $form->field($model, 'content')->textarea(['maxlength' => true, 'rows' => 10]) ?>
+
+    <?= $form->field($model, 'status')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'branch')->textInput(['maxlength' => true]) ?>
 
