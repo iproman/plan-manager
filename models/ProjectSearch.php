@@ -18,7 +18,18 @@ class ProjectSearch extends Project
     public function rules()
     {
         return [
-            [['id', 'title_id', 'time_id', 'created_at', 'updated_at'], 'integer'],
+            [
+                [
+                    'id',
+                    'created_at',
+                    'updated_at'
+                ],
+                'integer'
+            ],
+            [
+                'name', 
+                'string'
+            ],
         ];
     }
 
@@ -59,11 +70,11 @@ class ProjectSearch extends Project
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'title_id' => $this->title_id,
-            'time_id' => $this->time_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);
+
+        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }

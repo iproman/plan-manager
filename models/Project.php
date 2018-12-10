@@ -34,18 +34,12 @@ class Project extends Base
     {
         return [
             [
-                [
-                    'title_id',
-                    'time_id'
-                ],
+                'name',
                 'required'
             ],
             [
-                [
-                    'title_id',
-                    'time_id',
-                ],
-                'integer'
+                'name',
+                'string'
             ],
             [
                 [
@@ -53,27 +47,6 @@ class Project extends Base
                     'updated_at'
                 ],
                 'safe'
-            ],
-            [
-
-                'time_id',
-                'exist',
-                'skipOnError' => true,
-                'targetClass' => Time::className(),
-                'targetAttribute' => [
-                    'time_id' => 'id'
-                ]
-            ],
-            [
-
-                'title_id',
-                'exist',
-                'skipOnError' => true,
-                'targetClass' => Title::className(),
-                'targetAttribute' =>
-                    [
-                        'title_id' => 'id'
-                    ]
             ],
         ];
     }
@@ -85,27 +58,10 @@ class Project extends Base
     {
         return [
             'id' => 'ID',
-            'title_id' => 'Title ID',
-            'time_id' => 'Time ID',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'name' => 'Название проекта',
+            'created_at' => 'Создано',
+            'updated_at' => 'Обновлено',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTime()
-    {
-        return $this->hasOne(Time::className(), ['id' => 'time_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTitle()
-    {
-        return $this->hasOne(Title::className(), ['id' => 'title_id']);
     }
 
 }

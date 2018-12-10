@@ -15,9 +15,7 @@ use app\models\Title;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'title_id')->dropDownList(Title::getTitleNames()) ?>
-
-    <?= $form->field($model, 'time_id')->dropDownList(Time::getTimeNumbers()) ?>
+    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
