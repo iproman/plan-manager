@@ -26,8 +26,18 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'name',
-            'created_at',
+            [
+                'attribute' => 'name',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    /** @var \app\models\Title $model */
+                    return $model->name . ' ' . Html::a('Задачи', ['/title/index', 'id' => $model->id],
+                            ['class' => 'btn-sm btn-primary',
+                                'style' => 'float:right;'
+                            ]);
+                },
+            ],
+            'created_at:date',
             //'updated_at',
 
             ['class' => 'yii\grid\ActionColumn'],
