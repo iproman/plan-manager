@@ -10,6 +10,10 @@ use yii\helpers\ArrayHelper;
  *
  * @property int $id ID
  * @property string $name Название
+ * @property string $content Содержание
+ * @property int $status Статус
+ * @property string $branch Ветка
+ * @property int $project_id Название проекта
  * @property int $created_at Создано
  * @property int $updated_at Обновлено
  *
