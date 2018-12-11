@@ -8,6 +8,7 @@ use app\models\TitleSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\data\ActiveDataProvider;
 
 /**
  * TitleController implements the CRUD actions for Title model.
@@ -31,12 +32,25 @@ class TitleController extends Controller
 
     /**
      * Lists all Title models.
-     * @return mixed
+     *
+     * @param null $id
+     * @return string
      */
-    public function actionIndex()
+    public function actionIndex($id = null)
     {
         $searchModel = new TitleSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        if (!empty($id)) {
+            $dataProvider = new ActiveDataProvider([
+                'query' => Title::find()
+                    ->where(['=', 'project_id', $id])
+                    ->orderBy([
+                        'created_at' => SORT_DESC,
+                    ]),
+            ]);
+        } else {
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,
