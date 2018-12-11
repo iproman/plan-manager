@@ -74,14 +74,27 @@ class TitleController extends Controller
     /**
      * Creates a new Title model.
      * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
+     *
+     * @param null $project_id
+     * @return string|\yii\web\Response
      */
-    public function actionCreate()
+    public function actionCreate($project_id = null)
     {
         $model = new Title();
+        
+        // todo переделать логику
+        if (!empty($project_id)) {
+            if ($model->load(Yii::$app->request->post())) {
+                $model->project_id = $project_id;
+                $model->save();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+        } else {
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('create', [
