@@ -105,16 +105,22 @@ class TitleController extends Controller
     /**
      * Updates an existing Title model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     *
+     * @param $id
+     * @param null $project_id
+     * @return string|\yii\web\Response
+     * @throws NotFoundHttpException
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id, $project_id = null)
     {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            if (!empty($project_id)) {
+                return $this->redirect(['view', 'id' => $model->id, 'project_id' => $project_id]);
+            } else {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('update', [
