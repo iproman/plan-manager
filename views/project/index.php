@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => function ($model) {
                     /** @var \app\models\Title $model */
-                    return $model->name . ' ' . Html::a('Задачи', ['/title/index', 'id' => $model->id],
+                    return $model->name . ' ' . Html::a('Задачи', ['/title/index', 'project_id' => $model->id],
                             ['class' => 'btn-sm btn-primary',
                                 'style' => 'float:right;'
                             ]);
