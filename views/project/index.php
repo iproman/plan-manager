@@ -21,7 +21,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -32,8 +31,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($model) {
                     /** @var \app\models\Title $model */
                     return $model->name . ' ' . Html::a('Задачи', ['/title/index', 'project_id' => $model->id],
-                            ['class' => 'btn-sm btn-primary pull-right',
-                            ]);
+                            [
+                                'class' => 'btn-sm btn-primary pull-right',
+                            ]
+                        );
                 },
             ],
             'created_at:date',
