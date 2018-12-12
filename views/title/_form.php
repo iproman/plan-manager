@@ -16,12 +16,22 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'content')->textarea(['maxlength' => true, 'rows' => 10]) ?>
 
-    <?= $form->field($model, 'status')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'branch')->textInput(['maxlength' => true]) ?>
+    <div class="row">
+        <div class="col-lg-3">
+            <?= $form->field($model, 'status')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-lg-3">
+            <?= $form->field($model, 'branch')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-lg-3">
+            <?php if (!Yii::$app->request->get('project_id')): ?>
+                <?= $form->field($model, 'project_id')->textInput(['maxlength' => true]) ?>
+            <?php endif; ?>
+        </div>
+    </div>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
