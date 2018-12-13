@@ -33,17 +33,17 @@ class TitleController extends Controller
     /**
      * Lists all Title models.
      *
-     * @param null $id
+     * @param null $project_id
      * @return string
      */
-    public function actionIndex($id = null)
+    public function actionIndex($project_id = null)
     {
         $searchModel = new TitleSearch();
 
-        if (!empty($id)) {
+        if (!empty($project_id)) {
             $dataProvider = new ActiveDataProvider([
                 'query' => Title::find()
-                    ->where(['=', 'project_id', $id])
+                    ->where(['=', 'project_id', $project_id])
                     ->orderBy([
                         'created_at' => SORT_DESC,
                     ]),
