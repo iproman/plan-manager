@@ -64,4 +64,20 @@ class Project extends Base
         ];
     }
 
+    /**
+     * Return project name
+     *
+     * @param $projectId
+     * @return mixed
+     */
+    public static function getProjectName($projectId)
+    {
+        $project = Project::find()
+            ->where(['=', 'id', $projectId])
+            ->asArray()
+            ->one();
+
+        return $project['name'];
+    }
+
 }

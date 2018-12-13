@@ -9,7 +9,9 @@ use app\models\Title;
 /* @var $searchModel app\models\TitleSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Titles';
+$this->title = 'Задачи ' . (!Yii::$app->request->get('project_id') ?
+        'всех проектов' :
+        Project::getProjectName(Yii::$app->request->get('project_id')));
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="title-index">
