@@ -81,14 +81,18 @@ class TitleController extends Controller
     public function actionCreate($project_id = null)
     {
         $model = new Title();
-        
+
         // todo переделать логику
         if (!empty($project_id)) {
             if ($model->load(Yii::$app->request->post())) {
                 $model->project_id = $project_id;
                 $model->save();
 
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect([
+                    'view',
+                    'id' => $model->id,
+                    'project_id' => Yii::$app->request->get('project_id')
+                ]);
             }
         } else {
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
