@@ -4,6 +4,9 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\StringHelper;
 use app\models\Title;
+use yii\helpers\Url;
+use app\models\Project;
+use rmrevin\yii\fontawesome\FAS;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\TitleSearch */
@@ -30,6 +33,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 
+    <?php
+    $columns = [];
 
     if (!Yii::$app->request->get('project_id')) {
         $columns[] = 'project_id';
@@ -56,8 +61,48 @@ $this->params['breadcrumbs'][] = $this->title;
         'branch',
         'created_at:date',
         'updated_at:date',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
+        [
+            'class' => 'yii\grid\ActionColumn',
+            'template' => '{view} {update} {delete}',
+            'buttons' => [
+                'view' => function ($url, $model, $key) {
+                    return Html::a(
+                        FAS::i(FAS::_EYE),
+                        Url::to([
+                                'title/view',
+                                'id' => $model->id,
+                                'project_id' => Yii::$app->request->get('project_id')
+                            ]
+                        )
+                    );
+                },
+                'update' => function ($url, $model, $key) {
+                    return Html::a(
+                        FAS::i(FAS::_PEN),
+                        Url::to([
+                                'title/update',
+                                'id' => $model->id,
+                                'project_id' => Yii::$app->request->get('project_id')
+                            ]
+                        )
+                    );
+                },
+                'delete' => function ($url, $model, $key) {
+                    return Html::a(
+                        FAS::i(FAS::_TRASH_ALT),
+                        Url::to([
+                                'title/delete',
+                                'id' => $model->id
+                            ]
+                        )
+                    );
+                },
+            ]
+        ]
+    ])
+    ?>
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'columns' => $columns,
     ]); ?>
 </div>
