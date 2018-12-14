@@ -16,15 +16,20 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="title-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <div class="row">
+        <div class="col-lg-6">
+            <h1><?= Html::encode($this->title) ?></h1>
+        </div>
+        <div class="col-lg-6 text-right">
+            <?= Html::a('Создать задачу', [
+                'create',
+                'project_id' => Yii::$app->request->get('project_id')
+            ], ['class' => 'btn btn-success']) ?>
+        </div>
+    </div>
 
-    <p>
-        <?= Html::a('Создать задачу', [
-            'create',
-            'project_id' => Yii::$app->request->get('id')
-        ], ['class' => 'btn btn-success']) ?>
-    </p>
+
+
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
