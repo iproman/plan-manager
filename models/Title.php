@@ -118,7 +118,9 @@ class Title extends Base
             'id' => 'ID',
             'name' => 'Имя',
             'content' => 'Содержание',
+            'status' => 'Статус',
             'branch' => 'Ветка',
+            'project_id' => 'Проект',
             'created_at' => 'Создано',
             'updated_at' => 'Обновлено',
         ];
@@ -127,9 +129,9 @@ class Title extends Base
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getProjects()
+    public function getProject()
     {
-        return $this->hasMany(Project::className(), ['title_id' => 'id']);
+        return $this->hasOne(Project::class, ['id' => 'project_id']);
     }
 
     /**

@@ -41,7 +41,7 @@ class TitleSearch extends Title
      */
     public function search($params)
     {
-        $query = Title::find();
+        $query = Title::find()->orderBy('id DESC');
 
         // add conditions that should always apply here
 
