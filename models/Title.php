@@ -21,6 +21,15 @@ use yii\helpers\ArrayHelper;
  */
 class Title extends Base
 {
+
+    /**
+     * Constants
+     */
+    const STATUS_NEW = 0;
+    const STATUS_IN_WORK = 1;
+    const STATUS_DONE = 2;
+    const STATUS_WARNING = 3;
+
     /**
      * @inheritdoc
      */
