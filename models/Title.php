@@ -150,10 +150,10 @@ class Title extends Base
     public static function getStatuses()
     {
         return [
-            self::STATUS_NEW,
-            self::STATUS_IN_WORK,
-            self::STATUS_DONE,
-            self::STATUS_WARNING,
+            self::STATUS_NEW => 'Новая задача',
+            self::STATUS_IN_WORK => 'В работе',
+            self::STATUS_DONE => 'Завершена',
+            self::STATUS_WARNING => 'Срочная',
         ];
     }
 

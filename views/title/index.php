@@ -60,6 +60,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     Title::getStatusLabels()[$model->status],
                     [
                         'class' => 'label label-' . Title::getStatusCss()[$model->status],
+                        'data-toggle' => 'tooltip',
+                        'title' => Title::getStatuses()[$model->status],
                     ]
                 );
             },
