@@ -113,4 +113,49 @@ class Title extends Base
 
         return ArrayHelper::map($titleList, 'id', 'name');
     }
+
+    /**
+     * Returns statuses
+     *
+     * @return array
+     */
+    public static function getStatuses()
+    {
+        return [
+            self::STATUS_NEW,
+            self::STATUS_IN_WORK,
+            self::STATUS_DONE,
+            self::STATUS_WARNING,
+        ];
+    }
+
+    /**
+     * Returns status labels
+     *
+     * @return array
+     */
+    public static function getStatusLabels()
+    {
+        return [
+            self::STATUS_NEW => 'new',
+            self::STATUS_IN_WORK => 'in work',
+            self::STATUS_DONE => 'done',
+            self::STATUS_WARNING => 'warning'
+        ];
+    }
+
+    /**
+     * Returns status for css
+     *
+     * @return array
+     */
+    public static function getStatusCss()
+    {
+        return [
+            self::STATUS_NEW => 'success',
+            self::STATUS_IN_WORK => 'info',
+            self::STATUS_DONE => 'default',
+            self::STATUS_WARNING => 'warning',
+        ];
+    }
 }
