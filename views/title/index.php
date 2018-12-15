@@ -55,8 +55,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'format' => 'raw',
             'value' => function ($model) {
                 /** @var \app\models\Title $model */
-                return Title::printStatus($model->status);
+                return Html::tag(
+                    'span',
+                    Title::getStatusLabels()[$model->status],
+                    [
+                        'class' => 'label label-' . Title::getStatusCss()[$model->status],
+                    ]
+                );
             },
+            'contentOptions' => [
+                    'style' => 'text-align:center',
+            ]
         ],
         'branch',
         'created_at:date',
