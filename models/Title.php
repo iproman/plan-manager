@@ -76,7 +76,35 @@ class Title extends Base
             [
                 'content',
                 'string',
-                'max' => 255
+                'max' => 1000
+            ],
+            [
+                'status',
+                'in',
+                'range' => array_keys(self::getStatuses()),
+            ],
+            [
+                'status',
+                'default',
+                'value' => 0,
+            ],
+            [
+                'project_id',
+                'required'
+            ],
+            [
+                'project_id',
+                'integer'
+            ],
+            [
+
+                'project_id',
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Project::class,
+                'targetAttribute' => [
+                    'project_id' => 'id'
+                ]
             ],
         ];
     }

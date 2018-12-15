@@ -19,7 +19,7 @@ class TitleSearch extends Title
     {
         return [
             [['id', 'created_at', 'updated_at'], 'integer'],
-            [['name'], 'safe'],
+            [['name', 'status',], 'safe'],
         ];
     }
 
