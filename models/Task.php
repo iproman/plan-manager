@@ -6,7 +6,7 @@ use Yii;
 use yii\helpers\ArrayHelper;
 
 /**
- * This is the model class for table "title".
+ * This is the model class for table "task".
  *
  * @property int $id ID
  * @property string $name Название
@@ -19,7 +19,7 @@ use yii\helpers\ArrayHelper;
  *
  * @property Project[] $projects
  */
-class Title extends Base
+class Task extends Base
 {
 
     /**
@@ -137,11 +137,11 @@ class Title extends Base
     /**
      * @return array
      */
-    public static function getTitleNames()
+    public static function getTaskNames()
     {
-        $titleList = Title::find()->asArray()->all();
+        $taskList = Task::find()->asArray()->all();
 
-        return ArrayHelper::map($titleList, 'id', 'name');
+        return ArrayHelper::map($taskList, 'id', 'name');
     }
 
     /**

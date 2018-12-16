@@ -8,13 +8,11 @@ use Yii;
  * This is the model class for table "project".
  *
  * @property int $id ID
- * @property int $title_id Title
- * @property int $time_id Time
  * @property int $created_at Создано
  * @property int $updated_at Обновлено
  *
  * @property Time $time
- * @property Title $title
+ * @property Task $task
  */
 class Project extends Base
 {

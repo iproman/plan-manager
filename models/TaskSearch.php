@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Title;
+use app\models\Task;
 
 /**
- * TitleSearch represents the model behind the search form of `app\models\Title`.
+ * TaskSearch represents the model behind the search form of `app\models\Task`.
  */
-class TitleSearch extends Title
+class TaskSearch extends Task
 {
     /**
      * @inheritdoc
@@ -41,7 +41,7 @@ class TitleSearch extends Title
      */
     public function search($params)
     {
-        $query = Title::find()->orderBy('id DESC');
+        $query = Task::find()->orderBy('id DESC');
 
         // add conditions that should always apply here
 
