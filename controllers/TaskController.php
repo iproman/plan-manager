@@ -3,8 +3,8 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Title;
-use app\models\TitleSearch;
+use app\models\Task;
+use app\models\TaskSearch;
 use yii\db\ActiveRecord;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -12,9 +12,9 @@ use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
 
 /**
- * TitleController implements the CRUD actions for Title model.
+ * TaskController implements the CRUD actions for Task model.
  */
-class TitleController extends Controller
+class TaskController extends Controller
 {
     /**
      * @inheritdoc
@@ -32,18 +32,18 @@ class TitleController extends Controller
     }
 
     /**
-     * Lists all Title models.
+     * Lists all Task models.
      *
      * @param null $project_id
      * @return string
      */
     public function actionIndex($project_id = null)
     {
-        $searchModel = new TitleSearch();
+        $searchModel = new TaskSearch();
 
         if (!empty($project_id)) {
             $dataProvider = new ActiveDataProvider([
-                'query' => Title::find()
+                'query' => Task::find()
                     ->where(['=', 'project_id', $project_id])
                     ->orderBy([
                         'created_at' => SORT_DESC,
@@ -60,7 +60,7 @@ class TitleController extends Controller
     }
 
     /**
-     * Displays a single Title model.
+     * Displays a single Task model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -73,7 +73,7 @@ class TitleController extends Controller
     }
 
     /**
-     * Creates a new Title model.
+     * Creates a new Task model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      *
      * @param null $project_id
@@ -81,7 +81,7 @@ class TitleController extends Controller
      */
     public function actionCreate($project_id = null)
     {
-        $model = new Title();
+        $model = new Task();
 
         // todo переделать логику
         if (!empty($project_id)) {
@@ -108,7 +108,7 @@ class TitleController extends Controller
     }
 
     /**
-     * Updates an existing Title model.
+     * Updates an existing Task model.
      * If update is successful, the browser will be redirected to the 'view' page.
      *
      * @param $id
@@ -134,7 +134,7 @@ class TitleController extends Controller
     }
 
     /**
-     * Deletes an existing Title model.
+     * Deletes an existing Task model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -148,15 +148,15 @@ class TitleController extends Controller
     }
 
     /**
-     * Finds the Title model based on its primary key value.
+     * Finds the Task model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Title the loaded model
+     * @return Task the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Title::findOne($id)) !== null) {
+        if (($model = Task::findOne($id)) !== null) {
             return $model;
         }
 
@@ -178,7 +178,7 @@ class TitleController extends Controller
             // todo another controller
             // todo sending via post/checking class/branch with rules/array
 
-            $class = Title::class;
+            $class = Task::class;
             $attribute = 'branch';
 
             if (null === ($value = Yii::$app->getRequest()->post('branch'))) {
