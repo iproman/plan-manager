@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Title;
 use app\models\TitleSearch;
+use yii\db\ActiveRecord;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -160,5 +161,64 @@ class TitleController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    /**
+     * Return new value
+     *
+     * @return array
+     */
+    public function actionChange()
+    {
+        // Check if there is an Editable ajax request
+        if (isset($_POST['hasEditable'])) {
+            // use Yii's response format to encode output as JSON
+            \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+            // todo another controller
+            // todo sending via post/checking class/branch with rules/array
+
+            $class = Title::class;
+            $attribute = 'branch';
+
+            if (null === ($value = Yii::$app->getRequest()->post('branch'))) {
+                return [
+                    'success' => false,
+                    'msg' => "Необходимо задать значение для изменяемого атрибута через параметр 'value'."
+                ];
+            } else {
+                if (null === ($pk = Yii::$app->getRequest()->get('id'))) {
+                    return [
+                        'success' => false,
+                        'msg' => "Необходимо задать значение первичного ключа через параметр 'pk'."
+                    ];
+                } else {
+                    /** @var $class ActiveRecord */
+                    $model = $class::findOne($pk);
+                    if (!$model instanceof ActiveRecord) {
+                        return [
+                            'success' => false,
+                            'msg' => "Невозможно найти модель для первичного ключа $pk."
+                        ];
+                    } else {
+                        $model->$attribute = $value;
+                        if ($model->save(false, [$attribute]) !== false) {
+                            return [
+                                'success' => true,
+                                'msg' => "Значение для &laquo;" .
+                                    $model->getAttributeLabel($attribute) .
+                                    "&raquo; успешно изменено.",
+                                'newValue' => $model->$attribute,
+                            ];
+                        } else {
+                            return [
+                                'success' => false,
+                                'msg' => "Ошибка сохранения модели $class!"
+                            ];
+                        }
+                    }
+                }
+            }
+        }
     }
 }

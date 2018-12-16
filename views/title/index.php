@@ -7,6 +7,7 @@ use app\models\Title;
 use yii\helpers\Url;
 use app\models\Project;
 use rmrevin\yii\fontawesome\FAS;
+use kartik\editable\Editable;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\TitleSearch */
@@ -66,10 +67,31 @@ $this->params['breadcrumbs'][] = $this->title;
                 );
             },
             'contentOptions' => [
-                    'style' => 'text-align:center',
+                'style' => 'text-align:center',
             ]
         ],
-        'branch',
+        [
+            'attribute' => 'branch',
+            'format' => 'raw',
+            'value' => function ($model) {
+                return Editable::widget([
+                    'name' => 'branch',
+                    'formOptions' => [
+                        'method' => 'post',
+                        'action' => Url::to([
+                            'title/change',
+                            'id' => $model->id,
+                        ])
+                    ],
+                    'asPopover' => true,
+                    'value' => $model->branch,
+                    'header' => 'branch',
+                    'size' => 'sm',
+                    'showAjaxErrors' => true,
+                ]);
+            },
+        ],
+
         'created_at:date',
         'updated_at:date',
         [

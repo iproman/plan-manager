@@ -21,6 +21,7 @@
         "kartik-v/yii2-grid": "dev-master",
         "miloschuman/yii2-highcharts-widget": "^6.0",
         "rmrevin/yii2-fontawesome": "~3.2",
+        "kartik-v/yii2-editable": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
