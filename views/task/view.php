@@ -4,13 +4,13 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Title */
+/* @var $model app\models\Task */
 
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Задачи', 'url' => ['index', 'project_id' => Yii::$app->request->get('project_id')]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="title-view">
+<div class="task-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

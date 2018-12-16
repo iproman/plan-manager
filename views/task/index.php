@@ -3,14 +3,14 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\StringHelper;
-use app\models\Title;
+use app\models\Task;
 use yii\helpers\Url;
 use app\models\Project;
 use rmrevin\yii\fontawesome\FAS;
 use kartik\editable\Editable;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\TitleSearch */
+/* @var $searchModel app\models\TaskSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Задачи ' . (!Yii::$app->request->get('project_id') ?
@@ -18,7 +18,7 @@ $this->title = 'Задачи ' . (!Yii::$app->request->get('project_id') ?
         Project::getProjectName(Yii::$app->request->get('project_id')));
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="title-index">
+<div class="task-index">
 
     <div class="row">
         <div class="col-lg-6">
@@ -55,14 +55,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'attribute' => 'status',
             'format' => 'raw',
             'value' => function ($model) {
-                /** @var \app\models\Title $model */
+                /** @var \app\models\Task $model */
                 return Html::tag(
                     'span',
-                    Title::getStatusLabels()[$model->status],
+                    Task::getStatusLabels()[$model->status],
                     [
-                        'class' => 'label label-' . Title::getStatusCss()[$model->status],
+                        'class' => 'label label-' . Task::getStatusCss()[$model->status],
                         'data-toggle' => 'tooltip',
-                        'title' => Title::getStatuses()[$model->status],
+                        'title' => Task::getStatuses()[$model->status],
                     ]
                 );
             },
@@ -79,7 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'formOptions' => [
                         'method' => 'post',
                         'action' => Url::to([
-                            'title/change',
+                            'task/change',
                             'id' => $model->id,
                         ])
                     ],
@@ -102,7 +102,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return Html::a(
                         FAS::i(FAS::_EYE),
                         Url::to([
-                                'title/view',
+                                'task/view',
                                 'id' => $model->id,
                                 'project_id' => Yii::$app->request->get('project_id')
                             ]
@@ -113,7 +113,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return Html::a(
                         FAS::i(FAS::_PEN),
                         Url::to([
-                                'title/update',
+                                'task/update',
                                 'id' => $model->id,
                                 'project_id' => Yii::$app->request->get('project_id')
                             ]
@@ -124,7 +124,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return Html::a(
                         FAS::i(FAS::_TRASH_ALT),
                         Url::to([
-                                'title/delete',
+                                'task/delete',
                                 'id' => $model->id
                             ]
                         )
