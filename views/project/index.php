@@ -29,8 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'name',
                 'format' => 'raw',
                 'value' => function ($model) {
-                    /** @var \app\models\Title $model */
-                    return $model->name . ' ' . Html::a('Задачи', ['/title/index', 'project_id' => $model->id],
+                    /** @var \app\models\Task $model */
+                    return $model->name . ' ' . Html::a('Задачи', ['/task/index', 'project_id' => $model->id],
                             [
                                 'class' => 'btn-sm btn-primary pull-right',
                             ]

@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\models\Project;
 use app\models\Time;
-use app\models\Title;
+use app\models\Task;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Project */
