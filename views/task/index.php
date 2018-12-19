@@ -8,6 +8,7 @@ use yii\helpers\Url;
 use app\models\Project;
 use rmrevin\yii\fontawesome\FAS;
 use kartik\editable\Editable;
+use kartik\export\ExportMenu;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\TaskSearch */
@@ -31,7 +32,38 @@ $this->params['breadcrumbs'][] = $this->title;
             ], ['class' => 'btn btn-success']) ?>
         </div>
     </div>
-
+    <div class="row text-right">
+        <div class="col-lg-12">
+            <?= $fullExportMenu = ExportMenu::widget([
+                'dataProvider' => $dataProvider,
+                'columns' => [
+                    'id',
+                    'name',
+                    'content',
+                    'status',
+                    'branch',
+                    'project_id',
+                    'created_at',
+                    'updated_at',
+                ],
+                'target' => ExportMenu::TARGET_BLANK,
+                'stream' => false, // this will automatically save file to a folder on web server
+                'folder' => '@webroot/tmp/export',
+                'linkPath' => '/tmp/export',
+                'filename' => date('d.m.Y_H.i.s', time()),
+                //'deleteAfterSave' => true,
+                'fontAwesome' => true,
+                'pjaxContainerId' => 'kv-pjax-container',
+                'dropdownOptions' => [
+                    'label' => 'Скачать задачи',
+                    'class' => 'btn btn-default',
+                    'itemsBefore' => [
+                        '<li class="dropdown-header">Выберите формат</li>',
+                    ],
+                ],
+            ]); ?>
+        </div>
+    </div>
 
 
     <?php
