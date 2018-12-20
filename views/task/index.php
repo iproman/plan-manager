@@ -138,7 +138,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'id' => $model->id,
                                 'project_id' => Yii::$app->request->get('project_id')
                             ]
-                        )
+                        ),
+                        [
+                            'class' => 'btn btn-default btn-hover-success',
+                        ]
                     );
                 },
                 'update' => function ($url, $model, $key) {
@@ -149,7 +152,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'id' => $model->id,
                                 'project_id' => Yii::$app->request->get('project_id')
                             ]
-                        )
+                        ),
+                        [
+                            'class' => 'btn btn-default btn-hover-info',
+                        ]
                     );
                 },
                 'delete' => function ($url, $model, $key) {
@@ -159,7 +165,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'task/delete',
                                 'id' => $model->id
                             ]
-                        )
+                        ),
+                        [
+                            'class' => 'btn btn-default btn-hover-danger',
+                        ]
                     );
                 },
             ]

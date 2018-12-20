@@ -8,6 +8,15 @@ $black: #303030;
 $darkgreen: #717e62;
 $gray: #444444;
 
+$success: #5cb85c;
+$danger: #d9534f;
+$default: #777;
+$primary: #337ab7;
+$warning: #f0ad4e;
+$info: #5bc0de;
+
+
+
 // Imports
 @import "task";
 // Imports
@@ -126,4 +135,28 @@ a.desc:after {
 
 .nav > li > form > button.logout:focus {
   outline: none;
+}
+
+.btn-hover-info:hover,
+.btn-hover-info:focus,
+.btn-hover-info:active {
+  color: $light;
+  background-color: $info;
+  border-color: $info;
+}
+
+.btn-hover-danger:hover,
+.btn-hover-danger:focus,
+.btn-hover-danger:active {
+  color: $light;
+  background-color: $danger;
+  border-color: $danger;
+}
+
+.btn-hover-success:hover,
+.btn-hover-success:focus,
+.btn-hover-success:active {
+  color: $light;
+  background-color: $success;
+  border-color: $success;
 }
