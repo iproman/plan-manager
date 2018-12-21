@@ -6,6 +6,7 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ProjectSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $model app\models\Project[] */
 
 $this->title = 'Проекты';
 $this->params['breadcrumbs'][] = $this->title;
@@ -36,6 +37,13 @@ $this->params['breadcrumbs'][] = $this->title;
                             ]
                         );
                 },
+            ],
+            [
+                'attribute' => 'Количество статей',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return count($model->task);
+                }
             ],
             'created_at:date',
             //'updated_at',

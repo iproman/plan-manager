@@ -78,4 +78,15 @@ class Project extends Base
         return $project['name'];
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTask()
+    {
+        return $this->hasMany(
+            Task::class,
+            ['project_id' => 'id']
+        );
+    }
+
 }
