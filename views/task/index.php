@@ -25,26 +25,18 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-lg-6">
             <h1><?= Html::encode($this->title) ?></h1>
         </div>
-        <div class="col-lg-6 text-right">
-            <?= Html::a('Создать задачу', [
-                'create',
-                'project_id' => Yii::$app->request->get('project_id')
-            ], ['class' => 'btn btn-success']) ?>
-        </div>
-    </div>
-    <div class="row text-right">
-        <div class="col-lg-12">
+        <div class="col-lg-4 text-right">
             <?= $fullExportMenu = ExportMenu::widget([
                 'dataProvider' => $dataProvider,
                 'columns' => [
                     'id',
                     'name',
-                    'content',
                     'status',
                     'branch',
                     'project_id',
                     'created_at',
                     'updated_at',
+                    'content',
                 ],
                 'target' => ExportMenu::TARGET_BLANK,
                 'stream' => false, // this will automatically save file to a folder on web server
@@ -63,8 +55,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ]); ?>
         </div>
+        <div class="col-lg-2 text-right">
+            <?= Html::a('Создать задачу', [
+                'create',
+                'project_id' => Yii::$app->request->get('project_id')
+            ], ['class' => 'btn btn-success']) ?>
+        </div>
     </div>
-
 
     <?php
     $columns = [];
@@ -123,7 +120,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]);
             },
         ],
-
         'created_at:date',
         'updated_at:date',
         [
@@ -175,6 +171,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ]
     ])
     ?>
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => $columns,
