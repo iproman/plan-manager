@@ -121,13 +121,8 @@ class TaskController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            if (!empty($project_id)) {
-                return $this->redirect(['view', 'id' => $model->id, 'project_id' => $project_id]);
-            } else {
-                return $this->redirect(['view', 'id' => $model->id]);
-            }
+            return $this->redirect(['index', 'id' => $model->id, 'project_id' => $project_id]);
         }
-
         return $this->render('update', [
             'model' => $model,
         ]);
