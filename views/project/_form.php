@@ -3,7 +3,6 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\models\Project;
-use app\models\Time;
 use app\models\Task;
 
 /* @var $this yii\web\View */
