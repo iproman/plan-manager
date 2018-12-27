@@ -83,23 +83,16 @@ class TaskController extends Controller
     {
         $model = new Task();
 
-        // todo переделать логику
-        if (!empty($project_id)) {
-            if ($model->load(Yii::$app->request->post())) {
+        if ($model->load(Yii::$app->request->post())) {
+            if (!empty($project_id)) {
                 $model->project_id = $project_id;
-                $model->save();
-
-                return $this->redirect([
-                    'view',
-                    'id' => $model->id,
-                    'project_id' => Yii::$app->request->get('project_id')
-                ]);
             }
-        } else {
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
-                return $this->redirect(['view', 'id' => $model->id]);
-            }
+            $model->save();
+            return $this->redirect([
+                'index',
+                'id' => $model->id,
+                'project_id' => Yii::$app->request->get('project_id'),
+            ]);
         }
 
         return $this->render('create', [
