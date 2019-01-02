@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Task;
 
 class SiteController extends Controller
 {
@@ -61,7 +62,17 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $task = Task::find();
+
+        $taskNew = $task->where(['=', 'status', Task::STATUS_NEW])->count();
+        $taskDone = $task->where(['=', 'status', Task::STATUS_DONE])->count();
+        $taskInWork = $task->where(['=', 'status', Task::STATUS_IN_WORK])->count();
+        $taskWarning = $task->where(['=', 'status', Task::STATUS_WARNING])->count();
+
+        return $this->render(
+            'index',
+            compact('taskNew', 'taskDone', 'taskInWork', 'taskWarning')
+        );
     }
 
     /**
