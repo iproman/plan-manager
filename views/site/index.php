@@ -12,18 +12,42 @@ use app\models\Task;
 
 $this->title = 'My Yii Application';
 
-function viewDetails($text = null)
+/**
+ * @param $status
+ * @param $count
+ * @param null $fa
+ * @param null $text
+ * @return string
+ * @throws \yii\base\InvalidConfigException
+ */
+function viewDetails($status, $count, $fa = null, $text = null)
 {
+    // todo change mix
     if (!is_null($text)) {
-        return Html::a(
-            Html::tag(
-                'div',
-                Html::tag('span', $text, ['class' => 'pull-left']) .
-                Html::tag('span', FAS::i(FAS::_ARROW_ALT_CIRCLE_RIGHT), ['class' => 'pull-right']) .
-                Html::tag('div', ['class' => 'clearfix']),
-                ['class' => 'panel-footer']
-            )
-        );
+        return '<div class="col-lg-3 col-md-6">
+            <div class="panel panel-' . Task::getStatusCss()[$status] . '">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            ' . FAS::i($fa)->addCssClass('fa-5x') . '
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">' . $count . '</div>
+                            <div>New tasks!</div>
+                        </div>
+                    </div>
+                </div>'
+            . Html::a(
+                Html::tag(
+                    'div',
+                    Html::tag('span', $text, ['class' => 'pull-left']) .
+                    Html::tag('span', FAS::i(FAS::_ARROW_ALT_CIRCLE_RIGHT), ['class' => 'pull-right']) .
+                    Html::tag('div', '', ['class' => 'clearfix']),
+                    ['class' => 'panel-footer']
+                )
+            ) . '
+            </div>
+        </div>';
     }
 }
 
@@ -37,70 +61,10 @@ function viewDetails($text = null)
     </div>
     <!-- /.row -->
     <div class="row">
-        <div class="col-lg-3 col-md-6">
-            <div class="panel panel-<?= Task::getStatusCss()[Task::STATUS_NEW] ?>">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <?= FAS::i(FAS::_CART_PLUS)->addCssClass('fa-5x') ?>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                            <div class="huge"><?= $taskNew ?></div>
-                            <div>New tasks!</div>
-                        </div>
-                    </div>
-                </div>
-                <?= viewDetails('View Details1') ?>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-            <div class="panel panel-<?= Task::getStatusCss()[Task::STATUS_DONE] ?>">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <?= FAS::i(FAS::_TASKS)->addCssClass('fa-5x') ?>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                            <div class="huge"><?= $taskDone ?></div>
-                            <div>Finished Tasks!</div>
-                        </div>
-                    </div>
-                </div>
-                <?= viewDetails('View Details1') ?>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-            <div class="panel panel-<?= Task::getStatusCss()[Task::STATUS_IN_WORK] ?>">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <?= FAS::i(FAS::_CART_PLUS)->addCssClass('fa-5x') ?>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                            <div class="huge"><?= $taskInWork ?></div>
-                            <div>In work tasks!</div>
-                        </div>
-                    </div>
-                </div>
-                <?= viewDetails('View Details1') ?>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-            <div class="panel panel-<?= Task::getStatusCss()[Task::STATUS_WARNING] ?>">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <?= FAS::i(FAS::_CART_PLUS)->addCssClass('fa-5x') ?>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                            <div class="huge"><?= $taskWarning ?></div>
-                            <div>Warning tasks!</div>
-                        </div>
-                    </div>
-                </div>
-                <?= viewDetails('View Details1') ?>
-            </div>
-        </div>
+        <?= viewDetails(Task::STATUS_NEW, $taskNew, FAS::_CART_PLUS, 'View Details1') ?>
+        <?= viewDetails(Task::STATUS_DONE, $taskDone, FAS::_CART_PLUS, 'View Details2') ?>
+        <?= viewDetails(Task::STATUS_IN_WORK, $taskInWork, FAS::_CART_PLUS, 'View Details3') ?>
+        <?= viewDetails(Task::STATUS_WARNING, $taskWarning, FAS::_CART_PLUS, 'View Details4') ?>
     </div>
     <!-- /.row -->
 </div>
