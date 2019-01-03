@@ -23,9 +23,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-lg-6">
-            <h1><?= Html::encode($this->title) ?></h1>
+            <h1 class="page-header"><?= Html::encode($this->title) ?></h1>
         </div>
-        <div class="col-lg-4 text-right">
+        <div class="col-lg-4 flex-right vertical-align">
             <?= $fullExportMenu = ExportMenu::widget([
                 'dataProvider' => $dataProvider,
                 'columns' => [
@@ -55,7 +55,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ]); ?>
         </div>
-        <div class="col-lg-2 text-right">
+        <div class="col-lg-2 flex-right vertical-align">
             <?= Html::a('Создать задачу', [
                 'create',
                 'project_id' => Yii::$app->request->get('project_id')
