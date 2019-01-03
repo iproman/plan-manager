@@ -8,9 +8,11 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
-use app\assets\AppAsset;
+use app\assets\themes\SBAdmin2Asset;
+use rmrevin\yii\fontawesome\FAS;
+use yii\widgets\Menu;
 
-$appAsset = AppAsset::register($this);
+$appAsset = SBAdmin2Asset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -43,33 +45,40 @@ $appAsset = AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-<div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+<div id="wrapper">
+    <?php NavBar::begin([
+        'brandLabel' => Yii::$app->params['project']['name'] . ' ' . Yii::$app->params['project']['version'],
         'brandUrl' => Yii::$app->homeUrl,
+        'brandOptions' => [
+            'class' => '',
+        ],
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
+        'containerOptions' => [
+            'class' => '',
+        ],
+        'innerContainerOptions' => [
+            'class' => '',
+        ]
     ]);
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Проекты', 'url' => ['/project/']],
-            ['label' => 'Задачи', 'url' => ['/task/']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
+        'options' => [
+            'class' => 'nav navbar-top-links navbar-right',
         ],
+        'encodeLabels' => false,
+        'items' => [
+            [
+                'label' => FAS::i(FAS::_USER) . ' ' . FAS::i(FAS::_CARET_DOWN),
+
+                'options' => [
+                    'class' => 'dropdown',
+                ],
+                'items' => [
+                    ['label' => 'Юридические услуги', 'url' => ['services/juridical-services']],
+                ],
+            ],
+        ]
     ]);
     NavBar::end();
     ?>
