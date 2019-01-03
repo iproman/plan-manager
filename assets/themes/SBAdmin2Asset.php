@@ -18,6 +18,7 @@ class SBAdmin2Asset extends AssetBundle
         'vendor/metisMenu/metisMenu.min.css',
         //  Custom CSS
         'dist/css/sb-admin-2.css',
+        'dist/css/override.css',
         // Morris Charts CSS
         'vendor/morrisjs/morris.css',
     ];
