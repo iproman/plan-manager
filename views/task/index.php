@@ -11,12 +11,11 @@ use kartik\editable\Editable;
 use kartik\export\ExportMenu;
 
 /* @var $this yii\web\View */
+/* @var $projectName app\models\Project */
 /* @var $searchModel app\models\TaskSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Задачи ' . (!Yii::$app->request->get('project_id') ?
-        'всех проектов' :
-        Project::getProjectName(Yii::$app->request->get('project_id')));
+$this->title = 'Задачи ' . (!$projectName ? 'всех проектов' : $projectName);
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="task-index">

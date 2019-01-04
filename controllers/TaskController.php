@@ -3,13 +3,14 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Task;
-use app\models\TaskSearch;
 use yii\db\ActiveRecord;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
+use app\models\Task;
+use app\models\TaskSearch;
+use app\models\Project;
 
 /**
  * TaskController implements the CRUD actions for Task model.
@@ -42,6 +43,7 @@ class TaskController extends Controller
         $searchModel = new TaskSearch();
 
         if (!empty($project_id)) {
+            $projectName = Project::getProjectName($project_id);
             $dataProvider = new ActiveDataProvider([
                 'query' => Task::find()
                     ->where(['=', 'project_id', $project_id])
@@ -50,12 +52,14 @@ class TaskController extends Controller
                     ]),
             ]);
         } else {
+            $projectName = 'всех проектов';
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         }
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'projectName' => $projectName,
         ]);
     }
 
