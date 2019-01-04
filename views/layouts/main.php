@@ -69,15 +69,45 @@ $appAsset = SBAdmin2Asset::register($this);
         'encodeLabels' => false,
         'items' => [
             [
-                'label' => FAS::i(FAS::_USER) . ' ' . FAS::i(FAS::_CARET_DOWN),
-
+                'label' => FAS::i(FAS::_ENVELOPE),
                 'options' => [
                     'class' => 'dropdown',
                 ],
                 'items' => [
-                    ['label' => 'Юридические услуги', 'url' => ['services/juridical-services']],
+                    ['label' => FAS::i(FAS::_ENVELOPE), 'url' => ['project/']],
                 ],
             ],
+            [
+                'label' => FAS::i(FAS::_TASKS),
+                'options' => [
+                    'class' => 'dropdown',
+                ],
+                'items' => [
+                    ['label' => FAS::i(FAS::_ENVELOPE), 'url' => ['project/']],
+                ],
+            ],
+            [
+                'label' => FAS::i(FAS::_BELL),
+                'options' => [
+                    'class' => 'dropdown',
+                ],
+                'items' => [
+                    ['label' => FAS::i(FAS::_ENVELOPE), 'url' => ['project/']],
+                ],
+            ],
+            [
+                'label' => FAS::i(FAS::_USER),
+                'options' => [
+                    'class' => 'dropdown',
+                ],
+                'items' => [
+                    [
+                        'label' => FAS::i(FAS::_ENVELOPE),
+                        'url' => ['project/'],
+                        'content' => '123'
+                    ],
+                ],
+            ]
         ]
     ]);
     NavBar::end();
