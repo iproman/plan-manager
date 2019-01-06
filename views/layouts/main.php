@@ -1,6 +1,7 @@
 <?php
 
 /* @var $this \yii\web\View */
+
 /* @var $content string */
 
 use app\widgets\Alert;
@@ -11,6 +12,7 @@ use yii\widgets\Breadcrumbs;
 use app\assets\themes\SBAdmin2Asset;
 use rmrevin\yii\fontawesome\FAS;
 use yii\widgets\Menu;
+use yii\helpers\Url;
 
 $appAsset = SBAdmin2Asset::register($this);
 ?>
@@ -53,7 +55,9 @@ $appAsset = SBAdmin2Asset::register($this);
             'class' => '',
         ],
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+            'class' => 'navbar navbar-default navbar-static-top',
+            'style' => 'margin:0;',
+            'role' => 'navigation',
         ],
         'containerOptions' => [
             'class' => '',
@@ -74,7 +78,37 @@ $appAsset = SBAdmin2Asset::register($this);
                     'class' => 'dropdown',
                 ],
                 'items' => [
-                    ['label' => FAS::i(FAS::_ENVELOPE), 'url' => ['project/']],
+                    ['label' => '', 'options' => ['class' => 'divider']],
+                    ['label' => Html::a(
+                        Html::tag(
+                            'div',
+                            '<strong>John Smith</strong><span class="pull-right text-muted">
+                                            <em>Yesterday</em>
+                                        </span>'
+                        ) . Html::tag(
+                            'div',
+                            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...'
+                        ),
+                        Url::to(['project'])
+                    ),
+                        'url' => ['project/'],
+                        'options' => [
+                                'class' => 'dropdown-messages'
+                        ]
+                    ],
+                    ['label' => '', 'options' => ['class' => 'divider']],
+                    ['label' => '<a href="#">
+                                <div>
+                                    <strong>John Smith</strong>
+                                    <span class="pull-right text-muted">
+                                            <em>Yesterday</em>
+                                        </span>
+                                </div>
+                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                            </a>',
+                        'url' => ['project/'],
+                    ],
+                    ['label' => '', 'options' => ['class' => 'divider']],
                 ],
             ],
             [
@@ -102,7 +136,15 @@ $appAsset = SBAdmin2Asset::register($this);
                 ],
                 'items' => [
                     [
-                        'label' => FAS::i(FAS::_ENVELOPE),
+                        'label' => '<a href="#">
+                                <div>
+                                    <strong>John Smith</strong>
+                                    <span class="pull-right text-muted">
+                                            <em>Yesterday</em>
+                                        </span>
+                                </div>
+                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                            </a>',
                         'url' => ['project/'],
                         'content' => '123'
                     ],
