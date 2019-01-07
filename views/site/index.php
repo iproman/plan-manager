@@ -2,8 +2,6 @@
 
 use yii\helpers\Url;
 use rmrevin\yii\fontawesome\FAS;
-use rmrevin\yii\fontawesome\FAB;
-use yii\helpers\Html;
 use app\models\Task;
 use app\components\ViewDetails;
 
@@ -19,7 +17,7 @@ $this->title = 'My Yii Application';
 <div class="site-index">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Сегодня <?= date('d') ?></h1>
+            <h1 class="page-header">Сегодня <?= date('d-m-Y') ?></h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
