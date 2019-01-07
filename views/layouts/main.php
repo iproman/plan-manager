@@ -74,11 +74,10 @@ $appAsset = SBAdmin2Asset::register($this);
         'items' => [
             [
                 'label' => FAS::i(FAS::_ENVELOPE),
-                'options' => [
-                    'class' => 'dropdown',
+                'dropDownOptions' => [
+                    'class' => 'dropdown-messages',
                 ],
                 'items' => [
-                    ['label' => '', 'options' => ['class' => 'divider']],
                     ['label' => Html::a(
                         Html::tag(
                             'div',
@@ -89,26 +88,36 @@ $appAsset = SBAdmin2Asset::register($this);
                             'div',
                             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...'
                         ),
-                        Url::to(['project'])
-                    ),
-                        'url' => ['project/'],
-                        'options' => [
-                                'class' => 'dropdown-messages'
-                        ]
+                        Url::to(['/project'])), 'url' => false,
                     ],
-                    ['label' => '', 'options' => ['class' => 'divider']],
-                    ['label' => '<a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
+                    ['label' => '', 'options' => ['class' => 'divider'], 'url' => false],
+                    ['label' => Html::a(
+                        Html::tag(
+                            'div',
+                            '<strong>John Smith</strong><span class="pull-right text-muted">
                                             <em>Yesterday</em>
-                                        </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>',
-                        'url' => ['project/'],
+                                        </span>'
+                        ) . Html::tag(
+                            'div',
+                            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...'
+                        ),
+                        Url::to(['/project'])
+                    ),
+                        'url' => false,
                     ],
-                    ['label' => '', 'options' => ['class' => 'divider']],
+                    ['label' => '', 'options' => ['class' => 'divider'], 'url' => false],
+                    ['label' => Html::a(
+                        Html::tag(
+                            'strong',
+                            'Read All Messages'
+                        ) . ' ' . FAS::i(FAS::_ANGLE_RIGHT),
+                        Url::to(['/project']),
+                        [
+                            'class' => 'text-center',
+                        ]
+                    ),
+                        'url' => false,
+                    ],
                 ],
             ],
             [
