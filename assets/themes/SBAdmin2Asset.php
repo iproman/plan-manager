@@ -33,8 +33,7 @@ class SBAdmin2Asset extends AssetBundle
         'dist/js/sb-admin-2.js',
     ];
     public $depends = [
-        'yii\bootstrap\BootstrapPluginAsset',
-        'rmrevin\yii\fontawesome\AssetBundle',
+        'app\assets\AppAsset',
     ];
     public $publishOptions = [
         'except' => [
