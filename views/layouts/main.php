@@ -122,11 +122,122 @@ $appAsset = SBAdmin2Asset::register($this);
             ],
             [
                 'label' => FAS::i(FAS::_TASKS),
-                'options' => [
-                    'class' => 'dropdown',
+                'dropDownOptions' => [
+                    'class' => 'dropdown-messages',
                 ],
                 'items' => [
-                    ['label' => FAS::i(FAS::_ENVELOPE), 'url' => ['project/']],
+                    ['label' => Html::a(
+                        Html::tag(
+                            'div',
+                            '<p><strong>Task 1</strong>
+                                <span class="pull-right text-muted">40% Complete</span></p>'
+                            . Html::tag(
+                                'div',
+                                Html::tag(
+                                    'div',
+                                    '<span class="sr-only">40% Complete (success)</span>',
+                                    [
+                                        'class' => 'progress-bar progress-bar-success',
+                                        'role' => 'progressbar',
+                                        'aria-valuenow' => '40',
+                                        'aria-valuemin' => '0',
+                                        'aria-valuemax' => '100',
+                                        'style' => 'width:40%',
+                                    ]
+                                ),
+                                ['class' => 'progress progress-striped active']
+                            )
+                        ),
+                        Url::to(['/project'])), 'url' => false,
+                    ],
+                    ['label' => '', 'options' => ['class' => 'divider'], 'url' => false],
+                    ['label' => Html::a(
+                        Html::tag(
+                            'div',
+                            '<p><strong>Task 2</strong>
+                                <span class="pull-right text-muted">20% Complete</span></p>'
+                            . Html::tag(
+                                'div',
+                                Html::tag(
+                                    'div',
+                                    '<span class="sr-only">20% Complete (success)</span>',
+                                    [
+                                        'class' => 'progress-bar progress-bar-info',
+                                        'role' => 'progressbar',
+                                        'aria-valuenow' => '20',
+                                        'aria-valuemin' => '0',
+                                        'aria-valuemax' => '100',
+                                        'style' => 'width:40%',
+                                    ]
+                                ),
+                                ['class' => 'progress progress-striped active']
+                            )
+                        ),
+                        Url::to(['/project'])), 'url' => false,
+                    ],
+                    ['label' => '', 'options' => ['class' => 'divider'], 'url' => false],
+                    ['label' => Html::a(
+                        Html::tag(
+                            'div',
+                            '<p><strong>Task 3</strong>
+                                <span class="pull-right text-muted">60% Complete</span></p>'
+                            . Html::tag(
+                                'div',
+                                Html::tag(
+                                    'div',
+                                    '<span class="sr-only">60% Complete (success)</span>',
+                                    [
+                                        'class' => 'progress-bar progress-bar-warning',
+                                        'role' => 'progressbar',
+                                        'aria-valuenow' => '60',
+                                        'aria-valuemin' => '0',
+                                        'aria-valuemax' => '100',
+                                        'style' => 'width:40%',
+                                    ]
+                                ),
+                                ['class' => 'progress progress-striped active']
+                            )
+                        ),
+                        Url::to(['/project'])), 'url' => false,
+                    ],
+                    ['label' => '', 'options' => ['class' => 'divider'], 'url' => false],
+                    ['label' => Html::a(
+                        Html::tag(
+                            'div',
+                            '<p><strong>Task 4</strong>
+                                <span class="pull-right text-muted">80% Complete</span></p>'
+                            . Html::tag(
+                                'div',
+                                Html::tag(
+                                    'div',
+                                    '<span class="sr-only">80% Complete (success)</span>',
+                                    [
+                                        'class' => 'progress-bar progress-bar-danger',
+                                        'role' => 'progressbar',
+                                        'aria-valuenow' => '80',
+                                        'aria-valuemin' => '0',
+                                        'aria-valuemax' => '100',
+                                        'style' => 'width:40%',
+                                    ]
+                                ),
+                                ['class' => 'progress progress-striped active']
+                            )
+                        ),
+                        Url::to(['/project'])), 'url' => false,
+                    ],
+                    ['label' => '', 'options' => ['class' => 'divider'], 'url' => false],
+                    ['label' => Html::a(
+                        Html::tag(
+                            'strong',
+                            'See All Tasks'
+                        ) . ' ' . FAS::i(FAS::_ANGLE_RIGHT),
+                        Url::to(['/project']),
+                        [
+                            'class' => 'text-center',
+                        ]
+                    ),
+                        'url' => false,
+                    ],
                 ],
             ],
             [
@@ -155,7 +266,6 @@ $appAsset = SBAdmin2Asset::register($this);
                                 <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
                             </a>',
                         'url' => ['project/'],
-                        'content' => '123'
                     ],
                 ],
             ]
