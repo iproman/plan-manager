@@ -129,12 +129,6 @@ a.desc:after {
   }
 }
 
-@media (min-width: 1200px) {
-  .container {
-    width: 80%;
-  }
-}
-
 .nav > li > form > button.logout:focus,
 .nav > li > form > button.logout:hover {
   text-decoration: none;
