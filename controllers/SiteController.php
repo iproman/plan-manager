@@ -64,14 +64,13 @@ class SiteController extends Controller
     {
         $task = Task::find();
 
-        $taskNew = $task->where(['=', 'status', Task::STATUS_NEW])->count();
         $taskDone = $task->where(['=', 'status', Task::STATUS_DONE])->count();
         $taskInWork = $task->where(['=', 'status', Task::STATUS_IN_WORK])->count();
         $taskWarning = $task->where(['=', 'status', Task::STATUS_WARNING])->count();
 
         return $this->render(
             'index',
-            compact('taskNew', 'taskDone', 'taskInWork', 'taskWarning')
+            compact('taskDone', 'taskInWork', 'taskWarning')
         );
     }
 
