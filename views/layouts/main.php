@@ -167,7 +167,7 @@ $appAsset = SBAdmin2Asset::register($this);
                                         'aria-valuenow' => '20',
                                         'aria-valuemin' => '0',
                                         'aria-valuemax' => '100',
-                                        'style' => 'width:40%',
+                                        'style' => 'width:20%',
                                     ]
                                 ),
                                 ['class' => 'progress progress-striped active']
@@ -192,7 +192,7 @@ $appAsset = SBAdmin2Asset::register($this);
                                         'aria-valuenow' => '60',
                                         'aria-valuemin' => '0',
                                         'aria-valuemax' => '100',
-                                        'style' => 'width:40%',
+                                        'style' => 'width:20%',
                                     ]
                                 ),
                                 ['class' => 'progress progress-striped active']
@@ -217,7 +217,7 @@ $appAsset = SBAdmin2Asset::register($this);
                                         'aria-valuenow' => '80',
                                         'aria-valuemin' => '0',
                                         'aria-valuemax' => '100',
-                                        'style' => 'width:40%',
+                                        'style' => 'width:80%',
                                     ]
                                 ),
                                 ['class' => 'progress progress-striped active']
@@ -242,11 +242,67 @@ $appAsset = SBAdmin2Asset::register($this);
             ],
             [
                 'label' => FAS::i(FAS::_BELL),
-                'options' => [
-                    'class' => 'dropdown',
+                'dropDownOptions' => [
+                    'class' => 'dropdown-messages',
                 ],
                 'items' => [
-                    ['label' => FAS::i(FAS::_ENVELOPE), 'url' => ['project/']],
+                    ['label' => Html::a(
+                        Html::tag(
+                            'div',
+                            '<i class="fa fa-comment fa-fw"></i> New Comment
+                            <span class="pull-right text-muted small">4 minutes ago</span>'
+                        ),
+                        Url::to(['/project'])), 'url' => false,
+                    ],
+                    ['label' => '', 'options' => ['class' => 'divider'], 'url' => false],
+                    ['label' => Html::a(
+                        Html::tag(
+                            'div',
+                            '<i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                            <span class="pull-right text-muted small">12 minutes ago</span>'
+                        ),
+                        Url::to(['/project'])), 'url' => false,
+                    ],
+                    ['label' => '', 'options' => ['class' => 'divider'], 'url' => false],
+                    ['label' => Html::a(
+                        Html::tag(
+                            'div',
+                            '<i class="fa fa-envelope fa-fw"></i> Message Sent
+                            <span class="pull-right text-muted small">4 minutes ago</span>'
+                        ),
+                        Url::to(['/project'])), 'url' => false,
+                    ],
+                    ['label' => '', 'options' => ['class' => 'divider'], 'url' => false],
+                    ['label' => Html::a(
+                        Html::tag(
+                            'div',
+                            '<i class="fa fa-tasks fa-fw"></i> New Task
+                            <span class="pull-right text-muted small">4 minutes ago</span>'
+                        ),
+                        Url::to(['/project'])), 'url' => false,
+                    ],
+                    ['label' => '', 'options' => ['class' => 'divider'], 'url' => false],
+                    ['label' => Html::a(
+                        Html::tag(
+                            'div',
+                            '<i class="fa fa-upload fa-fw"></i> Server Rebooted
+                            <span class="pull-right text-muted small">4 minutes ago</span>'
+                        ),
+                        Url::to(['/project'])), 'url' => false,
+                    ],
+                    ['label' => '', 'options' => ['class' => 'divider'], 'url' => false],
+                    ['label' => Html::a(
+                        Html::tag(
+                            'strong',
+                            'See All Tasks'
+                        ) . ' ' . FAS::i(FAS::_ANGLE_RIGHT),
+                        Url::to(['/project']),
+                        [
+                            'class' => 'text-center',
+                        ]
+                    ),
+                        'url' => false,
+                    ],
                 ],
             ],
             [
