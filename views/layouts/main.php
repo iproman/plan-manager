@@ -311,17 +311,26 @@ $appAsset = SBAdmin2Asset::register($this);
                     'class' => 'dropdown',
                 ],
                 'items' => [
-                    [
-                        'label' => '<a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                            <em>Yesterday</em>
-                                        </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>',
-                        'url' => ['project/'],
+                    ['label' => Html::a(
+                        Html::tag(
+                            'div',
+                            '<i class="fa fa-user fa-fw"></i> User Profile'
+                        ),
+                        Url::to(['/project'])), 'url' => false,
+                    ],
+                    ['label' => Html::a(
+                        Html::tag(
+                            'div',
+                            'Settings'
+                        ),
+                        Url::to(['/project'])), 'url' => false,
+                    ],
+                    ['label' => '', 'options' => ['class' => 'divider'], 'url' => false],
+                    ['label' => Html::a(
+                        '<i class="fa fa-sign-out fa-fw"></i> Logout',
+                        Url::to(['/project'])
+                    ),
+                        'url' => false,
                     ],
                 ],
             ]
