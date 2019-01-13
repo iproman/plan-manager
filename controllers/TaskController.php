@@ -113,12 +113,12 @@ class TaskController extends Controller
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException
      */
-    public function actionUpdate($id, $project_id = null)
+    public function actionUpdate($id, $project_id = null, $page = null)
     {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index', 'id' => $model->id, 'project_id' => $project_id]);
+            return $this->redirect(['index', 'id' => $model->id, 'project_id' => $project_id, 'page' => $page]);
         }
         return $this->render('update', [
             'model' => $model,

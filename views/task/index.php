@@ -145,7 +145,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         Url::to([
                                 'task/update',
                                 'id' => $model->id,
-                                'project_id' => Yii::$app->request->get('project_id')
+                                'project_id' => Yii::$app->request->get('project_id'),
+                                'page' => Yii::$app->request->get('page'),
                             ]
                         ),
                         [
