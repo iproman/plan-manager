@@ -307,8 +307,8 @@ $appAsset = SBAdmin2Asset::register($this);
             ],
             [
                 'label' => FAS::i(FAS::_USER),
-                'options' => [
-                    'class' => 'dropdown',
+                'dropDownOptions' => [
+                    'class' => 'dropdown-user in',
                 ],
                 'items' => [
                     ['label' => Html::a(
@@ -339,7 +339,10 @@ $appAsset = SBAdmin2Asset::register($this);
     NavBar::end();
     ?>
 
-    <div class="container">
+
+    <?= $this->render('_left-nav.php') ?>
+
+    <div id="page-wrapper">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
