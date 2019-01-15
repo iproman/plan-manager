@@ -7,6 +7,7 @@ $light: #f8f8f8;
 $black: #303030;
 $darkgreen: #717e62;
 $gray: #444444;
+$white: #fff;
 
 $success: #5cb85c;
 $danger: #d9534f;
@@ -14,8 +15,6 @@ $default: #777;
 $primary: #337ab7;
 $warning: #f0ad4e;
 $info: #5bc0de;
-
-
 
 // Imports
 @import "./_bourbon";
@@ -73,11 +72,13 @@ a.asc:after, a.desc:after {
 }
 
 a.asc:after {
-  content: /*"\e113"*/ "\e151";
+  content: /*"\e113"*/
+          "\e151";
 }
 
 a.desc:after {
-  content: /*"\e114"*/ "\e152";
+  content: /*"\e114"*/
+          "\e152";
 }
 
 .sort-numerical a.asc:after {
@@ -120,9 +121,9 @@ a.desc:after {
   border: none;
 }
 
-@media(max-width:767px) {
+@media(max-width: 767px) {
   .nav li > form > button.logout {
-    display:block;
+    display: block;
     text-align: left;
     width: 100%;
     padding: 10px 15px;
@@ -170,4 +171,8 @@ a.desc:after {
 
 .flex-right {
   flex-direction: row-reverse;
+}
+
+#page-wrapper .breadcrumb {
+  background: $white;
 }
