@@ -161,3 +161,13 @@ a.desc:after {
   background-color: $success;
   border-color: $success;
 }
+
+.vertical-align {
+  display: flex;
+  align-items: center;
+  height: 10rem;
+}
+
+.flex-right {
+  flex-direction: row-reverse;
+}
