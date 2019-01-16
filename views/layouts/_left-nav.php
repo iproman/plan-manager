@@ -16,11 +16,15 @@ echo Html::tag(
                 ],
                 [
                     'label' => FAS::i(FAS::_PROJECT_DIAGRAM) . ' ' . 'Проекты',
-                    'url' => ['project/']
+                    'url' => ['/project/']
                 ],
                 [
                     'label' => FAS::i(FAS::_TASKS) . ' ' . 'Задачи',
-                    'url' => ['task/']
+                    'url' => ['/task/']
+                ],
+                [
+                    'label' => FAS::i(FAS::_DATABASE) . ' ' . 'Резервное копирование',
+                    'url' => ['/db-manager/']
                 ],
             ],
             'options' => [

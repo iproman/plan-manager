@@ -51,7 +51,23 @@ $config = [
         ],
     ],
     'modules' => [
-        'gridview' => ['class' => 'kartik\grid\Module']
+        'gridview' => ['class' => 'kartik\grid\Module'],
+        'db-manager' => [
+            'class' => 'bs\dbManager\Module',
+            // path to directory for the dumps
+            'path' => '@app/backups',
+            // list of registerd db-components
+            'dbList' => ['db'],
+//            'as access' => [
+//                'class' => 'yii\filters\AccessControl',
+//                'rules' => [
+//                    [
+//                        'allow' => true,
+//                        'roles' => ['@'],
+//                    ],
+//                ],
+//            ],
+        ]
     ],
     'params' => $params,
 ];
