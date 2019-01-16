@@ -48,6 +48,11 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                [
+                    'pattern' => 'task/<action:(view|update|delete|index|create)>/<project_id:\d+>/<id:\d+>',
+                    'route' => 'task/<action>',
+                    'defaults' => ['project_id' => '', 'id' => '',],
+                ],
             ],
         ],
     ],
