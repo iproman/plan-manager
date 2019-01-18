@@ -62,11 +62,9 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $task = Task::find();
-
-        $taskDone = $task->where(['=', 'status', Task::STATUS_DONE])->count();
-        $taskInWork = $task->where(['=', 'status', Task::STATUS_IN_WORK])->count();
-        $taskWarning = $task->where(['=', 'status', Task::STATUS_WARNING])->count();
+        $taskDone = Task::getCountedTasks(Task::STATUS_DONE);
+        $taskInWork = Task::getCountedTasks(Task::STATUS_IN_WORK);
+        $taskWarning = Task::getCountedTasks(Task::STATUS_WARNING);
 
         return $this->render(
             'index',

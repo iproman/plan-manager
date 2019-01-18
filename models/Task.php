@@ -188,4 +188,19 @@ class Task extends Base
             self::STATUS_WARNING => 'warning',
         ];
     }
+
+    /**
+     * Return counted tasks
+     *
+     * @param null $e
+     * @return int|string
+     */
+    public static function getCountedTasks($e = null)
+    {
+        if (null !== $e) {
+            return Task::find()->where(['=', 'status', $e])->count();
+        } else {
+            return Task::find()->count();
+        }
+    }
 }
