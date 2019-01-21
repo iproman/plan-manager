@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\models\Task;
+use app\models\Project;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Task */
@@ -46,9 +48,16 @@ use app\models\Task;
             <?= $form->field($model, 'branch')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-lg-3">
-            <?php if (!Yii::$app->request->get('project_id')): ?>
-                <?= $form->field($model, 'project_id')->textInput(['maxlength' => true]) ?>
-            <?php endif; ?>
+            <?= $form->field($model, 'project_id')->dropDownList(
+                ArrayHelper::map(
+                    Project::getProjects(),
+                    'id',
+                    'name'
+                ),
+                [
+                    'prompt' => 'Choose project name',
+                ]
+            ) ?>
         </div>
     </div>
     <hr>

@@ -62,7 +62,7 @@ class Project extends Base
     }
 
     /**
-     * Return project name
+     * Returns project name
      *
      * @param $projectId
      * @return mixed
@@ -75,6 +75,18 @@ class Project extends Base
             ->one();
 
         return $project['name'];
+    }
+
+    /**
+     * Returns all projects
+     *
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    final public static function getProjects()
+    {
+        return Project::find()
+            ->asArray()
+            ->all();
     }
 
     /**
