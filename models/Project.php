@@ -13,7 +13,7 @@ use Yii;
  *
  * @property Task $task
  */
-class Project extends Base
+class Project extends Base implements ProjectInterface
 {
 
     /**
