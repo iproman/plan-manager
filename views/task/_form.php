@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use app\models\Task;
 use app\models\Project;
 use yii\helpers\ArrayHelper;
+use dosamigos\ckeditor\CKEditor;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Task */
@@ -21,7 +22,10 @@ use yii\helpers\ArrayHelper;
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <?= $form->field($model, 'content')->textarea(['maxlength' => true, 'rows' => 10]) ?>
+            <?= $form->field($model, 'content')->widget(CKEditor::class, [
+                'options' => ['rows' => 5],
+                'preset' => 'standart',
+            ]) ?>
         </div>
     </div>
     <div class="row">
