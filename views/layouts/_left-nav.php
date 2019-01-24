@@ -26,6 +26,10 @@ echo Html::tag(
                     'label' => FAS::i(FAS::_DATABASE) . ' ' . 'Резервное копирование',
                     'url' => ['/db-manager/']
                 ],
+                [
+                    'label' => FAS::i(FAS::_PAW) . ' ' . 'Лог',
+                    'url' => ['/log/']
+                ],
             ],
             'options' => [
                 'class' => 'nav',
