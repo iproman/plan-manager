@@ -18,8 +18,18 @@ class TaskSearch extends Task
     public function rules()
     {
         return [
-            [['id', 'created_at', 'updated_at'], 'integer'],
-            [['name', 'status',], 'safe'],
+            [
+                'status',
+                'integer'
+            ],
+            [
+                [
+                    'name',
+                    'branch',
+                ],
+                'string'
+            ],
+
         ];
     }
 
@@ -41,7 +51,7 @@ class TaskSearch extends Task
      */
     public function search($params)
     {
-        $query = Task::find()->orderBy('id DESC');
+        $query = Task::find();
 
         // add conditions that should always apply here
 
@@ -58,13 +68,9 @@ class TaskSearch extends Task
         }
 
         // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-        ]);
-
+        $query->andFilterWhere(['status' => $this->status]);
         $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'branch', $this->branch]);
 
         return $dataProvider;
     }
