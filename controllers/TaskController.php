@@ -42,11 +42,7 @@ class TaskController extends Controller
     {
         $searchModel = new TaskSearch();
 
-        if (!empty($project_id)) {
-            $projectName = Project::getProjectName($project_id);
-        } else {
-            $projectName = 'всех проектов';
-        }
+        $projectName = !empty($project_id) ? Project::getProjectName($project_id) : 'всех проектов';
 
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
