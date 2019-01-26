@@ -76,8 +76,9 @@ $this->params['breadcrumbs'][] = $this->title;
         [
             'attribute' => 'content',
             'value' => function ($model) {
-                return StringHelper::truncateWords($model->content, 5, '...');
-            }
+                return StringHelper::truncateWords(strip_tags($model->content), 5, '...');
+            },
+            'format' => 'raw',
         ],
         [
             'attribute' => 'status',
