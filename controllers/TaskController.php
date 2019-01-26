@@ -44,17 +44,11 @@ class TaskController extends Controller
 
         if (!empty($project_id)) {
             $projectName = Project::getProjectName($project_id);
-            $dataProvider = new ActiveDataProvider([
-                'query' => Task::find()
-                    ->where(['=', 'project_id', $project_id])
-                    ->orderBy([
-                        'created_at' => SORT_DESC,
-                    ]),
-            ]);
         } else {
             $projectName = 'всех проектов';
-            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         }
+
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
