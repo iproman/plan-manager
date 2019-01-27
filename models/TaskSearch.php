@@ -53,8 +53,6 @@ class TaskSearch extends Task
     {
         $query = Task::find();
 
-        // add conditions that should always apply here
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -71,6 +69,8 @@ class TaskSearch extends Task
         $query->andFilterWhere(['status' => $this->status]);
         $query->andFilterWhere(['like', 'name', $this->name]);
         $query->andFilterWhere(['like', 'branch', $this->branch]);
+        $query->andFilterWhere(['=', 'project_id', $this->project_id]);
+        $query->orderBy('id DESC');
 
         return $dataProvider;
     }
