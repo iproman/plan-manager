@@ -100,6 +100,7 @@ class TaskController extends Controller
      *
      * @param $id
      * @param null $project_id
+     * @param null $page
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException
      */
@@ -108,6 +109,7 @@ class TaskController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', 'Successful update');
             return $this->redirect(['index', 'id' => $model->id, 'project_id' => $project_id, 'page' => $page]);
         }
         return $this->render('update', [
