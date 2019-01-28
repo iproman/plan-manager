@@ -24,10 +24,6 @@ class SBAdmin2Asset extends AssetBundle
     public $js = [
         // Metis Menu Plugin JavaScript
         'vendor/metisMenu/metisMenu.min.js',
-        // Morris Charts JavaScript
-        'vendor/raphael/raphael.min.js',
-        'vendor/morrisjs/morris.min.js',
-        'data/morris-data.js',
         // Custom Theme JavaScript
         'dist/js/sb-admin-2.js',
     ];
