@@ -62,6 +62,12 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 
+    <hr>
+
+    <?= $this->render('_search', ['model' => $searchModel]); ?>
+
+    <hr>
+
     <?php
     $columns = [];
 
@@ -175,7 +181,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'columns' => $columns,
     ]); ?>
 </div>
