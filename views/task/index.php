@@ -68,119 +68,108 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <hr>
 
-    <?php
-    $columns = [];
-
-    if (!Yii::$app->request->get('project_id')) {
-        $columns[] = 'project_id';
-    }
-
-    $columns = array_merge($columns, [
-        ['class' => 'yii\grid\SerialColumn'],
-        'id',
-        'name',
-        [
-            'attribute' => 'content',
-            'value' => function ($model) {
-                return StringHelper::truncateWords(strip_tags($model->content), 5, '...');
-            },
-            'format' => 'raw',
-        ],
-        [
-            'attribute' => 'status',
-            'format' => 'raw',
-            'value' => function ($model) {
-                /** @var \app\models\Task $model */
-                return Html::tag(
-                    'span',
-                    Task::getStatusLabels()[$model->status],
-                    [
-                        'class' => 'label label-' . Task::getStatusCss()[$model->status],
-                        'data-toggle' => 'tooltip',
-                        'title' => Task::getStatuses()[$model->status],
-                    ]
-                );
-            },
-            'contentOptions' => [
-                'style' => 'text-align:center',
-            ]
-        ],
-        [
-            'attribute' => 'branch',
-            'format' => 'raw',
-            'value' => function ($model) {
-                return Editable::widget([
-                    'name' => 'branch',
-                    'formOptions' => [
-                        'method' => 'post',
-                        'action' => Url::to([
-                            'task/change',
-                            'id' => $model->id,
-                        ])
-                    ],
-                    'asPopover' => true,
-                    'value' => $model->branch,
-                    'header' => 'branch',
-                    'size' => 'sm',
-                    'showAjaxErrors' => true,
-                ]);
-            },
-        ],
-        'created_at:date',
-        'updated_at:date',
-        [
-            'class' => 'yii\grid\ActionColumn',
-            'template' => '{view} {update} {delete}',
-            'buttons' => [
-                'view' => function ($url, $model, $key) {
-                    return Html::a(
-                        FAS::i(FAS::_EYE),
-                        Url::to([
-                                'task/view',
-                                'id' => $model->id,
-                                'project_id' => Yii::$app->request->get('project_id')
-                            ]
-                        ),
-                        [
-                            'class' => 'btn btn-default btn-hover-success',
-                        ]
-                    );
-                },
-                'update' => function ($url, $model, $key) {
-                    return Html::a(
-                        FAS::i(FAS::_PEN),
-                        Url::to([
-                                'task/update',
-                                'id' => $model->id,
-                                'project_id' => Yii::$app->request->get('project_id'),
-                                'page' => Yii::$app->request->get('page'),
-                            ]
-                        ),
-                        [
-                            'class' => 'btn btn-default btn-hover-info',
-                        ]
-                    );
-                },
-                'delete' => function ($url, $model, $key) {
-                    return Html::a(
-                        FAS::i(FAS::_TRASH_ALT),
-                        Url::to([
-                                'task/delete',
-                                'id' => $model->id
-                            ]
-                        ),
-                        [
-                            'class' => 'btn btn-default btn-hover-danger',
-                        ]
-                    );
-                },
-            ]
-        ]
-    ])
-    ?>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'columns' => $columns,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+            'name',
+            [
+                'attribute' => 'content',
+                'value' => function ($model) {
+                    return StringHelper::truncateWords(strip_tags($model->content), 5, '...');
+                },
+                'format' => 'raw',
+            ],
+            [
+                'attribute' => 'status',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    /** @var \app\models\Task $model */
+                    return Html::tag(
+                        'span',
+                        Task::getStatusLabels()[$model->status],
+                        [
+                            'class' => 'label label-' . Task::getStatusCss()[$model->status],
+                            'data-toggle' => 'tooltip',
+                            'title' => Task::getStatuses()[$model->status],
+                        ]
+                    );
+                },
+                'contentOptions' => [
+                    'style' => 'text-align:center',
+                ]
+            ],
+            [
+                'attribute' => 'branch',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return Editable::widget([
+                        'name' => 'branch',
+                        'formOptions' => [
+                            'method' => 'post',
+                            'action' => Url::to([
+                                'task/change',
+                                'id' => $model->id,
+                            ])
+                        ],
+                        'asPopover' => true,
+                        'value' => $model->branch,
+                        'header' => 'branch',
+                        'size' => 'sm',
+                        'showAjaxErrors' => true,
+                    ]);
+                },
+            ],
+            'created_at:date',
+            'updated_at:date',
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {update} {delete}',
+                'buttons' => [
+                    'view' => function ($url, $model, $key) {
+                        return Html::a(
+                            FAS::i(FAS::_EYE),
+                            Url::to([
+                                    'task/view',
+                                    'id' => $model->id,
+                                    'project_id' => Yii::$app->request->get('project_id')
+                                ]
+                            ),
+                            [
+                                'class' => 'btn btn-default btn-hover-success',
+                            ]
+                        );
+                    },
+                    'update' => function ($url, $model, $key) {
+                        return Html::a(
+                            FAS::i(FAS::_PEN),
+                            Url::to([
+                                    'task/update',
+                                    'id' => $model->id,
+                                    'project_id' => Yii::$app->request->get('project_id'),
+                                    'page' => Yii::$app->request->get('page'),
+                                ]
+                            ),
+                            [
+                                'class' => 'btn btn-default btn-hover-info',
+                            ]
+                        );
+                    },
+                    'delete' => function ($url, $model, $key) {
+                        return Html::a(
+                            FAS::i(FAS::_TRASH_ALT),
+                            Url::to([
+                                    'task/delete',
+                                    'id' => $model->id
+                                ]
+                            ),
+                            [
+                                'class' => 'btn btn-default btn-hover-danger',
+                            ]
+                        );
+                    },
+                ]
+            ]
+        ],
     ]); ?>
 </div>
