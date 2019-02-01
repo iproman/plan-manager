@@ -21,6 +21,9 @@ use yii\widgets\ActiveForm;
         <div class="col-lg-2"><?= $form->field($model, 'status') ?></div>
         <div class="col-lg-2"><?= $form->field($model, 'branch') ?></div>
         <div class="col-lg-3"><?= $form->field($model, 'content') ?></div>
+        <?= $form->field($model, 'project_id')->hiddenInput([
+            'value' => Yii::$app->request->get('project_id'),
+        ])->label(false) ?>
     </div>
 
     <div class="row">

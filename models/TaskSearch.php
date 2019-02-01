@@ -19,7 +19,10 @@ class TaskSearch extends Task
     {
         return [
             [
-                'status',
+                [
+                    'project_id',
+                    'status',
+                ],
                 'integer'
             ],
             [
@@ -64,12 +67,14 @@ class TaskSearch extends Task
             // $query->where('0=1');
             return $dataProvider;
         }
+        $project_id = Yii::$app->request->get('project_id');
+        $project_id = !empty($project_id) ? $project_id : $this->project_id;
 
         // grid filtering conditions
+        $query->andFilterWhere(['=', 'project_id', $project_id]);
         $query->andFilterWhere(['status' => $this->status]);
         $query->andFilterWhere(['like', 'name', $this->name]);
         $query->andFilterWhere(['like', 'branch', $this->branch]);
-        $query->andFilterWhere(['=', 'project_id', Yii::$app->request->get('project_id')]);
         $query->orderBy('id DESC');
 
         return $dataProvider;
