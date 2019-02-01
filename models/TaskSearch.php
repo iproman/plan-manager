@@ -22,6 +22,7 @@ class TaskSearch extends Task
                 [
                     'project_id',
                     'status',
+                    'id',
                 ],
                 'integer'
             ],
@@ -29,6 +30,7 @@ class TaskSearch extends Task
                 [
                     'name',
                     'branch',
+                    'content',
                 ],
                 'string'
             ],
@@ -72,7 +74,8 @@ class TaskSearch extends Task
 
         // grid filtering conditions
         $query->andFilterWhere(['=', 'project_id', $project_id]);
-        $query->andFilterWhere(['status' => $this->status]);
+        $query->andFilterWhere(['like', 'status', $this->status]);
+        $query->andFilterWhere(['like', 'content', $this->content]);
         $query->andFilterWhere(['like', 'name', $this->name]);
         $query->andFilterWhere(['like', 'branch', $this->branch]);
         $query->orderBy('id DESC');
