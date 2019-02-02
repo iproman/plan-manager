@@ -27,6 +27,11 @@ class TaskSearch extends Task
                 'integer'
             ],
             [
+                'status',
+                'in',
+                'range' => self::getStatuses(),
+            ],
+            [
                 [
                     'name',
                     'branch',
@@ -74,7 +79,7 @@ class TaskSearch extends Task
 
         // grid filtering conditions
         $query->andFilterWhere(['=', 'project_id', $project_id]);
-        $query->andFilterWhere(['like', 'status', $this->status]);
+        $query->andFilterWhere(['=', 'status', $this->status]);
         $query->andFilterWhere(['like', 'content', $this->content]);
         $query->andFilterWhere(['like', 'name', $this->name]);
         $query->andFilterWhere(['like', 'branch', $this->branch]);
