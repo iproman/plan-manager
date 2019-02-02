@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\models\Task;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\TaskSearch */
@@ -18,7 +19,11 @@ use yii\widgets\ActiveForm;
     <div class="row">
         <div class="col-lg-2"><?= $form->field($model, 'id') ?></div>
         <div class="col-lg-3"> <?= $form->field($model, 'name') ?></div>
-        <div class="col-lg-2"><?= $form->field($model, 'status') ?></div>
+        <div class="col-lg-2"><?= $form->field($model, 'status')->dropDownList(
+                Task::getStatusNames(),
+                ['prompt' => '1']
+            ) ?>
+        </div>
         <div class="col-lg-2"><?= $form->field($model, 'branch') ?></div>
         <div class="col-lg-3"><?= $form->field($model, 'content') ?></div>
         <?= $form->field($model, 'project_id')->hiddenInput([
