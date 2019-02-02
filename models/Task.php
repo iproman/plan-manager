@@ -152,6 +152,21 @@ class Task extends Base
     public static function getStatuses()
     {
         return [
+            self::STATUS_NEW,
+            self::STATUS_IN_WORK,
+            self::STATUS_DONE,
+            self::STATUS_WARNING,
+        ];
+    }
+
+    /**
+     * Returns statuses names
+     *
+     * @return array
+     */
+    public static function getStatusNames()
+    {
+        return [
             self::STATUS_NEW => 'Новая задача',
             self::STATUS_IN_WORK => 'В работе',
             self::STATUS_DONE => 'Завершена',
