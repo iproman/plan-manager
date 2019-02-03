@@ -24,35 +24,35 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+    <div class="row">
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
+                [
+                    'attribute' => 'name',
+                    'format' => 'raw',
+                    'value' => function ($model) {
+                        /** @var \app\models\Task $model */
+                        return $model->name . ' ' . Html::a('Задачи', ['/task/index', 'project_id' => $model->id],
+                                [
+                                    'class' => 'btn-sm btn-primary pull-right',
+                                ]
+                            );
+                    },
+                ],
+                [
+                    'attribute' => 'Количество задач',
+                    'format' => 'raw',
+                    'value' => function ($model) {
+                        return count($model->task);
+                    }
+                ],
+                'created_at:date',
+                //'updated_at',
 
-            'id',
-            [
-                'attribute' => 'name',
-                'format' => 'raw',
-                'value' => function ($model) {
-                    /** @var \app\models\Task $model */
-                    return $model->name . ' ' . Html::a('Задачи', ['/task/index', 'project_id' => $model->id],
-                            [
-                                'class' => 'btn-sm btn-primary pull-right',
-                            ]
-                        );
-                },
+                ['class' => 'yii\grid\ActionColumn'],
             ],
-            [
-                'attribute' => 'Количество статей',
-                'format' => 'raw',
-                'value' => function ($model) {
-                    return count($model->task);
-                }
-            ],
-            'created_at:date',
-            //'updated_at',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+        ]); ?>
+    </div>
 </div>
