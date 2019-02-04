@@ -13,6 +13,7 @@ use app\assets\themes\SBAdmin2Asset;
 use rmrevin\yii\fontawesome\FAS;
 use yii\widgets\Menu;
 use yii\helpers\Url;
+use lavrentiev\widgets\toastr\NotificationFlash;
 
 $appAsset = SBAdmin2Asset::register($this);
 ?>
@@ -46,6 +47,8 @@ $appAsset = SBAdmin2Asset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
+
+<?= NotificationFlash::widget() ?>
 
 <div id="wrapper">
     <?php NavBar::begin([
