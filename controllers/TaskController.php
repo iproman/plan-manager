@@ -24,9 +24,9 @@ class TaskController extends Controller
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
-                    'delete' => ['POST'],
+                    'delete' => ['GET'],
                 ],
             ],
         ];
@@ -119,16 +119,27 @@ class TaskController extends Controller
 
     /**
      * Deletes an existing Task model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * If deletion is successful, the browser will be redirected to the 'index' page
+     * with define project and page, if exists GET project_id, page
+     * Else returns same page as in successful delete, but flashes error.
+     *
+     * @param $id
+     * @param null $project_id
+     * @param null $page
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
      */
-    public function actionDelete($id)
+    public function actionDelete($id, $project_id = null, $page = null)
     {
-        $this->findModel($id)->delete();
+        if ($this->findModel($id)->delete()) {
+            Yii::$app->session->setFlash('success', 'Successful delete #' . $id);
+        } else {
+            Yii::$app->session->setFlash('error', 'Can\'t delete #' . $id);
+        }
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'project_id' => $project_id, 'page' => $page]);
     }
 
     /**

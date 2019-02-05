@@ -160,11 +160,17 @@ $this->params['breadcrumbs'][] = $this->title;
                             FAS::i(FAS::_TRASH_ALT),
                             Url::to([
                                     'task/delete',
-                                    'id' => $model->id
+                                    'id' => $model->id,
+                                    'project_id' => Yii::$app->request->get('project_id'),
+                                    'page' => Yii::$app->request->get('page'),
                                 ]
                             ),
                             [
                                 'class' => 'btn btn-default btn-hover-danger',
+                                'onclick' => 'return confirm("Вы уверены, что хотите удалить задачу #' . $model->id . ' ?");',
+                                'data' => [
+                                    'pjax' => '0',
+                                ],
                             ]
                         );
                     },
