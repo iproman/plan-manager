@@ -21,7 +21,7 @@ use app\models\Task;
         <div class="col-lg-3"> <?= $form->field($model, 'name') ?></div>
         <div class="col-lg-2"><?= $form->field($model, 'status')->dropDownList(
                 Task::getStatusNames(),
-                ['prompt' => '1']
+                ['prompt' => 'Выберите статус']
             ) ?>
         </div>
         <div class="col-lg-2"><?= $form->field($model, 'branch') ?></div>
