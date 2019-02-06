@@ -59,15 +59,20 @@ class ProjectController extends Controller
 
     /**
      * Creates a new Project model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
+     * If creation is successful, the browser will be redirected to the 'index' page.
+     * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
         $model = new Project();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', 'New project successfully created');
+            } else {
+                Yii::$app->session->setFlash('error', 'Can\'t create new project');
+            }
+            return $this->redirect(['index']);
         }
 
         return $this->render('create', [
@@ -86,7 +91,12 @@ class ProjectController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', 'Successful update');
+            } else {
+                Yii::$app->session->setFlash('error', 'Can\'t update project');
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -95,16 +105,21 @@ class ProjectController extends Controller
         ]);
     }
 
-    /**
-     * Deletes an existing Project model.
+    /** Deletes an existing Project model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * @param $id
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        if ($this->findModel($id)->delete()) {
+            Yii::$app->session->setFlash('success', 'Successful delete');
+        } else {
+            Yii::$app->session->setFlash('error', 'Can\'t delete project');
+        }
 
         return $this->redirect(['index']);
     }
@@ -121,6 +136,8 @@ class ProjectController extends Controller
         if (($model = Project::findOne($id)) !== null) {
             return $model;
         }
+
+        Yii::$app->session->setFlash('error', 'The requested page does not exist.');
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
