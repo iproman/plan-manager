@@ -80,7 +80,11 @@ class TaskController extends BaseController
             if (!empty($project_id)) {
                 $model->project_id = $project_id;
             }
-            $model->save();
+            if ($model->save()) {
+                $this->flashMessages('success', 'New task successfully created');
+            } else {
+                $this->flashMessages('error', 'Can\'t create new project');
+            }
             return $this->redirect([
                 'index',
                 'id' => $model->id,
@@ -107,8 +111,12 @@ class TaskController extends BaseController
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', 'Successful update');
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->save()) {
+                $this->flashMessages('success', 'Successful update');
+            } else {
+                $this->flashMessages('error', 'Can\'t update task');
+            }
             return $this->redirect(['index', 'id' => $model->id, 'project_id' => $project_id, 'page' => $page]);
         }
         return $this->render('update', [
@@ -133,11 +141,10 @@ class TaskController extends BaseController
     public function actionDelete($id, $project_id = null, $page = null)
     {
         if ($this->findModel($id)->delete()) {
-            Yii::$app->session->setFlash('success', 'Successful delete #' . $id);
+            $this->flashMessages('success', 'Successful delete #' . $id);
         } else {
-            Yii::$app->session->setFlash('error', 'Can\'t delete #' . $id);
+            $this->flashMessages('error', 'Can\'t delete #' . $id);
         }
-
         return $this->redirect(['index', 'project_id' => $project_id, 'page' => $page]);
     }
 
@@ -153,6 +160,8 @@ class TaskController extends BaseController
         if (($model = Task::findOne($id)) !== null) {
             return $model;
         }
+
+        $this->flashMessages('error', 'The requested page does not exist.');
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
@@ -176,12 +185,16 @@ class TaskController extends BaseController
             $attribute = 'branch';
 
             if (null === ($value = Yii::$app->getRequest()->post('branch'))) {
+                $this->flashMessages('error', 'Необходимо задать значение для изменяемого
+                 атрибута через параметр \'value\'.');
                 return [
                     'success' => false,
                     'msg' => "Необходимо задать значение для изменяемого атрибута через параметр 'value'."
                 ];
             } else {
                 if (null === ($pk = Yii::$app->getRequest()->get('id'))) {
+                    $this->flashMessages('error', "Необходимо задать значение первичного ключа через
+                    параметр 'pk'.");
                     return [
                         'success' => false,
                         'msg' => "Необходимо задать значение первичного ключа через параметр 'pk'."
@@ -190,6 +203,7 @@ class TaskController extends BaseController
                     /** @var $class ActiveRecord */
                     $model = $class::findOne($pk);
                     if (!$model instanceof ActiveRecord) {
+                        $this->flashMessages('error', "Невозможно найти модель для первичного ключа $pk.");
                         return [
                             'success' => false,
                             'msg' => "Невозможно найти модель для первичного ключа $pk."
@@ -197,6 +211,9 @@ class TaskController extends BaseController
                     } else {
                         $model->$attribute = $value;
                         if ($model->save(false, [$attribute]) !== false) {
+                            $this->flashMessages('success', "Значение для &laquo;" .
+                                $model->getAttributeLabel($attribute) .
+                                "&raquo; успешно изменено.");
                             return [
                                 'success' => true,
                                 'msg' => "Значение для &laquo;" .
@@ -205,6 +222,7 @@ class TaskController extends BaseController
                                 'newValue' => $model->$attribute,
                             ];
                         } else {
+                            $this->flashMessages('error', "Ошибка сохранения модели $class!");
                             return [
                                 'success' => false,
                                 'msg' => "Ошибка сохранения модели $class!"
