@@ -4,7 +4,6 @@ namespace app\controllers;
 
 use Yii;
 use yii\db\ActiveRecord;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
@@ -15,7 +14,7 @@ use app\models\Project;
 /**
  * TaskController implements the CRUD actions for Task model.
  */
-class TaskController extends Controller
+class TaskController extends BaseController
 {
     /**
      * @inheritdoc

@@ -5,14 +5,13 @@ namespace app\controllers;
 use Yii;
 use app\models\Log;
 use app\models\LogSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
  * LogController implements the CRUD actions for Log model.
  */
-class LogController extends Controller
+class LogController extends BaseController
 {
     /**
      * {@inheritdoc}
