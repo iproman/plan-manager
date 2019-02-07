@@ -66,13 +66,13 @@ class Project extends Base implements ProjectInterface
      *
      * @param $projectId
      * @return mixed
+     * @throws \yii\db\Exception
      */
     public static function getProjectName($projectId)
     {
-        $project = Project::find()
-            ->where(['=', 'id', $projectId])
-            ->asArray()
-            ->one();
+        $project = Yii::$app->db->createCommand('SELECT * FROM project WHERE id=:project_id')
+            ->bindValue(':project_id', $projectId)
+            ->queryOne();
 
         return $project['name'];
     }
