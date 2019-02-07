@@ -67,9 +67,9 @@ class ProjectController extends BaseController
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->save()) {
-                Yii::$app->session->setFlash('success', 'New project successfully created');
+                $this->flashMessages('success', 'New project successfully created');
             } else {
-                Yii::$app->session->setFlash('error', 'Can\'t create new project');
+                $this->flashMessages('error', 'Can\'t create new project');
             }
             return $this->redirect(['index']);
         }
@@ -92,9 +92,9 @@ class ProjectController extends BaseController
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->save()) {
-                Yii::$app->session->setFlash('success', 'Successful update');
+                $this->flashMessages('success', 'Successful update');
             } else {
-                Yii::$app->session->setFlash('error', 'Can\'t update project');
+                $this->flashMessages('error', 'Can\'t update project');
             }
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -115,9 +115,9 @@ class ProjectController extends BaseController
     public function actionDelete($id)
     {
         if ($this->findModel($id)->delete()) {
-            Yii::$app->session->setFlash('success', 'Successful delete');
+            $this->flashMessages('success', 'Successful delete');
         } else {
-            Yii::$app->session->setFlash('error', 'Can\'t delete project');
+            $this->flashMessages('error', 'Can\'t delete project');
         }
 
         return $this->redirect(['index']);
@@ -136,7 +136,7 @@ class ProjectController extends BaseController
             return $model;
         }
 
-        Yii::$app->session->setFlash('error', 'The requested page does not exist.');
+        $this->flashMessages('error', 'The requested page does not exist.');
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
