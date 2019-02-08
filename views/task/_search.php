@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\models\Task;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\TaskSearch */
@@ -35,7 +36,10 @@ use app\models\Task;
         <div class="col-lg-12">
             <div class="form-group">
                 <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-                <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
+                <?= Html::a(
+                    'Reset',
+                    Url::to(['task/index', 'project_id' => Yii::$app->request->get('project_id')]),
+                    ['class' => 'btn btn-default',]) ?>
             </div>
         </div>
     </div>
