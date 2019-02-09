@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'level',
             'category',
-            'log_time',
+            'log_time:datetime',
             'prefix:ntext',
             'message:ntext',
         ],
