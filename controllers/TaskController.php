@@ -77,18 +77,14 @@ class TaskController extends BaseController
         $model = new Task();
 
         if ($model->load(Yii::$app->request->post())) {
-            if (!empty($project_id)) {
-                $model->project_id = $project_id;
-            }
             if ($model->save()) {
                 $this->flashMessages('success', 'New task successfully created');
             } else {
-                $this->flashMessages('error', 'Can\'t create new project');
+                $this->flashMessages('error', 'Can not create new project');
             }
             return $this->redirect([
                 'index',
-                'id' => $model->id,
-                'project_id' => Yii::$app->request->get('project_id'),
+                'project_id' => $project_id,
             ]);
         }
 

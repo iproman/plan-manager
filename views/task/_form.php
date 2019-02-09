@@ -52,18 +52,11 @@ use dosamigos\ckeditor\CKEditor;
             <?= $form->field($model, 'branch')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-lg-3">
-            <label class="control-label" for="project_id">Название проекта</label>
-            <?= Html::dropDownList(
-                'project_id',
-                Yii::$app->request->get('project_id'),
-                ArrayHelper::map(
-                    Project::getProjects(),
-                    'id',
-                    'name'
-                ),
+            <?= $form->field($model, 'project_id')->dropDownList(
+                ArrayHelper::map(Project::getProjects(), 'id', 'name'),
                 [
-                    'prompt' => 'Choose project name',
-                    'class' => 'form-control',
+                    'prompt' => 'Выберите проект',
+                    'value' => Yii::$app->request->get('project_id'),
                 ]
             ) ?>
         </div>
