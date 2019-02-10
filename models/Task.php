@@ -66,12 +66,14 @@ class Task extends Base
                 'max' => 10
             ],
             [
-                [
-                    'content',
-                    'branch',
-                ],
+                'content',
                 'default',
                 'value' => null,
+            ],
+            [
+                'branch',
+                'default',
+                'value' => 'none',
             ],
             [
                 'content',
