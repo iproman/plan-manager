@@ -10,6 +10,14 @@ use yii\grid\GridView;
 
 $this->title = 'Проекты';
 $this->params['breadcrumbs'][] = $this->title;
+$this->registerCss('
+    .td-none, .td-none:hover, .td-none:active {
+        text-decoration: none;
+    }
+    .ml-10{
+        margin-left: 10px;
+    }
+');
 ?>
 <div class="plan-index">
 
@@ -34,9 +42,17 @@ $this->params['breadcrumbs'][] = $this->title;
                     'format' => 'raw',
                     'value' => function ($model) {
                         /** @var \app\models\Task $model */
-                        return $model->name . ' ' . Html::a('Задачи', ['/task/index', 'project_id' => $model->id],
+                        return $model->name . ' ' . Html::a('+', ['/task/create', 'project_id' => $model->id],
                                 [
-                                    'class' => 'btn-sm btn-primary pull-right',
+                                    'class' => 'btn-sm btn-success pull-right td-none ml-10',
+                                    'title' => 'Создать задачу',
+                                ]
+                            )
+                            .
+                            Html::a('Задачи', ['/task/index', 'project_id' => $model->id],
+                                [
+                                    'class' => 'btn-sm btn-primary pull-right td-none',
+                                    'title' => 'Все задачи',
                                 ]
                             );
                     },
