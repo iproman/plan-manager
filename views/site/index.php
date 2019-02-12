@@ -24,27 +24,29 @@ $this->title = 'My Yii Application';
     </div>
     <!-- /.row -->
     <div class="row">
-        <?= ViewDetails::widget(); ?>
+        <?= ViewDetails::widget([
+            'link' => Url::to(['task/index', 'TaskSearch[status]' => Task::STATUS_NEW]),
+        ]); ?>
         <?= ViewDetails::widget([
             'status' => Task::STATUS_DONE,
             'count' => $taskDone,
             'fa' => FAS::_CHECK,
             'text' => 'Completed tasks!',
-            'link' => Url::to(['task/']),
+            'link' => Url::to(['task/index', 'TaskSearch[status]' => Task::STATUS_DONE]),
         ]); ?>
         <?= ViewDetails::widget([
             'status' => Task::STATUS_IN_WORK,
             'count' => $taskInWork,
             'fa' => FAS::_CROSSHAIRS,
             'text' => 'Tasks in work!',
-            'link' => Url::to(['task/']),
+            'link' => Url::to(['task/', 'TaskSearch[status]' => Task::STATUS_IN_WORK]),
         ]); ?>
         <?= ViewDetails::widget([
             'status' => Task::STATUS_WARNING,
             'count' => $taskWarning,
             'fa' => FAS::_FIRE,
             'text' => 'Important tasks!',
-            'link' => Url::to(['task/']),
+            'link' => Url::to(['task/', 'TaskSearch[status]' => Task::STATUS_WARNING]),
         ]); ?>
     </div>
     <!-- /.row -->
