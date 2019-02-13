@@ -9,6 +9,7 @@ use app\models\Project;
 use rmrevin\yii\fontawesome\FAS;
 use kartik\editable\Editable;
 use kartik\export\ExportMenu;
+use yii\bootstrap\Html as HB;
 
 /* @var $this yii\web\View */
 /* @var $projectName app\models\Project */
@@ -128,7 +129,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'buttons' => [
                     'view' => function ($url, $model, $key) {
                         return Html::a(
-                            FAS::i(FAS::_EYE),
+                            HB::icon('glyphicon glyphicon-eye-open'),
                             Url::to([
                                     'task/view',
                                     'id' => $model->id,
@@ -142,7 +143,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     },
                     'update' => function ($url, $model, $key) {
                         return Html::a(
-                            FAS::i(FAS::_PEN),
+                            HB::icon('glyphicon glyphicon-pencil'),
                             Url::to([
                                     'task/update',
                                     'id' => $model->id,
@@ -157,7 +158,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     },
                     'delete' => function ($url, $model, $key) {
                         return Html::a(
-                            FAS::i(FAS::_TRASH_ALT),
+                            HB::icon('glyphicon glyphicon-trash'),
                             Url::to([
                                     'task/delete',
                                     'id' => $model->id,
