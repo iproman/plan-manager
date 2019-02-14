@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\bootstrap\Html as HB;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ProjectSearch */
@@ -65,9 +67,54 @@ $this->registerCss('
                     }
                 ],
                 'created_at:date',
-                //'updated_at',
-
-                ['class' => 'yii\grid\ActionColumn'],
+                [
+                    'class' => 'yii\grid\ActionColumn',
+                    'template' => '{view} {update} {delete}',
+                    'buttons' => [
+                        'view' => function ($url, $model, $key) {
+                            return Html::a(
+                                HB::icon('glyphicon glyphicon-eye-open'),
+                                Url::to([
+                                        'view',
+                                        'id' => $model->id,
+                                    ]
+                                ),
+                                [
+                                    'class' => 'btn btn-default btn-hover-success',
+                                ]
+                            );
+                        },
+                        'update' => function ($url, $model, $key) {
+                            return Html::a(
+                                HB::icon('glyphicon glyphicon-pencil'),
+                                Url::to([
+                                        'update',
+                                        'id' => $model->id,
+                                    ]
+                                ),
+                                [
+                                    'class' => 'btn btn-default btn-hover-info',
+                                ]
+                            );
+                        },
+                        'delete' => function ($url, $model, $key) {
+                            return Html::a(
+                                HB::icon('glyphicon glyphicon-trash'),
+                                Url::to([
+                                        'delete',
+                                        'id' => $model->id,
+                                    ]
+                                ),
+                                [
+                                    'class' => 'btn btn-default btn-hover-danger',
+                                    'onclick' => 'return confirm("Вы уверены, что хотите удалить задачу #' . $model->id . ' ?");',
+                                    'pjax' => '0',
+                                    'data-method' => 'POST',
+                                ]
+                            );
+                        },
+                    ]
+                ]
             ],
         ]); ?>
     </div>
