@@ -25,7 +25,7 @@ class TaskController extends BaseController
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
-                    'delete' => ['GET'],
+                    'delete' => ['POST'],
                 ],
             ],
         ];

@@ -169,9 +169,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             [
                                 'class' => 'btn btn-default btn-hover-danger',
                                 'onclick' => 'return confirm("Вы уверены, что хотите удалить задачу #' . $model->id . ' ?");',
-                                'data' => [
-                                    'pjax' => '0',
-                                ],
+                                'pjax' => '0',
+                                'data-method' => 'POST',
                             ]
                         );
                     },
