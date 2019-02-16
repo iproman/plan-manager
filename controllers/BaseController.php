@@ -10,6 +10,7 @@ namespace app\controllers;
 
 use yii\web\Controller;
 use Yii;
+use yii\filters\VerbFilter;
 
 class BaseController extends Controller
 {
@@ -23,6 +24,21 @@ class BaseController extends Controller
     final protected function flashMessages(string $key, $message = true, $remove = true)
     {
         return Yii::$app->session->setFlash($key, $message, $remove);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::class,
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
+        ];
     }
 
 }

@@ -6,28 +6,12 @@ use Yii;
 use app\models\Project;
 use app\models\ProjectSearch;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * ProjectController implements the CRUD actions for Project model.
  */
 class ProjectController extends BaseController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * Lists all Project models.
      * @return mixed

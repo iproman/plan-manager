@@ -5,7 +5,6 @@ namespace app\controllers;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
 use app\models\Task;
 use app\models\TaskSearch;
@@ -16,20 +15,6 @@ use app\models\Project;
  */
 class TaskController extends BaseController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::class,
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
 
     /**
      * Lists all Task models.
