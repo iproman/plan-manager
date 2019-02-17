@@ -29,6 +29,7 @@ class Task extends Base
     const STATUS_IN_WORK = 1;
     const STATUS_DONE = 2;
     const STATUS_WARNING = 3;
+    const STATUS_REJECTED = 4;
 
     /**
      * @inheritdoc
@@ -158,6 +159,7 @@ class Task extends Base
             self::STATUS_IN_WORK,
             self::STATUS_DONE,
             self::STATUS_WARNING,
+            self::STATUS_REJECTED,
         ];
     }
 
@@ -173,6 +175,7 @@ class Task extends Base
             self::STATUS_IN_WORK => 'В работе',
             self::STATUS_DONE => 'Завершена',
             self::STATUS_WARNING => 'Срочная',
+            self::STATUS_REJECTED => 'Отклонено',
         ];
     }
 
@@ -187,7 +190,8 @@ class Task extends Base
             self::STATUS_NEW => 'new',
             self::STATUS_IN_WORK => 'in work',
             self::STATUS_DONE => 'done',
-            self::STATUS_WARNING => 'warning'
+            self::STATUS_WARNING => 'warning',
+            self::STATUS_REJECTED => 'rejected',
         ];
     }
 
@@ -203,6 +207,7 @@ class Task extends Base
             self::STATUS_IN_WORK => 'info',
             self::STATUS_DONE => 'default',
             self::STATUS_WARNING => 'warning',
+            self::STATUS_REJECTED => 'danger',
         ];
     }
 
