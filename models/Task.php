@@ -212,15 +212,23 @@ class Task extends Base
     }
 
     /**
+     * todo Bad experience, too much query and dirty code
+     *
      * Return counted tasks
      *
-     * @param null $e
+     * @param null $status
+     * @param null $project
      * @return int|string
      */
-    public static function getCountedTasks($e = null)
+    public static function getCountedTasks($status = null, $project = null)
     {
-        if (null !== $e) {
-            return Task::find()->where(['=', 'status', $e])->count();
+        if (null !== $status && null === $project) {
+            return Task::find()->where(['=', 'status', $status])->count();
+        } elseif (null !== $status && null !== $project) {
+            return Task::find()
+                ->where(['=', 'status', $status])
+                ->andWhere(['=', 'project_id', $project])
+                ->count();
         } else {
             return Task::find()->count();
         }
