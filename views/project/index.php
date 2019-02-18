@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\bootstrap\Html as HB;
 use yii\helpers\Url;
+use app\models\Task;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ProjectSearch */
@@ -63,7 +64,12 @@ $this->registerCss('
                     'attribute' => 'Количество задач',
                     'format' => 'raw',
                     'value' => function ($model) {
-                        return count($model->task);
+                        return 'Total: ' . count($model->task) .
+                            Html::tag(
+                                'span',
+                                ' (New: ' . Task::getCountedTasks(Task::STATUS_NEW, $model->id) . ')',
+                                ['class' => 'text-muted']
+                            );
                     }
                 ],
                 'created_at:date',
