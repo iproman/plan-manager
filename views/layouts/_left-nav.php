@@ -19,7 +19,7 @@ echo Html::tag(
                     'url' => ['/project/']
                 ],
                 [
-                    'label' => HB::icon('	glyphicon glyphicon-list') . ' ' . 'Tasks',
+                    'label' => HB::icon('glyphicon glyphicon-tasks') . ' ' . 'Tasks',
                     'url' => ['/task/']
                 ],
                 [

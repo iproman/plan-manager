@@ -45,17 +45,17 @@ $this->registerCss('
                     'format' => 'raw',
                     'value' => function ($model) {
                         /** @var \app\models\Task $model */
-                        return $model->name . ' ' . Html::a('+', ['/task/create', 'project_id' => $model->id],
+                        return $model->name . ' ' . Html::a(HB::icon('glyphicon glyphicon-plus'), ['/task/create', 'project_id' => $model->id],
                                 [
                                     'class' => 'btn-sm btn-success pull-right td-none ml-10',
-                                    'title' => 'Создать задачу',
+                                    'title' => 'Create task',
                                 ]
                             )
                             .
-                            Html::a('Задачи', ['/task/index', 'project_id' => $model->id],
+                            Html::a(HB::icon('glyphicon glyphicon-tasks'), ['/task/index', 'project_id' => $model->id],
                                 [
                                     'class' => 'btn-sm btn-primary pull-right td-none',
-                                    'title' => 'Все задачи',
+                                    'title' => 'All tasks',
                                 ]
                             );
                     },
