@@ -1,8 +1,8 @@
 <?php
 
 use yii\widgets\Menu;
-use rmrevin\yii\fontawesome\FAS;
 use yii\helpers\Html;
+use yii\bootstrap\Html as HB;
 
 echo Html::tag(
     'div',
@@ -11,23 +11,23 @@ echo Html::tag(
         Menu::widget([
             'items' => [
                 [
-                    'label' => FAS::i(FAS::_HOME) . ' ' . 'Главная',
+                    'label' => HB::icon('glyphicon glyphicon-home') . ' ' . 'Home',
                     'url' => ['/'],
                 ],
                 [
-                    'label' => FAS::i(FAS::_PROJECT_DIAGRAM) . ' ' . 'Проекты',
+                    'label' => HB::icon('glyphicon glyphicon-blackboard') . ' ' . 'Projects',
                     'url' => ['/project/']
                 ],
                 [
-                    'label' => FAS::i(FAS::_TASKS) . ' ' . 'Задачи',
+                    'label' => HB::icon('	glyphicon glyphicon-list') . ' ' . 'Tasks',
                     'url' => ['/task/']
                 ],
                 [
-                    'label' => FAS::i(FAS::_DATABASE) . ' ' . 'Резервное копирование',
+                    'label' => HB::icon('glyphicon glyphicon-repeat') . ' ' . 'Backup',
                     'url' => ['/db-manager/']
                 ],
                 [
-                    'label' => FAS::i(FAS::_PAW) . ' ' . 'Лог',
+                    'label' => HB::icon('glyphicon glyphicon-screenshot') . ' ' . 'Log',
                     'url' => ['/log/']
                 ],
             ],
