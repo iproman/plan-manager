@@ -192,14 +192,11 @@ class TaskController extends BaseController
                     } else {
                         $model->$attribute = $value;
                         if ($model->save(false, [$attribute]) !== false) {
-                            $this->flashMessages('success', "Значение для &laquo;" .
-                                $model->getAttributeLabel($attribute) .
-                                "&raquo; успешно изменено.");
                             return [
                                 'success' => true,
-                                'msg' => "Значение для &laquo;" .
+                                'msg' => "Значение для \"" .
                                     $model->getAttributeLabel($attribute) .
-                                    "&raquo; успешно изменено.",
+                                    "\" успешно изменено.",
                                 'newValue' => $model->$attribute,
                             ];
                         } else {

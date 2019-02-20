@@ -5,8 +5,6 @@ use yii\grid\GridView;
 use yii\helpers\StringHelper;
 use app\models\Task;
 use yii\helpers\Url;
-use app\models\Project;
-use rmrevin\yii\fontawesome\FAS;
 use kartik\editable\Editable;
 use kartik\export\ExportMenu;
 use yii\bootstrap\Html as HB;
@@ -112,6 +110,11 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'task/change',
                                 'id' => $model->id,
                             ])
+                        ],
+                        'pluginEvents' => [
+                          'editableSuccess' => 'function(event, val, form, data){
+                            toastr.success(data.msg);
+                          }'
                         ],
                         'asPopover' => true,
                         'value' => $model->branch,
