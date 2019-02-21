@@ -29,8 +29,8 @@ use dosamigos\ckeditor\CKEditor;
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-3">
-            <?= $form->field($model, 'status')->radioList(
+        <div class="col-lg-4">
+            <?= $form->field($model, 'status', ['labelOptions' => ['style' => 'display: block']])->radioList(
                 Task::getStatusLabels(),
                 [
                     'class' => 'btn-group',
@@ -48,10 +48,10 @@ use dosamigos\ckeditor\CKEditor;
                 ]
             ) ?>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-4">
             <?= $form->field($model, 'branch')->textInput(['maxlength' => true]) ?>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-4">
             <?= $form->field($model, 'project_id')->dropDownList(
                 ArrayHelper::map(Project::getProjects(), 'id', 'name'),
                 [
