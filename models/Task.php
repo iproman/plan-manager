@@ -4,6 +4,9 @@ namespace app\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
+use DateTime;
+use yii\db\Query;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "task".
@@ -232,5 +235,58 @@ class Task extends Base
         } else {
             return Task::find()->count();
         }
+    }
+
+    /**
+     * Returns query of all tasks
+     * divided into statuses and 7 days
+     *
+     * todo add dynamic selection name
+     *
+     * @return Query
+     */
+    private static function getHighChartsQuery()
+    {
+        // data for highCharts
+        $startDate = date('d.m.Y', time() - 3600 * 24 * 7);
+        $endDate = date('d.m.Y', time());
+        $startTimestamp = (DateTime::createFromFormat('d.m.Y H:i:s', $startDate . ' 00:00:00'))
+            ->getTimestamp();
+        $endTimestamp = (DateTime::createFromFormat('d.m.Y H:i:s', $endDate . ' 23:59:59'))
+            ->getTimestamp();
+
+        return (new Query())
+            ->select([
+                'done' => new Expression(
+                    'SUM(CASE WHEN status = :done THEN 1 ELSE 0 END)',
+                    [':done' => Task::STATUS_DONE]
+                ),
+                'new' => new Expression(
+                    'SUM(CASE WHEN status = :new THEN 1 ELSE 0 END)',
+                    [':new' => Task::STATUS_NEW]
+                ),
+                'in_work' => new Expression(
+                    'SUM(CASE WHEN status = :in_work THEN 1 ELSE 0 END)',
+                    [':in_work' => Task::STATUS_IN_WORK]
+                ),
+                'warning' => new Expression(
+                    'SUM(CASE WHEN status = :warning THEN 1 ELSE 0 END)',
+                    [':warning' => Task::STATUS_WARNING]
+                ),
+                'week_day' => new Expression(
+                    'DATE(FROM_UNIXTIME(updated_at))'
+                ),
+            ])
+            ->from(Task::tableName())
+            ->where(
+                'updated_at >= :start AND updated_at <= :end',
+                [
+                    ':start' => $startTimestamp,
+                    ':end' => $endTimestamp,
+                ]
+            )
+            ->groupBy([
+                'week_day',
+            ]);
     }
 }
