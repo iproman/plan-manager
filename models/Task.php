@@ -289,4 +289,37 @@ class Task extends Base
                 'week_day',
             ]);
     }
+
+    /**
+     * If label exist count selected element from query
+     * Else returns week days
+     *
+     * todo every time new 4 unnecessary queries
+     * todo change names
+     *
+     * @param null $label
+     * @return array
+     */
+    final public static function getCountedHighChartsResults($label = null)
+    {
+        $query = self::getHighChartsQuery();
+        if (!empty($label)) {
+            return array_map(
+                'intval',
+                ArrayHelper::getColumn(
+                    $query->all(),
+                    $label
+                )
+            );
+        } else {
+            return array_map(
+                function ($v) {
+                    return date('D', strtotime($v));
+                },
+                ArrayHelper::getColumn(
+                    $query->all(),
+                    'week_day'
+                ));
+        }
+    }
 }
