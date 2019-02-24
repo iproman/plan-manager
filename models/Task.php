@@ -225,15 +225,20 @@ class Task extends Base
      */
     public static function getCountedTasks($status = null, $project = null)
     {
+        $task = Task::find();
+
         if (null !== $status && null === $project) {
-            return Task::find()->where(['=', 'status', $status])->count();
+            return (clone $task)
+                ->where(['=', 'status', $status])
+                ->count();
         } elseif (null !== $status && null !== $project) {
-            return Task::find()
+            return (clone $task)
                 ->where(['=', 'status', $status])
                 ->andWhere(['=', 'project_id', $project])
                 ->count();
         } else {
-            return Task::find()->count();
+            return (clone $task)
+                ->count();
         }
     }
 
