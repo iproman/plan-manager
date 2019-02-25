@@ -11,6 +11,11 @@ use miloschuman\highcharts\Highcharts;
 /* @var $taskDone \app\models\Task */
 /* @var $taskInWork \app\models\Task */
 /* @var $taskWarning \app\models\Task */
+/* @var $done \app\models\Task */
+/* @var $in_work \app\models\Task */
+/* @var $warning \app\models\Task */
+/* @var $new \app\models\Task */
+/* @var $dayLabels \app\models\Task */
 
 $this->title = 'My Yii Application';
 

@@ -58,9 +58,24 @@ class SiteController extends BaseController
         $taskInWork = Task::getCountedTasks(Task::STATUS_IN_WORK);
         $taskWarning = Task::getCountedTasks(Task::STATUS_WARNING);
 
+        $done = Task::getCountedHighChartsResults('done');
+        $new = Task::getCountedHighChartsResults('new');
+        $in_work = Task::getCountedHighChartsResults('in_work');
+        $warning = Task::getCountedHighChartsResults('warning');
+        $dayLabels = Task::getCountedHighChartsResults();
+
         return $this->render(
             'index',
-            compact('taskDone', 'taskInWork', 'taskWarning')
+            compact(
+                'taskDone',
+                'taskInWork',
+                'taskWarning',
+                'done',
+                'new',
+                'in_work',
+                'warning',
+                'dayLabels'
+            )
         );
     }
 
