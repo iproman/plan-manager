@@ -106,7 +106,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => function ($model) {
                     return Editable::widget([
-                        'name' => 'branch',
+                        'name' => 'value',
                         'formOptions' => [
                             'method' => 'post',
                             'action' => Url::to([

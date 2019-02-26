@@ -165,7 +165,7 @@ class TaskController extends BaseController
             $class = Task::class;
             $attribute = 'branch';
 
-            if (null === ($value = Yii::$app->getRequest()->post('branch'))) {
+            if (null === ($value = Yii::$app->getRequest()->post('value'))) {
                 $this->flashMessages('error', 'Необходимо задать значение для изменяемого
                  атрибута через параметр \'value\'.');
                 return [
