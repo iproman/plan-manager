@@ -148,6 +148,20 @@ class TaskController extends BaseController
     }
 
     /**
+     * Mapping between model classes and there attributes.
+     * Key represents a fully qualified model class name and value is an array
+     * with model's attribute names which should be changed.
+     *
+     * @var array
+     */
+    private static $_attributesMap = [
+        'app\models\Task' => [
+            'name',
+            'branch',
+        ],
+    ];
+
+    /**
      * Return new value
      *
      * @return array
