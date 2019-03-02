@@ -92,7 +92,7 @@ class Task extends Base
             [
                 'status',
                 'default',
-                'value' => 0,
+                'value' => self::STATUS_NEW,
             ],
             [
                 'project_id',
