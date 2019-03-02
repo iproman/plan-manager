@@ -82,7 +82,7 @@ class Task extends Base
             [
                 'content',
                 'string',
-                'max' => 1000
+                'max' => 2000
             ],
             [
                 'status',
