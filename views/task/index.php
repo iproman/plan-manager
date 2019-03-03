@@ -74,7 +74,34 @@ $this->params['breadcrumbs'][] = $this->title;
         'hover' => true,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'name',
+            [
+                'attribute' => 'name',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return Editable::widget([
+                        'name' => 'value',
+                        'formOptions' => [
+                            'method' => 'post',
+                            'action' => Url::to([
+                                'task/change',
+                                'id' => $model->id,
+                                'att' => 'name',
+                                'class' => Task::class
+                            ]),
+                        ],
+                        'pluginEvents' => [
+                            'editableSuccess' => 'function(event, val, form, data){
+                            toastr.success(data.msg);
+                          }'
+                        ],
+                        'asPopover' => true,
+                        'value' => $model->name,
+                        'header' => 'name',
+                        'size' => 'sm',
+                        'showAjaxErrors' => true,
+                    ]);
+                },
+            ],
             [
                 'attribute' => 'content',
                 'value' => function ($model) {
