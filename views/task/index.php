@@ -139,10 +139,12 @@ $this->params['breadcrumbs'][] = $this->title;
                             'action' => Url::to([
                                 'task/change',
                                 'id' => $model->id,
-                            ])
+                                'att' => 'branch',
+                                'class' => Task::class
+                            ]),
                         ],
                         'pluginEvents' => [
-                          'editableSuccess' => 'function(event, val, form, data){
+                            'editableSuccess' => 'function(event, val, form, data){
                             toastr.success(data.msg);
                           }'
                         ],
