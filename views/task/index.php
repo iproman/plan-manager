@@ -129,6 +129,38 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]
             ],
             [
+                'attribute' => 'status',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return Editable::widget([
+                        'name' => 'status',
+                        'value' => $model->status,
+                        'asPopover' => true,
+                        'header' => 'Status',
+                        'formOptions' => [
+                            'method' => 'post',
+                            'action' => Url::to([
+                                'task/change',
+                                'id' => $model->id,
+                                'att' => 'status',
+                                'class' => Task::class
+                            ]),
+                        ],
+                        'pluginEvents' => [
+                            'editableSuccess' => 'function(event, val, form, data){
+                            toastr.success(data.msg);
+                          }'
+                        ],
+                        'inputType' => Editable::INPUT_DROPDOWN_LIST,
+                        'data' => array_combine(Task::getStatuses(),
+                            Task::getStatusCss()),
+                        'options' => ['class' => 'form-control', 'prompt' => 'Select status...'],
+                        'displayValueConfig' => array_combine(Task::getStatuses(),
+                            Task::getStatusCss()),
+                    ]);
+                },
+            ],
+            [
                 'attribute' => 'branch',
                 'format' => 'raw',
                 'value' => function ($model) {
