@@ -158,6 +158,7 @@ class TaskController extends BaseController
         'app\models\Task' => [
             'name',
             'branch',
+            'status',
         ],
     ];
 
@@ -197,7 +198,11 @@ class TaskController extends BaseController
                                 'msg' => "Изменение значения атрибута $attribute не поддерживается.",
                             ];
                         } else {
-                            if (null === ($value = Yii::$app->getRequest()->post('value'))) {
+                            if (
+                                null === ($value = (Yii::$app->getRequest()->post('value')
+                                    || Yii::$app->getRequest()->post('status'))
+                                )
+                            ) {
                                 $this->flashMessages('error', 'Необходимо задать значение для изменяемого
                  атрибута через параметр \'value\'.');
                                 return [
