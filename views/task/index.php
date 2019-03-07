@@ -153,10 +153,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                         'inputType' => Editable::INPUT_DROPDOWN_LIST,
                         'data' => array_combine(Task::getStatuses(),
-                            Task::getStatusCss()),
+                            Task::getStatusLabels()),
                         'options' => ['class' => 'form-control', 'prompt' => 'Select status...'],
                         'displayValueConfig' => array_combine(Task::getStatuses(),
-                            Task::getStatusCss()),
+                            Task::getStatusLabels()),
                     ]);
                 },
             ],
