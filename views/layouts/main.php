@@ -42,7 +42,7 @@ $appAsset = SBAdmin2Asset::register($this);
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <title><?= Html::encode(Yii::$app->params['project']['name']) ?></title>
     <?php $this->head() ?>
 </head>
 <body>
@@ -356,7 +356,7 @@ $appAsset = SBAdmin2Asset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; <?= Yii::$app->params['project']['name']?> <?= date('Y') ?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
