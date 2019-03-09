@@ -19,9 +19,7 @@ class AppAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
-    public $css = [
-        'css/site.css',
-    ];
+    public $css = [];
     public $js = [
     ];
     public $depends = [
@@ -29,4 +27,21 @@ class AppAsset extends AssetBundle
         'yii\bootstrap\BootstrapAsset',
         'rmrevin\yii\fontawesome\AssetBundle',
     ];
+
+    public function init()
+    {
+        if (YII_ENV_DEV) {
+            $this->css = [
+                'css/site.css',
+            ];
+
+        } else if (!YII_ENV_DEV) {
+            $this->css = [
+                'css/site.min.css',
+            ];
+
+        }
+
+        parent::init();
+    }
 }
