@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 use yii\bootstrap\Html as HB;
 use yii\helpers\Url;
 use app\models\Task;
@@ -38,6 +38,9 @@ $this->registerCss('
     <div class="row">
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
+            'condensed' => true,
+            'responsive' => true,
+            'hover' => true,
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
                 [
