@@ -1,0 +1,44 @@
+{
+  "name": "plan-manager1.1",
+  "version": "1.1.0",
+  "description": "Simple plan manager as Redmine",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iproman/plan-manager1.1.git"
+  },
+  "keywords": [
+    "task-manager",
+    "plan-manager",
+    "to-do",
+    "project-manager"
+  ],
+  "author": "iproman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iproman/plan-manager1.1/issues"
+  },
+  "homepage": "https://github.com/iproman/plan-manager1.1#readme",
+  "dependencies": {
+    "gulp": "^4.0.0",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-clean": "^0.4.0",
+    "gulp-combine-mq": "^0.4.0",
+    "gulp-notify": "^3.2.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp.spritesmith": "^6.9.0"
+  },
+  "devDependencies": {
+    "gulp-clean-css": "^4.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-if": "^2.0.2",
+    "gulp-sourcemaps": "^2.6.5"
+  }
+}
