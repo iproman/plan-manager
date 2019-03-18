@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Task */
@@ -15,8 +16,18 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Обновить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
+        <?= Html::a('Обновить', Url::to([
+                'update',
+                'id' => $model->id,
+                'project_id' => Yii::$app->request->get('project_id'),
+            ]
+        ), ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Удалить', Url::to([
+                'delete',
+                'id' => $model->id,
+                'project_id' => Yii::$app->request->get('project_id'),
+            ]
+        ), [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => "Вы уверены, что хотите удалить задачу #{$model->id}?",
