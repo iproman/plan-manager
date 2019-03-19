@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use rmrevin\yii\fontawesome\FAS;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\LogSearch */
@@ -23,7 +24,14 @@ $this->params['breadcrumbs'][] = $this->title;
             </p>
         </div>
     </div>
-
+    <?= Html::a(
+        FAS::i(FAS::_TRASH) . ' Delete all',
+        ['purge-logs'],
+        [
+            'class' => 'btn btn-danger',
+            'onclick' => 'return confirm("Are you sure, you want to delete all system log?");',
+        ]
+    ) ?>
     <hr>
 
     <?php Pjax::begin(); ?>

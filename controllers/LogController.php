@@ -108,4 +108,21 @@ class LogController extends BaseController
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+    /**
+     * Drop all logs
+     */
+    public function actionPurgeLogs()
+    {
+        $deleted = Yii::$app->getDb()->createCommand()->truncateTable(Log::tableName())->execute();
+
+        if ($deleted > 0) {
+            Yii::$app->getSession()->setFlash(
+                'success',
+                'All logs successfully deleted'
+            );
+        }
+
+        return $this->redirect(['index']);
+    }
 }
