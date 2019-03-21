@@ -13,7 +13,7 @@ $config = [
     ],
     'components' => [
         'request' => [
-            'baseUrl'=> '',
+            'baseUrl' => '',
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'SKu92qW2d1lcgtINXiJiIPDee-UslquW',
         ],
@@ -48,11 +48,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                [
-                    'pattern' => 'task/<action:(view|update|delete|index|create)>/<project_id:\d+>/<id:\d+>',
-                    'route' => 'task/<action>',
-                    'defaults' => ['project_id' => '', 'id' => '',],
-                ],
+                    '<_a:login|logout>' => 'site/<_a>',
             ],
         ],
     ],
