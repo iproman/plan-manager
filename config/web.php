@@ -51,6 +51,10 @@ $config = [
                     '<_a:login|logout>' => 'site/<_a>',
             ],
         ],
+        'view' => [
+            'class' => '\ogheo\htmlcompress\View',
+            'compress' => YII_ENV_DEV ? false : true,
+        ]
     ],
     'modules' => [
         'gridview' => ['class' => 'kartik\grid\Module'],
