@@ -62,4 +62,7 @@ return [
 ~~~
 
 **NOTES:**
-- 
+- Before using Comments Widget, we'll also need to prepare the database.
+~~~
+ php yii migrate --migrationPath=@vendor/yii2mod/yii2-comments/migrations
+~~~
