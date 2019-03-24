@@ -73,7 +73,10 @@ $config = [
 //                    ],
 //                ],
 //            ],
-        ]
+        ],
+        'comment' => [
+            'class' => 'yii2mod\comments\Module',
+        ],
     ],
     'params' => $params,
 ];
