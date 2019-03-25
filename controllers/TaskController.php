@@ -6,9 +6,9 @@ use Yii;
 use yii\db\ActiveRecord;
 use yii\web\NotFoundHttpException;
 use yii\data\ActiveDataProvider;
-use app\models\Task;
-use app\models\TaskSearch;
-use app\models\Project;
+use app\models\entities\Task;
+use app\models\entities\TaskSearch;
+use app\models\entities\Project;
 
 /**
  * TaskController implements the CRUD actions for Task model.

@@ -5,9 +5,9 @@ namespace app\controllers;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Response;
-use app\models\LoginForm;
-use app\models\ContactForm;
-use app\models\Task;
+use app\models\forms\LoginForm;
+use app\models\forms\ContactForm;
+use app\models\entities\Task;
 
 class SiteController extends BaseController
 {

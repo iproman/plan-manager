@@ -3,8 +3,8 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Project;
-use app\models\ProjectSearch;
+use app\models\entities\Project;
+use app\models\entities\ProjectSearch;
 use yii\web\NotFoundHttpException;
 
 /**

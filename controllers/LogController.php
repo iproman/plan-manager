@@ -3,8 +3,8 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Log;
-use app\models\LogSearch;
+use app\models\entities\Log;
+use app\models\entities\LogSearch;
 use yii\web\NotFoundHttpException;
 
 /**
