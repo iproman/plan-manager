@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Task */
+/* @var $model app\models\entities\Task */
 
 $this->title = "Обновление задачи: #{$model->id}";
 $this->params['breadcrumbs'][] = ['label' => 'Задачи', 'url' => ['index', 'project_id' => Yii::$app->request->get('project_id')]];

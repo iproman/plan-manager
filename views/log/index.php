@@ -6,7 +6,7 @@ use yii\widgets\Pjax;
 use rmrevin\yii\fontawesome\FAS;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\LogSearch */
+/* @var $searchModel app\models\entities\LogSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Logs';

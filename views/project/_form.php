@@ -2,11 +2,11 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use app\models\Project;
-use app\models\Task;
+use app\models\entities\Project;
+use app\models\entities\Task;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Project */
+/* @var $model app\models\entities\Project */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 

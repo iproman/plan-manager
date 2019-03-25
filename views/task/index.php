@@ -3,15 +3,15 @@
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use yii\helpers\StringHelper;
-use app\models\Task;
+use app\models\entities\Task;
 use yii\helpers\Url;
 use kartik\editable\Editable;
 use kartik\export\ExportMenu;
 use yii\bootstrap\Html as HB;
 
 /* @var $this yii\web\View */
-/* @var $projectName app\models\Project */
-/* @var $searchModel app\models\TaskSearch */
+/* @var $projectName app\models\entities\Project */
+/* @var $searchModel app\models\entities\TaskSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Задачи ' . (!$projectName ? 'всех проектов' : $projectName);
@@ -113,7 +113,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'status',
                 'format' => 'raw',
                 'value' => function ($model) {
-                    /** @var \app\models\Task $model */
+                    /** @var \app\models\entities\Task $model */
                     return Html::tag(
                         'span',
                         Task::getStatusLabels()[$model->status],

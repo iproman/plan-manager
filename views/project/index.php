@@ -4,12 +4,12 @@ use yii\helpers\Html;
 use kartik\grid\GridView;
 use yii\bootstrap\Html as HB;
 use yii\helpers\Url;
-use app\models\Task;
+use app\models\entities\Task;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\ProjectSearch */
+/* @var $searchModel app\models\entities\ProjectSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-/* @var $model app\models\Project[] */
+/* @var $model app\models\entities\Project[] */
 
 $this->title = 'Проекты';
 $this->params['breadcrumbs'][] = $this->title;
@@ -47,7 +47,7 @@ $this->registerCss('
                     'attribute' => 'name',
                     'format' => 'raw',
                     'value' => function ($model) {
-                        /** @var \app\models\Task $model */
+                        /** @var \app\models\entities\Task $model */
                         return $model->name . ' ' . Html::a(HB::icon('glyphicon glyphicon-plus'), ['/task/create', 'project_id' => $model->id],
                                 [
                                     'class' => 'btn-sm btn-success pull-right td-none ml-10',

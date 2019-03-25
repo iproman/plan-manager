@@ -2,13 +2,13 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use app\models\Task;
-use app\models\Project;
+use app\models\entities\Task;
+use app\models\entities\Project;
 use yii\helpers\ArrayHelper;
 use dosamigos\ckeditor\CKEditor;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Task */
+/* @var $model app\models\entities\Task */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 

@@ -2,11 +2,11 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use app\models\Task;
+use app\models\entities\Task;
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\TaskSearch */
+/* @var $model app\models\entities\TaskSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 

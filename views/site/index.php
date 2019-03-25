@@ -2,20 +2,20 @@
 
 use yii\helpers\Url;
 use rmrevin\yii\fontawesome\FAS;
-use app\models\Task;
+use app\models\entities\Task;
 use app\components\ViewDetails;
 use miloschuman\highcharts\Highcharts;
 
 /* @var $this yii\web\View */
-/* @var $taskNew \app\models\Task */
-/* @var $taskDone \app\models\Task */
-/* @var $taskInWork \app\models\Task */
-/* @var $taskWarning \app\models\Task */
-/* @var $done \app\models\Task */
-/* @var $in_work \app\models\Task */
-/* @var $warning \app\models\Task */
-/* @var $new \app\models\Task */
-/* @var $dayLabels \app\models\Task */
+/* @var $taskNew \app\models\entities\Task */
+/* @var $taskDone \app\models\entities\Task */
+/* @var $taskInWork \app\models\entities\Task */
+/* @var $taskWarning \app\models\entities\Task */
+/* @var $done \app\models\entities\Task */
+/* @var $in_work \app\models\entities\Task */
+/* @var $warning \app\models\entities\Task */
+/* @var $new \app\models\entities\Task */
+/* @var $dayLabels \app\models\entities\Task */
 
 $this->title = 'My Yii Application';
 
