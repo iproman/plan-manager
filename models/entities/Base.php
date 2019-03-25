@@ -6,7 +6,7 @@
  * Time: 20:23
  */
 
-namespace app\models;
+namespace app\models\entities;
 
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;

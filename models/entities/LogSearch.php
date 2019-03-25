@@ -1,10 +1,9 @@
 <?php
 
-namespace app\models;
+namespace app\models\entities;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Log;
 
 /**
  * LogSearch represents the model behind the search form of `app\models\Log`.

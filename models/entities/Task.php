@@ -1,8 +1,7 @@
 <?php
 
-namespace app\models;
+namespace app\models\entities;
 
-use Yii;
 use yii\helpers\ArrayHelper;
 use DateTime;
 use yii\db\Query;

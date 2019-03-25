@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace app\models\entities;
 
 use Yii;
 
@@ -13,7 +13,7 @@ use Yii;
  *
  * @property Task $task
  */
-class Project extends Base implements ProjectInterface
+class Project extends Base
 {
 
     /**
