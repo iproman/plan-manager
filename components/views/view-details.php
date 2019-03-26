@@ -1,6 +1,6 @@
 <?php
 
-use app\models\Task;
+use app\models\entities\Task;
 use rmrevin\yii\fontawesome\FAS;
 use yii\helpers\Html;
 

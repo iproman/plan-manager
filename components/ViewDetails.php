@@ -11,7 +11,7 @@ namespace app\components;
 use yii\helpers\Url;
 use rmrevin\yii\fontawesome\FAS;
 use yii\base\Widget;
-use app\models\Task;
+use app\models\entities\Task;
 
 class ViewDetails extends Widget
 {
