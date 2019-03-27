@@ -27,6 +27,7 @@ $config = [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'assetManager' => ['linkAssets' => YII_DEBUG ? true : false,],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             // send all mails to a file by default. You have to set
