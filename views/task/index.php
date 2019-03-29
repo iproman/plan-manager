@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 use kartik\grid\GridView;
-use yii\helpers\StringHelper;
 use app\models\entities\Task;
 use yii\helpers\Url;
 use kartik\editable\Editable;
@@ -101,13 +100,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         'showAjaxErrors' => true,
                     ]);
                 },
-            ],
-            [
-                'attribute' => 'content',
-                'value' => function ($model) {
-                    return StringHelper::truncateWords(strip_tags($model->content), 5, '...');
-                },
-                'format' => 'raw',
             ],
             [
                 'attribute' => 'status',
