@@ -3,7 +3,7 @@
 use yii\helpers\Url;
 use rmrevin\yii\fontawesome\FAS;
 use app\models\entities\Task;
-use app\components\ViewDetails;
+use app\components\widgets\ViewDetails;
 use miloschuman\highcharts\Highcharts;
 
 /* @var $this yii\web\View */

@@ -6,7 +6,7 @@
  * Time: 10:00
  */
 
-namespace app\components;
+namespace app\components\widgets;
 
 use yii\helpers\Url;
 use rmrevin\yii\fontawesome\FAS;
