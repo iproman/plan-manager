@@ -9,7 +9,6 @@
 namespace app\components\widgets;
 
 use yii\helpers\Url;
-use rmrevin\yii\fontawesome\FAS;
 use yii\base\Widget;
 use app\models\entities\Task;
 
@@ -26,7 +25,7 @@ class ViewDetails extends Widget
     /**
      * @var string
      */
-    public $fa;
+    public $icon;
     /**
      * @var string
      */
@@ -47,8 +46,8 @@ class ViewDetails extends Widget
                 ->where(['=', 'status', Task::STATUS_NEW])
                 ->count();
         }
-        if ($this->fa === null) {
-            $this->fa = FAS::_CLIPBOARD_LIST;
+        if ($this->icon === null) {
+            $this->icon = 'glyphicon glyphicon-list-alt';
         }
         if ($this->text === null) {
             $this->text = 'New challenge!';
@@ -65,7 +64,7 @@ class ViewDetails extends Widget
             [
                 'status' => $this->status,
                 'count' => $this->count,
-                'fa' => $this->fa,
+                'icon' => $this->icon,
                 'text' => $this->text,
                 'link' => $this->link,
             ]

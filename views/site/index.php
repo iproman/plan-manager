@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Url;
-use rmrevin\yii\fontawesome\FAS;
 use app\models\entities\Task;
 use app\components\widgets\ViewDetails;
 use miloschuman\highcharts\Highcharts;
@@ -35,21 +34,21 @@ $this->title = 'My Yii Application';
         <?= ViewDetails::widget([
             'status' => Task::STATUS_DONE,
             'count' => $taskDone,
-            'fa' => FAS::_CHECK,
+            'icon' => 'glyphicon-check',
             'text' => 'Completed tasks!',
             'link' => Url::to(['task/index', 'TaskSearch[status]' => Task::STATUS_DONE]),
         ]); ?>
         <?= ViewDetails::widget([
             'status' => Task::STATUS_IN_WORK,
             'count' => $taskInWork,
-            'fa' => FAS::_CROSSHAIRS,
+            'icon' => 'glyphicon-wrench',
             'text' => 'Tasks in work!',
             'link' => Url::to(['task/', 'TaskSearch[status]' => Task::STATUS_IN_WORK]),
         ]); ?>
         <?= ViewDetails::widget([
             'status' => Task::STATUS_WARNING,
             'count' => $taskWarning,
-            'fa' => FAS::_FIRE,
+            'icon' => 'glyphicon-fire',
             'text' => 'Important tasks!',
             'link' => Url::to(['task/', 'TaskSearch[status]' => Task::STATUS_WARNING]),
         ]); ?>
