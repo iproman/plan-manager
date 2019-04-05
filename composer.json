@@ -28,7 +28,8 @@
         "yii2mod/yii2-sweet-alert": "*",
         "lavrentiev/yii2-toastr": "^2.0",
         "ogheo/yii2-htmlcompress": "*",
-        "yii2mod/yii2-comments": "*"
+        "yii2mod/yii2-comments": "*",
+        "dmstr/yii2-adminlte-asset": "^2.1"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
