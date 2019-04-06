@@ -3,7 +3,6 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
-use rmrevin\yii\fontawesome\FAS;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\entities\LogSearch */
@@ -25,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
     <?= Html::a(
-        FAS::i(FAS::_TRASH) . ' Delete all',
+        '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>' . ' Delete all',
         ['purge-logs'],
         [
             'class' => 'btn btn-danger',
