@@ -1,7 +1,6 @@
 <?php
     use yii\bootstrap\NavBar;
     use yii\bootstrap\Nav;
-    use rmrevin\yii\fontawesome\FAS;
     use yii\helpers\Html;
     use yii\helpers\Url;
 ?>
@@ -30,7 +29,7 @@ echo Nav::widget([
     'encodeLabels' => false,
     'items' => [
         [
-            'label' => FAS::i(FAS::_ENVELOPE),
+            'label' => '<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>',
             'dropDownOptions' => [
                 'class' => 'dropdown-messages',
             ],
@@ -67,7 +66,7 @@ echo Nav::widget([
                     Html::tag(
                         'strong',
                         'Read All Messages'
-                    ) . ' ' . FAS::i(FAS::_ANGLE_RIGHT),
+                    ) . ' ' . '<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>',
                     Url::to(['/project']),
                     [
                         'class' => 'text-center',
@@ -78,7 +77,7 @@ echo Nav::widget([
             ],
         ],
         [
-            'label' => FAS::i(FAS::_TASKS),
+            'label' => '<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>',
             'dropDownOptions' => [
                 'class' => 'dropdown-messages',
             ],
@@ -187,7 +186,7 @@ echo Nav::widget([
                     Html::tag(
                         'strong',
                         'See All Tasks'
-                    ) . ' ' . FAS::i(FAS::_ANGLE_RIGHT),
+                    ) . ' ' . '<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>',
                     Url::to(['/project']),
                     [
                         'class' => 'text-center',
@@ -198,7 +197,7 @@ echo Nav::widget([
             ],
         ],
         [
-            'label' => FAS::i(FAS::_BELL),
+            'label' => '<span class="glyphicon glyphicon-bell" aria-hidden="true"></span>',
             'dropDownOptions' => [
                 'class' => 'dropdown-messages',
             ],
@@ -252,7 +251,7 @@ echo Nav::widget([
                     Html::tag(
                         'strong',
                         'See All Tasks'
-                    ) . ' ' . FAS::i(FAS::_ANGLE_RIGHT),
+                    ) . ' ' . '<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>',
                     Url::to(['/project']),
                     [
                         'class' => 'text-center',
@@ -263,7 +262,7 @@ echo Nav::widget([
             ],
         ],
         [
-            'label' => FAS::i(FAS::_USER),
+            'label' => '<span class="glyphicon glyphicon-user" aria-hidden="true"></span>',
             'dropDownOptions' => [
                 'class' => 'dropdown-user in',
             ],
