@@ -67,7 +67,7 @@ $config = [
         'db-manager' => [
             'class' => 'bs\dbManager\Module',
             // path to directory for the dumps
-            'path' => '@app/backups',
+            'path' => '@runtime/backups',
             // list of registerd db-components
             'dbList' => ['db'],
 //            'as access' => [
