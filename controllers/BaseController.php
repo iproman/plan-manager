@@ -70,54 +70,28 @@ class BaseController extends Controller
             \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
             if (null === ($class = Yii::$app->getRequest()->get('class'))) {
-                return [
-                    'success' => false,
-                    'msg' => "Не указано fully qualified имя класса ActiveRecord."
-                ];
+                return ['message' => "Не указано fully qualified имя класса ActiveRecord."];
             } else {
                 if (!array_key_exists($class, self::$_attributesMap)) {
-                    return [
-                        'success' => false,
-                        'msg' => "Изменение атрибутов класса $class не поддерживается."
-                    ];
+                    return ['message' => "Изменение атрибутов класса $class не поддерживается."];
                 } else {
                     if (null === ($attribute = Yii::$app->getRequest()->get('att'))) {
-                        return [
-                            'success' => false,
-                            'msg' => "Необходимо указать название атрибута через параметр 'name'."
-                        ];
+                        return ['message' => "Необходимо указать название атрибута через параметр 'name'."];
                     } else {
                         if (!in_array($attribute, self::$_attributesMap[$class])) {
-                            return [
-                                'error' => true,
-                                'msg' => "Изменение значения атрибута $attribute не поддерживается.",
-                            ];
+                            return ['message' => "Изменение значения атрибута $attribute не поддерживается."];
                         } else {
                             if (null === ($value = (Yii::$app->getRequest()->post('value')))
                             ) {
-                                $this->flashMessages('error', 'Необходимо задать значение для изменяемого
-                 атрибута через параметр \'value\'.');
-                                return [
-                                    'success' => false,
-                                    'msg' => "Необходимо задать значение для изменяемого атрибута через параметр 'value'."
-                                ];
+                                return ['message' => "Необходимо задать значение для изменяемого атрибута через параметр 'value'."];
                             } else {
                                 if (null === ($pk = Yii::$app->getRequest()->get('id'))) {
-                                    $this->flashMessages('error', "Необходимо задать значение первичного ключа через
-                    параметр 'pk'.");
-                                    return [
-                                        'success' => false,
-                                        'msg' => "Необходимо задать значение первичного ключа через параметр 'pk'."
-                                    ];
+                                    return ['message' => "Необходимо задать значение первичного ключа через параметр 'pk'."];
                                 } else {
                                     /** @var $class ActiveRecord */
                                     $model = $class::findOne($pk);
                                     if (!$model instanceof ActiveRecord) {
-                                        $this->flashMessages('error', "Невозможно найти модель для первичного ключа $pk.");
-                                        return [
-                                            'success' => false,
-                                            'msg' => "Невозможно найти модель для первичного ключа $pk."
-                                        ];
+                                        return ['message' => "Невозможно найти модель для первичного ключа $pk."];
                                     } else {
                                         $model->$attribute = $value;
                                         if ($model->save(false, [$attribute]) !== false) {
@@ -129,11 +103,7 @@ class BaseController extends Controller
                                                 'newValue' => $model->$attribute,
                                             ];
                                         } else {
-                                            $this->flashMessages('error', "Ошибка сохранения модели $class!");
-                                            return [
-                                                'success' => false,
-                                                'msg' => "Ошибка сохранения модели $class!"
-                                            ];
+                                            return ['message' => "Ошибка сохранения модели $class!"];
                                         }
                                     }
                                 }
