@@ -89,9 +89,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             ]),
                         ],
                         'pluginEvents' => [
-                            'editableSuccess' => 'function(event, val, form, data){
-                            toastr.success(data.msg);
-                          }'
+                            'editableSuccess' => 'function(event, val, form, data){ toastr.success(data.msg); }',
+                            "editableError"=>"function(event, val, form, data) { toastr.error(data.message) }",
                         ],
                         'asPopover' => true,
                         'value' => $model->name,
@@ -136,9 +135,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             ]),
                         ],
                         'pluginEvents' => [
-                            'editableSuccess' => 'function(event, val, form, data){
-                            toastr.success(data.msg);
-                          }'
+                            'editableSuccess' => 'function(event, val, form, data){ toastr.success(data.msg); }',
+                            "editableError"=>"function(event, val, form, data) { toastr.error(data.message) }",
                         ],
                         'asPopover' => true,
                         'value' => $model->branch,
