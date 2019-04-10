@@ -22,6 +22,25 @@ class Module extends \yii\base\Module
     {
         parent::init();
 
+        $this->modules = [
+            'db-manager' => [
+                'class' => 'bs\dbManager\Module',
+                // path to directory for the dumps
+                'path' => '@runtime/backups',
+                // list of registerd db-components
+                'dbList' => ['db'],
+//            'as access' => [
+//                'class' => 'yii\filters\AccessControl',
+//                'rules' => [
+//                    [
+//                        'allow' => true,
+//                        'roles' => ['@'],
+//                    ],
+//                ],
+//            ],
+            ],
+        ];
+
         \Yii::configure($this, [
             'components' => [
                 'errorHandler' => [
