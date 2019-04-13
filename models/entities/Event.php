@@ -75,4 +75,22 @@ class Event extends Base
             'updated_at' => 'Updated at',
         ];
     }
+
+    /**
+     * Recent events
+     *
+     * todo cache
+     *
+     * @param int $count
+     * @return mixed
+     */
+    final public static function getRecentEvents($count = 9)
+    {
+        return static::find()
+            ->orderBy([
+                'created_at' => SORT_DESC,
+            ])
+            ->limit($count)
+            ->all();
+    }
 }

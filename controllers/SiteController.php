@@ -8,6 +8,7 @@ use yii\web\Response;
 use app\models\forms\LoginForm;
 use app\models\forms\ContactForm;
 use app\models\entities\Task;
+use app\models\entities\Event;
 
 class SiteController extends BaseController
 {
@@ -64,6 +65,8 @@ class SiteController extends BaseController
         $warning = Task::getCountedHighChartsResults('warning');
         $dayLabels = Task::getCountedHighChartsResults();
 
+        $recentEvents = Event::getRecentEvents();
+
         return $this->render(
             'index',
             compact(
@@ -74,7 +77,8 @@ class SiteController extends BaseController
                 'new',
                 'in_work',
                 'warning',
-                'dayLabels'
+                'dayLabels',
+                'recentEvents'
             )
         );
     }
