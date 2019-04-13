@@ -13,7 +13,7 @@ use Yii;
  * @property int $event_id Event ID
  * @property string $event_name Event name
  */
-class Event extends \yii\db\ActiveRecord
+class Event extends Base
 {
     /**
      * {@inheritdoc}
@@ -29,10 +29,34 @@ class Event extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['event_id'], 'required'],
-            [['event_id'], 'integer'],
-            [['title', 'event_name'], 'string', 'max' => 255],
-            [['icon_name'], 'string', 'max' => 50],
+            [
+                ['event_id'],
+                'required'
+            ],
+            [
+                [
+                    'created_at',
+                    'updated_at'
+                ],
+                'safe'
+            ],
+            [
+                ['event_id'],
+                'integer'
+            ],
+            [
+                [
+                    'title',
+                    'event_name'
+                ],
+                'string',
+                'max' => 255
+            ],
+            [
+                ['icon_name'],
+                'string',
+                'max' => 50
+            ],
         ];
     }
 
@@ -47,6 +71,8 @@ class Event extends \yii\db\ActiveRecord
             'icon_name' => 'Icon Name',
             'event_id' => 'Event ID',
             'event_name' => 'Event Name',
+            'created_at' => 'Created at',
+            'updated_at' => 'Updated at',
         ];
     }
 }

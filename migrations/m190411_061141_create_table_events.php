@@ -27,6 +27,8 @@ class m190411_061141_create_table_events extends Migration
                 'icon_name' => $this->string(50)->unsigned()->Null()->comment('Icon name'),
                 'event_id' => $this->integer(11)->unsigned()->notNull()->comment('Event ID'),
                 'event_name' => $this->string(255)->unsigned()->Null()->comment('Event name'),
+                'created_at' => $this->integer(11)->unsigned()->notNull()->comment('Created at'),
+                'updated_at' => $this->integer(11)->unsigned()->notNull()->comment('Updated at'),
             ],
             $tableOptions
         );
