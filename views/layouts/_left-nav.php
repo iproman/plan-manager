@@ -23,6 +23,10 @@ echo Html::tag(
                     'url' => ['/task/']
                 ],
                 [
+                    'label' => HB::icon('glyphicon glyphicon-time') . ' ' . 'Events',
+                    'url' => ['/event/']
+                ],
+                [
                     'label' => HB::icon('glyphicon glyphicon-repeat') . ' ' . 'Backup',
                     'url' => ['/db-manager/']
                 ],
