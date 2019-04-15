@@ -46,7 +46,7 @@ class EventDispatcher extends Component implements BootstrapInterface
         $model = new Eve();
         $model->setAttributes([
             'title' => self::EVENT_UPDATED_TASK,
-            'icon_name' => FA::_DATABASE,
+            'icon_name' => FA::_PENCIL,
             'event_id' => $task->id,
             'event_name' => $task->name,
         ], false);
