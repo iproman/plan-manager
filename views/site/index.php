@@ -15,6 +15,7 @@ use miloschuman\highcharts\Highcharts;
 /* @var $warning \app\models\entities\Task */
 /* @var $new \app\models\entities\Task */
 /* @var $dayLabels \app\models\entities\Task */
+/* @var $recentEvents \app\models\entities\Event */
 
 $this->title = 'My Yii Application';
 
@@ -107,6 +108,27 @@ $this->title = 'My Yii Application';
             <!-- /.panel -->
         </div>
         <!-- /.col-lg-8 -->
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-bell fa-fw"></i> Notifications Panel
+                </div>
+                <div class="panel-body">
+                    <?php foreach ($recentEvents as $event): ?>
+                        <div class="list-group">
+                            <a href="<?= Url::to(['task/view', 'id' => $event->event_id]) ?>" class="list-group-item">
+                                <i class="fa fa-<?= $event->icon_name ?> fa-fw"></i> <?= $event->title ?>
+                                <span class="pull-right text-muted small">
+                                    <em><?= Yii::$app->formatter->asTime($event->created_at) ?></em>
+                                </span>
+                            </a>
+                        </div>
+                        <?php // todo Need time word endings ?>
+                    <?php endforeach; ?>
+                    <a href="<?= Url::to('/event/') ?>" class="btn btn-default btn-block">View All Alerts</a>
+                </div>
+            </div>
+        </div>
         <div class="col-lg-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
