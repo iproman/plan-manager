@@ -26,6 +26,8 @@ class EventDispatcher extends Component implements BootstrapInterface
      * Event constants.
      */
     const EVENT_UPDATED_TASK = 'Updated Task';
+    const EVENT_DELETED_TASK = 'Deleted Task';
+    const EVENT_INSERTED_TASK = 'Created Task';
 
     /**
      * @param \yii\base\Application $app
@@ -33,6 +35,8 @@ class EventDispatcher extends Component implements BootstrapInterface
     public function bootstrap($app)
     {
         Event::on(Task::class, Task::EVENT_AFTER_UPDATE, [$this, 'onTaskAfterUpdate']);
+        Event::on(Task::class, Task::EVENT_AFTER_DELETE, [$this, 'onTaskAfterDelete']);
+        Event::on(Task::class, Task::EVENT_AFTER_INSERT, [$this, 'onTaskAfterInsert']);
     }
 
     /**
@@ -45,13 +49,53 @@ class EventDispatcher extends Component implements BootstrapInterface
         $task = $event->sender;
         $model = new Eve();
         $model->setAttributes([
-            'title' => self::EVENT_UPDATED_TASK,
+            'title' => self::EVENT_UPDATED_TASK . ' #' . $task->id,
             'icon_name' => FA::_PENCIL,
             'event_id' => $task->id,
             'event_name' => $task->name,
         ], false);
         if (!$model->save()) {
             return $this->flashMessages('error', 'Update event not saved');
+        }
+    }
+
+    /**
+     * Task after delete
+     *
+     * @param Event $event
+     */
+    public function onTaskAfterDelete(Event $event)
+    {
+        $task = $event->sender;
+        $model = new Eve();
+        $model->setAttributes([
+            'title' => self::EVENT_DELETED_TASK . ' #' . $task->id,
+            'icon_name' => FA::_TRASH,
+            'event_id' => $task->id,
+            'event_name' => $task->name,
+        ], false);
+        if (!$model->save()) {
+            return $this->flashMessages('error', 'Delete event not saved');
+        }
+    }
+
+    /**
+     * Task after create
+     *
+     * @param Event $event
+     */
+    public function onTaskAfterInsert(Event $event)
+    {
+        $task = $event->sender;
+        $model = new Eve();
+        $model->setAttributes([
+            'title' => self::EVENT_INSERTED_TASK . ' #' . $task->id,
+            'icon_name' => FA::_TASKS,
+            'event_id' => $task->id,
+            'event_name' => $task->name,
+        ], false);
+        if (!$model->save()) {
+            return $this->flashMessages('error', 'Create event not saved');
         }
     }
 
