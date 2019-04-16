@@ -114,17 +114,17 @@ $this->title = 'My Yii Application';
                     <i class="fa fa-bell fa-fw"></i> Notifications Panel
                 </div>
                 <div class="panel-body">
-                    <?php foreach ($recentEvents as $event): ?>
-                        <div class="list-group">
+                    <div class="list-group">
+                        <?php foreach ($recentEvents as $event): ?>
                             <a href="<?= Url::to(['task/view', 'id' => $event->event_id]) ?>" class="list-group-item">
                                 <i class="fa fa-<?= $event->icon_name ?> fa-fw"></i> <?= $event->title ?>
                                 <span class="pull-right text-muted small">
                                     <em><?= Yii::$app->formatter->asTime($event->created_at) ?></em>
                                 </span>
                             </a>
-                        </div>
+                        <?php endforeach; ?>
                         <?php // todo Need time word endings ?>
-                    <?php endforeach; ?>
+                    </div>
                     <a href="<?= Url::to('/event/') ?>" class="btn btn-default btn-block">View All Alerts</a>
                 </div>
             </div>
