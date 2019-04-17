@@ -1,14 +1,13 @@
 <?php
 
 use yii\db\Migration;
-use app\models\Plan;
 
 /**
  * Class m181204_160334_create_table_title
  */
 class m181204_160334_create_table_title extends Migration
 {
-    const TABLE_NAME = '{{%title}}';
+    const TABLE_NAME = '{{%task}}';
 
     /**
      * {@inheritdoc}
