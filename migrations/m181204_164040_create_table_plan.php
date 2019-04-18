@@ -42,26 +42,6 @@ class m181204_164040_create_table_plan extends Migration
             self::TABLE_NAME,
             'created_at'
         );
-
-        $this->addForeignKey(
-            'FK_PLAN_TITLE_ID_TITLE_ID',
-            self::TABLE_NAME,
-            'title_id',
-            self::TASK_TABLE_NAME,
-            'id',
-            'CASCADE',
-            'CASCADE'
-        );
-
-        $this->addForeignKey(
-            'FK_PLAN_TIME_ID_TIME_ID',
-            self::TABLE_NAME,
-            'time_id',
-            self::TASK_TABLE_NAME,
-            'id',
-            'CASCADE',
-            'CASCADE'
-        );
     }
 
     /**
@@ -69,15 +49,6 @@ class m181204_164040_create_table_plan extends Migration
      */
     public function safeDown()
     {
-        $this->dropForeignKey(
-            'FK_PLAN_TITLE_ID_TITLE_ID',
-            self::TABLE_NAME
-        );
-
-        $this->dropForeignKey(
-            'FK_PLAN_TIME_ID_TIME_ID',
-            self::TABLE_NAME
-        );
 
         $this->dropTable(self::TABLE_NAME);
     }

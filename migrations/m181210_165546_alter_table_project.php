@@ -18,15 +18,6 @@ class m181210_165546_alter_table_project extends Migration
      */
     public function safeUp()
     {
-        $this->dropForeignKey(
-            'FK_PLAN_TITLE_ID_TITLE_ID',
-            self::TABLE_NAME
-        );
-
-        $this->dropForeignKey(
-            'FK_PLAN_TIME_ID_TIME_ID',
-            self::TABLE_NAME
-        );
 
         $this->dropColumn(
             self::TABLE_NAME,
@@ -66,26 +57,6 @@ class m181210_165546_alter_table_project extends Migration
         $this->dropColumn(
             self::TABLE_NAME,
             'name'
-        );
-
-        $this->addForeignKey(
-            'FK_PLAN_TITLE_ID_TITLE_ID',
-            self::TABLE_NAME,
-            'title_id',
-            Title::tableName(),
-            'id',
-            'CASCADE',
-            'CASCADE'
-        );
-
-        $this->addForeignKey(
-            'FK_PLAN_TIME_ID_TIME_ID',
-            self::TABLE_NAME,
-            'time_id',
-            Time::tableName(),
-            'id',
-            'CASCADE',
-            'CASCADE'
         );
     }
 }
