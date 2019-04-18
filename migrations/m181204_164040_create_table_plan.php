@@ -1,15 +1,13 @@
 <?php
 
 use yii\db\Migration;
-use app\models\Title;
-use app\models\Time;
-
 /**
  * Class m181204_164040_create_table_plan
  */
 class m181204_164040_create_table_plan extends Migration
 {
-    const TABLE_NAME = '{{%plan}}';
+    const TABLE_NAME = '{{%project}}';
+    const TASK_TABLE_NAME = '{{%task}}';
 
     /**
      * {@inheritdoc}
@@ -49,7 +47,7 @@ class m181204_164040_create_table_plan extends Migration
             'FK_PLAN_TITLE_ID_TITLE_ID',
             self::TABLE_NAME,
             'title_id',
-            Title::tableName(),
+            self::TASK_TABLE_NAME,
             'id',
             'CASCADE',
             'CASCADE'
@@ -59,7 +57,7 @@ class m181204_164040_create_table_plan extends Migration
             'FK_PLAN_TIME_ID_TIME_ID',
             self::TABLE_NAME,
             'time_id',
-            Time::tableName(),
+            self::TASK_TABLE_NAME,
             'id',
             'CASCADE',
             'CASCADE'
