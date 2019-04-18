@@ -1,15 +1,15 @@
 <?php
 
 use yii\db\Migration;
-use app\models\Project;
 
 /**
- * Class m181210_173312_alter_table_title
+ * Class m181210_173312_alter_table_task
  */
-class m181210_173312_alter_table_title extends Migration
+class m181210_173312_alter_table_task extends Migration
 {
 
-    const TABLE_NAME = '{{%title}}';
+    const TABLE_NAME = '{{%task}}';
+    const PROJECT_TABLE_NAME = '{{%project}}';
 
     /**
      * {@inheritdoc}
@@ -23,10 +23,10 @@ class m181210_173312_alter_table_title extends Migration
         );
 
         $this->addForeignKey(
-            'FK_TITLE_PROJECT_ID_PROJECT_ID',
+            'FK_TASK_PROJECT_ID_PROJECT_ID',
             self::TABLE_NAME,
             'project_id',
-            Project::tableName(),
+            self::PROJECT_TABLE_NAME,
             'id',
             'CASCADE',
             'CASCADE'
@@ -39,7 +39,7 @@ class m181210_173312_alter_table_title extends Migration
     public function safeDown()
     {
         $this->dropForeignKey(
-            'FK_TITLE_PROJECT_ID_PROJECT_ID',
+            'FK_TASK_PROJECT_ID_PROJECT_ID',
             self::TABLE_NAME
         );
 
