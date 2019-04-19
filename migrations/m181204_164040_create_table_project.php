@@ -1,13 +1,13 @@
 <?php
 
 use yii\db\Migration;
+
 /**
- * Class m181204_164040_create_table_plan
+ * Class m181204_164040_create_table_project
  */
-class m181204_164040_create_table_plan extends Migration
+class m181204_164040_create_table_project extends Migration
 {
     const TABLE_NAME = '{{%project}}';
-    const TASK_TABLE_NAME = '{{%task}}';
 
     /**
      * {@inheritdoc}
@@ -23,10 +23,11 @@ class m181204_164040_create_table_plan extends Migration
             self::TABLE_NAME,
             [
                 'id' => $this->primaryKey(11)->unsigned()->comment('ID'),
-                'name' => $this->string(64)->notNull()->comment('Название'),
-                'status' => $this->smallInteger(1)->unsigned()->notNull()->defaultValue(0)->comment('Состояние'),
-                'created_at' => $this->integer(11)->unsigned()->notNull()->comment('Создано'),
-                'updated_at' => $this->integer(11)->unsigned()->notNull()->comment('Обновлено'),
+                'name' => $this->string(64)->notNull()->comment('Project name'),
+                'status' => $this->smallInteger(1)->unsigned()->notNull()->defaultValue(0)->comment('Status'),
+                'branch' => $this->string(10)->null()->defaultValue('iss')->comment('Branch prefix'),
+                'created_at' => $this->integer(11)->unsigned()->notNull()->comment('Created_at'),
+                'updated_at' => $this->integer(11)->unsigned()->notNull()->comment('Updated_at'),
             ],
             $tableOptions
         );
@@ -48,7 +49,6 @@ class m181204_164040_create_table_plan extends Migration
      */
     public function safeDown()
     {
-
         $this->dropTable(self::TABLE_NAME);
     }
 }
