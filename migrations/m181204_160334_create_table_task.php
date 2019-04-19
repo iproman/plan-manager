@@ -3,9 +3,9 @@
 use yii\db\Migration;
 
 /**
- * Class m181204_160334_create_table_title
+ * Class m181204_160334_create_table_task
  */
-class m181204_160334_create_table_title extends Migration
+class m181204_160334_create_table_task extends Migration
 {
     const TABLE_NAME = '{{%task}}';
 
@@ -23,9 +23,12 @@ class m181204_160334_create_table_title extends Migration
             self::TABLE_NAME,
             [
                 'id' => $this->primaryKey(11)->unsigned()->comment('ID'),
-                'name' => $this->string(64)->notNull()->comment('Название'),
-                'created_at' => $this->integer(11)->unsigned()->notNull()->comment('Создано'),
-                'updated_at' => $this->integer(11)->unsigned()->notNull()->comment('Обновлено'),
+                'name' => $this->string(64)->notNull()->comment('Task name'),
+                'content' => $this->text()->null()->comment('Content'),
+                'status' => $this->smallInteger(1)->notNull()->defaultValue(0)->comment('Status'),
+                'branch' => $this->string(10)->null()->comment('Branch'),
+                'created_at' => $this->integer(11)->unsigned()->notNull()->comment('Created_at'),
+                'updated_at' => $this->integer(11)->unsigned()->notNull()->comment('Updated_at'),
             ],
             $tableOptions
         );
@@ -41,7 +44,6 @@ class m181204_160334_create_table_title extends Migration
             'created_at'
         );
 
-
     }
 
     /**
@@ -49,7 +51,6 @@ class m181204_160334_create_table_title extends Migration
      */
     public function safeDown()
     {
-
         $this->dropTable(self::TABLE_NAME);
     }
 }
