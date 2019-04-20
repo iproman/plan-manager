@@ -3,9 +3,7 @@
 namespace app\models\entities;
 
 use yii\helpers\ArrayHelper;
-use DateTime;
-use yii\db\Query;
-use yii\db\Expression;
+use app\models\service\Statuses;
 
 /**
  * This is the model class for table "task".
@@ -23,15 +21,6 @@ use yii\db\Expression;
  */
 class Task extends Base
 {
-
-    /**
-     * Constants
-     */
-    const STATUS_NEW = 0;
-    const STATUS_IN_WORK = 1;
-    const STATUS_DONE = 2;
-    const STATUS_WARNING = 3;
-    const STATUS_REJECTED = 4;
 
     /**
      * @inheritdoc
@@ -86,12 +75,12 @@ class Task extends Base
             [
                 'status',
                 'in',
-                'range' => array_keys(self::getStatuses()),
+                'range' => Statuses::getStatuses(),
             ],
             [
                 'status',
                 'default',
-                'value' => self::STATUS_NEW,
+                'value' => Statuses::STATUS_NEW,
             ],
             [
                 'project_id',
@@ -150,70 +139,6 @@ class Task extends Base
     }
 
     /**
-     * Returns statuses
-     *
-     * @return array
-     */
-    public static function getStatuses()
-    {
-        return [
-            self::STATUS_NEW,
-            self::STATUS_IN_WORK,
-            self::STATUS_DONE,
-            self::STATUS_WARNING,
-            self::STATUS_REJECTED,
-        ];
-    }
-
-    /**
-     * Returns statuses names
-     *
-     * @return array
-     */
-    public static function getStatusNames()
-    {
-        return [
-            self::STATUS_NEW => 'Новая задача',
-            self::STATUS_IN_WORK => 'В работе',
-            self::STATUS_DONE => 'Завершена',
-            self::STATUS_WARNING => 'Срочная',
-            self::STATUS_REJECTED => 'Отклонено',
-        ];
-    }
-
-    /**
-     * Returns status labels
-     *
-     * @return array
-     */
-    public static function getStatusLabels()
-    {
-        return [
-            self::STATUS_NEW => 'new',
-            self::STATUS_IN_WORK => 'in work',
-            self::STATUS_DONE => 'done',
-            self::STATUS_WARNING => 'warning',
-            self::STATUS_REJECTED => 'rejected',
-        ];
-    }
-
-    /**
-     * Returns status for css
-     *
-     * @return array
-     */
-    public static function getStatusCss()
-    {
-        return [
-            self::STATUS_NEW => 'success',
-            self::STATUS_IN_WORK => 'info',
-            self::STATUS_DONE => 'default',
-            self::STATUS_WARNING => 'warning',
-            self::STATUS_REJECTED => 'danger',
-        ];
-    }
-
-    /**
      * todo Bad experience, too much query and dirty code
      *
      * Return counted tasks
@@ -238,92 +163,6 @@ class Task extends Base
         } else {
             return (clone $task)
                 ->count();
-        }
-    }
-
-    /**
-     * Returns query of all tasks
-     * divided into statuses and 7 days
-     *
-     * todo add dynamic selection name
-     *
-     * @return Query
-     */
-    private static function getHighChartsQuery()
-    {
-        // data for highCharts
-        $startDate = date('d.m.Y', time() - 3600 * 24 * 7);
-        $endDate = date('d.m.Y', time());
-        $startTimestamp = (DateTime::createFromFormat('d.m.Y H:i:s', $startDate . ' 00:00:00'))
-            ->getTimestamp();
-        $endTimestamp = (DateTime::createFromFormat('d.m.Y H:i:s', $endDate . ' 23:59:59'))
-            ->getTimestamp();
-
-        return (new Query())
-            ->select([
-                'done' => new Expression(
-                    'SUM(CASE WHEN status = :done THEN 1 ELSE 0 END)',
-                    [':done' => Task::STATUS_DONE]
-                ),
-                'new' => new Expression(
-                    'SUM(CASE WHEN status = :new THEN 1 ELSE 0 END)',
-                    [':new' => Task::STATUS_NEW]
-                ),
-                'in_work' => new Expression(
-                    'SUM(CASE WHEN status = :in_work THEN 1 ELSE 0 END)',
-                    [':in_work' => Task::STATUS_IN_WORK]
-                ),
-                'warning' => new Expression(
-                    'SUM(CASE WHEN status = :warning THEN 1 ELSE 0 END)',
-                    [':warning' => Task::STATUS_WARNING]
-                ),
-                'week_day' => new Expression(
-                    'DATE(FROM_UNIXTIME(updated_at))'
-                ),
-            ])
-            ->from(Task::tableName())
-            ->where(
-                'updated_at >= :start AND updated_at <= :end',
-                [
-                    ':start' => $startTimestamp,
-                    ':end' => $endTimestamp,
-                ]
-            )
-            ->groupBy([
-                'week_day',
-            ]);
-    }
-
-    /**
-     * If label exist count selected element from query
-     * Else returns week days
-     *
-     * todo every time new 4 unnecessary queries
-     * todo change names
-     *
-     * @param null $label
-     * @return array
-     */
-    final public static function getCountedHighChartsResults($label = null)
-    {
-        $query = self::getHighChartsQuery();
-        if (!empty($label)) {
-            return array_map(
-                'intval',
-                ArrayHelper::getColumn(
-                    $query->all(),
-                    $label
-                )
-            );
-        } else {
-            return array_map(
-                function ($v) {
-                    return date('D', strtotime($v));
-                },
-                ArrayHelper::getColumn(
-                    $query->all(),
-                    'week_day'
-                ));
         }
     }
 }
