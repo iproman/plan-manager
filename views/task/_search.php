@@ -2,8 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use app\models\entities\Task;
 use yii\helpers\Url;
+use app\models\service\Statuses;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\entities\TaskSearch */
@@ -21,7 +21,7 @@ use yii\helpers\Url;
         <div class="col-lg-2"><?= $form->field($model, 'id') ?></div>
         <div class="col-lg-3"> <?= $form->field($model, 'name') ?></div>
         <div class="col-lg-2"><?= $form->field($model, 'status')->dropDownList(
-                Task::getStatusNames(),
+                Statuses::getStatusNames(),
                 ['prompt' => 'Выберите статус']
             ) ?>
         </div>

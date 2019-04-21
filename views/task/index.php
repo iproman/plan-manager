@@ -7,6 +7,7 @@ use yii\helpers\Url;
 use kartik\editable\Editable;
 use kartik\export\ExportMenu;
 use yii\bootstrap\Html as HB;
+use app\models\service\Statuses;
 
 /* @var $this yii\web\View */
 /* @var $projectName app\models\entities\Project */
@@ -107,11 +108,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     /** @var \app\models\entities\Task $model */
                     return Html::tag(
                         'span',
-                        Task::getStatusLabels()[$model->status],
+                        Statuses::getStatusLabels()[$model->status],
                         [
-                            'class' => 'label label-' . Task::getStatusCss()[$model->status],
+                            'class' => 'label label-' . Statuses::getStatusCss()[$model->status],
                             'data-toggle' => 'tooltip',
-                            'title' => Task::getStatuses()[$model->status],
+                            'title' => Statuses::getStatuses()[$model->status],
                         ]
                     );
                 },

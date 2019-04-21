@@ -2,10 +2,10 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use app\models\entities\Task;
 use app\models\entities\Project;
 use yii\helpers\ArrayHelper;
 use dosamigos\ckeditor\CKEditor;
+use app\models\service\Statuses;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\entities\Task */
@@ -31,7 +31,7 @@ use dosamigos\ckeditor\CKEditor;
     <div class="row">
         <div class="col-lg-4">
             <?= $form->field($model, 'status', ['labelOptions' => ['style' => 'display: block']])->radioList(
-                Task::getStatusLabels(),
+                Statuses::getStatusLabels(),
                 [
                     'class' => 'btn-group',
                     'data-toggle' => 'buttons',
@@ -41,7 +41,7 @@ use dosamigos\ckeditor\CKEditor;
                             'label',
                             Html::radio($name, $checked, ['value' => $value]) . $label,
                             [
-                                'class' => 'btn btn-' . Task::getStatusCss()[$value] . ($checked ? ' active' : ''),
+                                'class' => 'btn btn-' . Statuses::getStatusCss()[$value] . ($checked ? ' active' : ''),
                             ]
                         );
                     },
