@@ -3,6 +3,7 @@
 namespace app\models\entities;
 
 use Yii;
+use app\models\service\Statuses;
 
 /**
  * This is the model class for table "project".
@@ -45,6 +46,26 @@ class Project extends Base
                 ],
                 'safe'
             ],
+            [
+                'branch',
+                'string',
+                'max' => 10
+            ],
+            [
+                'branch',
+                'default',
+                'value' => 'none',
+            ],
+            [
+                'status',
+                'in',
+                'range' => Statuses::getStatuses(),
+            ],
+            [
+                'status',
+                'default',
+                'value' => Statuses::STATUS_NEW,
+            ],
         ];
     }
 
@@ -55,9 +76,11 @@ class Project extends Base
     {
         return [
             'id' => 'ID',
-            'name' => 'Название проекта',
-            'created_at' => 'Создано',
-            'updated_at' => 'Обновлено',
+            'name' => 'Project name',
+            'branch' => 'Branch prefix',
+            'status' => 'Status',
+            'created_at' => 'Created at',
+            'updated_at' => 'Updated at',
         ];
     }
 
