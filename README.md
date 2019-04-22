@@ -6,36 +6,46 @@
     <br>
 </p>
 
-Simple task manager like redmine on yii2.
 
-DIRECTORY STRUCTURE
+Simple task manager for what:
 -------------------
+1. If u have several domains(projects) and for everyone u need local task managing;
+2. If u use VCS (like git), and for every task you need different name (branch, like `iss1`).
 
-      assets/             contains assets definition
-      commands/           contains console commands (controllers)
-      config/             contains application configurations
-      controllers/        contains Web controller classes
-      mail/               contains view files for e-mails
-      migrations/         contains all migrations
-      models/             contains model classes
-      runtime/            contains files generated during runtime
-      tests/              contains various tests for the basic application
-      vendor/             contains dependent 3rd-party packages
-      views/              contains view files for the Web application
-      web/                contains the entry script and Web resources
+Can we do, what:
+-------------------
+1. Project managing;
+2. Task for every project;
+3. Exporting tasks.
+4. For every action, event listeners;
+5. Log;
+6. Backup db.
+
+Installation
+-------------------
+The preferred way to install this extension is through composer.
+
+Either run
+~~~
+ php composer.phar ..... in work.
+~~~
+or add
+~~~
+ ..... in work.
+~~~
+to the require section of your composer.json.
 
 
+create backups folder for db backup.
+~~~
+runtime/backups
+~~~
 
-REQUIREMENTS
+Configuration
 ------------
+The minimum requirement by this project template that your Web server supports PHP 7.1.
 
-The minimum requirement by this project template that your Web server supports PHP 5.4.0.
-
-
-INSTALLATION
-------------
-
-### After clonning repo
+Database Migrations
 
 Edit the file `config/db.php`, for example:
 
@@ -48,21 +58,9 @@ return [
     'charset' => 'utf8',
 ];
 ```
-
-### Run migration
-
+Run base migration
 ~~~
  php yii migrate
 ~~~
 
-### And composer
-
-~~~
- php composer install
-~~~
-
 **NOTES:**
-- Before using Comments Widget, we'll also need to prepare the database.
-~~~
- php yii migrate --migrationPath=@vendor/yii2mod/yii2-comments/migrations
-~~~
