@@ -4,6 +4,7 @@ use yii\helpers\Url;
 use app\models\entities\Task;
 use app\components\widgets\ViewDetails;
 use miloschuman\highcharts\Highcharts;
+use app\models\service\Statuses;
 
 /* @var $this yii\web\View */
 /* @var $taskNew \app\models\entities\Task */
@@ -30,28 +31,28 @@ $this->title = 'My Yii Application';
     <!-- /.row -->
     <div class="row">
         <?= ViewDetails::widget([
-            'link' => Url::to(['task/index', 'TaskSearch[status]' => Task::STATUS_NEW]),
+            'link' => Url::to(['task/index', 'TaskSearch[status]' => Statuses::STATUS_NEW]),
         ]); ?>
         <?= ViewDetails::widget([
-            'status' => Task::STATUS_DONE,
+            'status' => Statuses::STATUS_DONE,
             'count' => $taskDone,
             'icon' => 'glyphicon-check',
             'text' => 'Completed tasks!',
-            'link' => Url::to(['task/index', 'TaskSearch[status]' => Task::STATUS_DONE]),
+            'link' => Url::to(['task/index', 'TaskSearch[status]' => Statuses::STATUS_DONE]),
         ]); ?>
         <?= ViewDetails::widget([
-            'status' => Task::STATUS_IN_WORK,
+            'status' => Statuses::STATUS_IN_WORK,
             'count' => $taskInWork,
             'icon' => 'glyphicon-wrench',
             'text' => 'Tasks in work!',
-            'link' => Url::to(['task/', 'TaskSearch[status]' => Task::STATUS_IN_WORK]),
+            'link' => Url::to(['task/', 'TaskSearch[status]' => Statuses::STATUS_IN_WORK]),
         ]); ?>
         <?= ViewDetails::widget([
-            'status' => Task::STATUS_WARNING,
+            'status' => Statuses::STATUS_WARNING,
             'count' => $taskWarning,
             'icon' => 'glyphicon-fire',
             'text' => 'Important tasks!',
-            'link' => Url::to(['task/', 'TaskSearch[status]' => Task::STATUS_WARNING]),
+            'link' => Url::to(['task/', 'TaskSearch[status]' => Statuses::STATUS_WARNING]),
         ]); ?>
     </div>
     <!-- /.row -->
