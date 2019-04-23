@@ -1,8 +1,7 @@
 <?php
 
 use yii\helpers\Url;
-use app\models\entities\Task;
-use app\components\widgets\ViewDetails;
+use app\widgets\ViewDetails;
 use miloschuman\highcharts\Highcharts;
 use app\models\service\Statuses;
 

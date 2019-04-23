@@ -6,11 +6,12 @@
  * Time: 10:00
  */
 
-namespace app\components\widgets;
+namespace app\widgets;
 
 use yii\helpers\Url;
 use yii\base\Widget;
 use app\models\entities\Task;
+use app\models\service\Statuses;
 
 class ViewDetails extends Widget
 {
@@ -39,11 +40,11 @@ class ViewDetails extends Widget
     {
         parent::init();
         if ($this->status === null) {
-            $this->status = Task::STATUS_NEW;
+            $this->status = Statuses::STATUS_NEW;
         }
         if ($this->count === null) {
             $this->count = Task::find()
-                ->where(['=', 'status', Task::STATUS_NEW])
+                ->where(['=', 'status', Statuses::STATUS_NEW])
                 ->count();
         }
         if ($this->icon === null) {
