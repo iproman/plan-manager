@@ -9,6 +9,8 @@ use app\models\forms\LoginForm;
 use app\models\forms\ContactForm;
 use app\models\entities\Task;
 use app\models\entities\Event;
+use app\models\service\Statuses;
+use app\models\service\HighCharts;
 
 class SiteController extends BaseController
 {
@@ -55,15 +57,15 @@ class SiteController extends BaseController
      */
     public function actionIndex()
     {
-        $taskDone = Task::getCountedTasks(Task::STATUS_DONE);
-        $taskInWork = Task::getCountedTasks(Task::STATUS_IN_WORK);
-        $taskWarning = Task::getCountedTasks(Task::STATUS_WARNING);
+        $taskDone = Task::getCountedTasks(Statuses::STATUS_DONE);
+        $taskInWork = Task::getCountedTasks(Statuses::STATUS_IN_WORK);
+        $taskWarning = Task::getCountedTasks(Statuses::STATUS_WARNING);
 
-        $done = Task::getCountedHighChartsResults('done');
-        $new = Task::getCountedHighChartsResults('new');
-        $in_work = Task::getCountedHighChartsResults('in_work');
-        $warning = Task::getCountedHighChartsResults('warning');
-        $dayLabels = Task::getCountedHighChartsResults();
+        $done = HighCharts::getCountedHighChartsResults('done');
+        $new = HighCharts::getCountedHighChartsResults('new');
+        $in_work = HighCharts::getCountedHighChartsResults('in_work');
+        $warning = HighCharts::getCountedHighChartsResults('warning');
+        $dayLabels = HighCharts::getCountedHighChartsResults();
 
         $recentEvents = Event::getRecentEvents();
 
