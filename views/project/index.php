@@ -5,6 +5,7 @@ use kartik\grid\GridView;
 use yii\bootstrap\Html as HB;
 use yii\helpers\Url;
 use app\models\entities\Task;
+use app\models\service\Statuses;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\entities\ProjectSearch */
@@ -70,7 +71,7 @@ $this->registerCss('
                         return 'Total: ' . count($model->task) .
                             Html::tag(
                                 'span',
-                                ' (New: ' . Task::getCountedTasks(Task::STATUS_NEW, $model->id) . ')',
+                                ' (New: ' . Task::getCountedTasks(Statuses::STATUS_NEW, $model->id) . ')',
                                 ['class' => 'text-muted']
                             );
                     }
