@@ -12,7 +12,7 @@ use app\models\service\Statuses;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $model app\models\entities\Project[] */
 
-$this->title = 'Проекты';
+$this->title = 'Projects';
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerCss('
     .td-none, .td-none:hover, .td-none:active {
@@ -31,7 +31,7 @@ $this->registerCss('
         </div>
         <div class="col-lg-6 flex-right vertical-align">
             <p>
-                <?= Html::a('Создать проект', ['create'], ['class' => 'btn btn-success']) ?>
+                <?= Html::a('Create project', ['create'], ['class' => 'btn btn-success']) ?>
             </p>
         </div>
     </div>
@@ -65,7 +65,7 @@ $this->registerCss('
                     },
                 ],
                 [
-                    'attribute' => 'Количество задач',
+                    'attribute' => 'Number of tasks',
                     'format' => 'raw',
                     'value' => function ($model) {
                         return 'Total: ' . count($model->task) .
@@ -117,7 +117,7 @@ $this->registerCss('
                                 ),
                                 [
                                     'class' => 'btn btn-default btn-hover-danger',
-                                    'onclick' => 'return confirm("Вы уверены, что хотите удалить задачу #' . $model->id . ' ?");',
+                                    'onclick' => 'return confirm("Are you sure, you want to delete task #' . $model->id . ' ?");',
                                     'pjax' => '0',
                                     'data-method' => 'POST',
                                 ]
