@@ -6,6 +6,7 @@ use yii\bootstrap\Html as HB;
 use yii\helpers\Url;
 use app\models\entities\Task;
 use app\models\service\Statuses;
+use yii\bootstrap\Collapse;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\entities\ProjectSearch */
@@ -35,6 +36,16 @@ $this->registerCss('
             </p>
         </div>
     </div>
+
+    <?= Collapse::widget([
+        'items' => [
+            [
+                'label' => 'Search',
+                'content' => $this->render('_search', ['model' => $searchModel]),
+            ],
+        ]
+    ]);
+    ?>
 
     <div class="row">
         <?= GridView::widget([

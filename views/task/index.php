@@ -8,6 +8,7 @@ use kartik\editable\Editable;
 use kartik\export\ExportMenu;
 use yii\bootstrap\Html as HB;
 use app\models\service\Statuses;
+use yii\bootstrap\Collapse;
 
 /* @var $this yii\web\View */
 /* @var $projectName app\models\entities\Project */
@@ -63,7 +64,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <hr>
 
-    <?= $this->render('_search', ['model' => $searchModel]); ?>
+    <?= Collapse::widget([
+        'items' => [
+            [
+                'label' => 'Search',
+                'content' => $this->render('_search', ['model' => $searchModel]),
+            ],
+        ]
+    ]);
+    ?>
 
     <hr>
 
