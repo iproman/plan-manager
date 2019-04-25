@@ -90,6 +90,25 @@ $this->registerCss('
                     }
                 ],
                 [
+                    'attribute' => 'status',
+                    'format' => 'raw',
+                    'value' => function ($model) {
+                        /** @var \app\models\entities\Task $model */
+                        return Html::tag(
+                            'span',
+                            Statuses::getStatusLabels()[$model->status],
+                            [
+                                'class' => 'label label-' . Statuses::getStatusCss()[$model->status],
+                                'data-toggle' => 'tooltip',
+                                'title' => Statuses::getStatusLabels()[$model->status],
+                            ]
+                        );
+                    },
+                    'contentOptions' => [
+                        'style' => 'text-align:center',
+                    ]
+                ],
+                [
                     'attribute' => 'branch',
                     'format' => 'raw',
                     'value' => function ($model) {
