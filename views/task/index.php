@@ -92,7 +92,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'formOptions' => [
                             'method' => 'post',
                             'action' => Url::to([
-                                'task/change',
+                                'attribute/change',
                                 'id' => $model->id,
                                 'att' => 'name',
                                 'class' => Task::class
@@ -100,7 +100,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                         'pluginEvents' => [
                             'editableSuccess' => 'function(event, val, form, data){ toastr.success(data.msg); }',
-                            "editableError"=>"function(event, val, form, data) { toastr.error(data.message) }",
+                            "editableError" => "function(event, val, form, data) { toastr.error(data.message) }",
                         ],
                         'asPopover' => true,
                         'value' => $model->name,
@@ -138,7 +138,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'formOptions' => [
                             'method' => 'post',
                             'action' => Url::to([
-                                'task/change',
+                                'attribute/change',
                                 'id' => $model->id,
                                 'att' => 'branch',
                                 'class' => Task::class
@@ -146,7 +146,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                         'pluginEvents' => [
                             'editableSuccess' => 'function(event, val, form, data){ toastr.success(data.msg); }',
-                            "editableError"=>"function(event, val, form, data) { toastr.error(data.message) }",
+                            "editableError" => "function(event, val, form, data) { toastr.error(data.message) }",
                         ],
                         'asPopover' => true,
                         'value' => $model->branch,

@@ -7,6 +7,8 @@ use yii\helpers\Url;
 use app\models\entities\Task;
 use app\models\service\Statuses;
 use yii\bootstrap\Collapse;
+use kartik\editable\Editable;
+use app\models\entities\Project;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\entities\ProjectSearch */
@@ -86,6 +88,33 @@ $this->registerCss('
                                 ['class' => 'text-muted']
                             );
                     }
+                ],
+                [
+                    'attribute' => 'branch',
+                    'format' => 'raw',
+                    'value' => function ($model) {
+                        return Editable::widget([
+                            'name' => 'value',
+                            'formOptions' => [
+                                'method' => 'post',
+                                'action' => Url::to([
+                                    'attribute/change',
+                                    'id' => $model->id,
+                                    'att' => 'branch',
+                                    'class' => Project::class
+                                ]),
+                            ],
+                            'pluginEvents' => [
+                                'editableSuccess' => 'function(event, val, form, data){ toastr.success(data.msg); }',
+                                "editableError" => "function(event, val, form, data) { toastr.error(data.message) }",
+                            ],
+                            'asPopover' => true,
+                            'value' => $model->branch,
+                            'header' => 'branch',
+                            'size' => 'sm',
+                            'showAjaxErrors' => true,
+                        ]);
+                    },
                 ],
                 'created_at:date',
                 [
