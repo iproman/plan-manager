@@ -18,11 +18,16 @@ use Yii;
 abstract class EventDispatcher
 {
     /**
+     * Constants.
+     */
+    const NEW_EVENT = 'New event successfully created';
+
+    /**
      * @param $title
      * @param $icon_name
      * @param $event_id
      * @param $event_name
-     * @return bool
+     * @throws \yii\db\Exception
      */
     public static function createEvent($title, $icon_name, $event_id, $event_name)
     {
@@ -33,9 +38,15 @@ abstract class EventDispatcher
             'event_id' => $event_id,
             'event_name' => $event_name,
         ], false);
+
         if (!$model->save()) {
-            return Yii::$app->session->setFlash('error', 'Event not saved');
+            $msg = 'Event not saved #' . $model->id;
+
+            Yii::$app->session->setFlash('error', $msg);
+
+            Yii::error($msg, __METHOD__);
+            throw new \yii\db\Exception($msg);
         }
-        return false;
+        Yii::$app->session->setFlash('error', self::NEW_EVENT);
     }
 }
