@@ -110,6 +110,26 @@ class EventController extends Controller
     }
 
     /**
+     * Drop all events
+     *
+     * @return \yii\web\Response
+     * @throws \yii\db\Exception
+     */
+    public function actionPurgeEvents()
+    {
+        $deleted = Yii::$app->getDb()->createCommand()->truncateTable(Event::tableName())->execute();
+
+        if ($deleted > 0) {
+            Yii::$app->getSession()->setFlash(
+                'success',
+                'All events successfully deleted'
+            );
+        }
+
+        return $this->redirect(['index']);
+    }
+
+    /**
      * Finds the Event model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id

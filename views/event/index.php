@@ -12,12 +12,29 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="event-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <div class="row">
+        <div class="col-lg-6">
+            <h1><?= Html::encode($this->title) ?></h1>
+        </div>
+        <div class="col-lg-6 text-right">
+            <span>
+            <?= Html::a('Create Event', ['create'], ['class' => 'btn btn-success']) ?>
+        </span>
 
-    <p>
-        <?= Html::a('Create Event', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+            <span>
+            <?= Html::a(
+                '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>' . ' Delete all',
+                ['purge-events'],
+                [
+                    'class' => 'btn btn-danger',
+                    'onclick' => 'return confirm("Are you sure, you want to delete all events?");',
+                ]
+            ) ?>
+        </span>
+        </div>
+    </div>
+
+    <hr>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
