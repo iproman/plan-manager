@@ -47,6 +47,6 @@ abstract class EventDispatcher
             Yii::error($msg, __METHOD__);
             throw new \yii\db\Exception($msg);
         }
-        Yii::$app->session->setFlash('error', self::NEW_EVENT);
+        Yii::$app->session->setFlash('success', self::NEW_EVENT);
     }
 }
