@@ -6,6 +6,8 @@ use Yii;
 use app\models\entities\Project;
 use app\models\entities\ProjectSearch;
 use yii\web\NotFoundHttpException;
+use app\models\service\EventDispatcher as ED;
+use rmrevin\yii\fontawesome\FA;
 
 /**
  * ProjectController implements the CRUD actions for Project model.
@@ -44,6 +46,7 @@ class ProjectController extends BaseController
      * Creates a new Project model.
      * If creation is successful, the browser will be redirected to the 'index' page.
      * @return string|\yii\web\Response
+     * @throws \yii\db\Exception
      */
     public function actionCreate()
     {
@@ -51,6 +54,16 @@ class ProjectController extends BaseController
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->save()) {
+
+                /**
+                 * Add new event for project creating.
+                 */
+                ED::createEvent(
+                    'New project created #' . $model->id,
+                    FA::_FA,
+                    $model->id,
+                    'project'
+                );
                 $this->flashMessages('success', 'New project successfully created');
             } else {
                 $this->flashMessages('error', 'Can\'t create new project');
@@ -66,9 +79,11 @@ class ProjectController extends BaseController
     /**
      * Updates an existing Project model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     *
+     * @param $id
+     * @return string|\yii\web\Response
+     * @throws NotFoundHttpException
+     * @throws \yii\db\Exception
      */
     public function actionUpdate($id)
     {
@@ -76,6 +91,17 @@ class ProjectController extends BaseController
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->save()) {
+
+                /**
+                 * Add new event for project updating.
+                 */
+                ED::createEvent(
+                    'Project successfully updated #' . $model->id,
+                    FA::_PENCIL_SQUARE,
+                    $model->id,
+                    'project'
+                );
+
                 $this->flashMessages('success', 'Successful update');
             } else {
                 $this->flashMessages('error', 'Can\'t update project');
@@ -88,17 +114,31 @@ class ProjectController extends BaseController
         ]);
     }
 
-    /** Deletes an existing Project model.
+    /**
+     * Deletes an existing Project model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
+     *
      * @param $id
      * @return \yii\web\Response
      * @throws NotFoundHttpException
      * @throws \Throwable
+     * @throws \yii\db\Exception
      * @throws \yii\db\StaleObjectException
      */
     public function actionDelete($id)
     {
+        $t = $id;
         if ($this->findModel($id)->delete()) {
+            /**
+             * Add new event for project creating.
+             */
+            ED::createEvent(
+                'Project was deleted',
+                FA::_TRASH_O,
+                $t,
+                ''
+            );
+
             $this->flashMessages('success', 'Successful delete');
         } else {
             $this->flashMessages('error', 'Can\'t delete project');
