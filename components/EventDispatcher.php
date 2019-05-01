@@ -34,9 +34,9 @@ class EventDispatcher extends Component implements BootstrapInterface
      */
     public function bootstrap($app)
     {
-        Event::on(Task::class, Task::EVENT_AFTER_UPDATE, [$this, 'onTaskAfterUpdate']);
-        Event::on(Task::class, Task::EVENT_AFTER_DELETE, [$this, 'onTaskAfterDelete']);
-        Event::on(Task::class, Task::EVENT_AFTER_INSERT, [$this, 'onTaskAfterInsert']);
+//        Event::on(Task::class, Task::EVENT_AFTER_UPDATE, [$this, 'onTaskAfterUpdate']);
+//        Event::on(Task::class, Task::EVENT_AFTER_DELETE, [$this, 'onTaskAfterDelete']);
+//        Event::on(Task::class, Task::EVENT_AFTER_INSERT, [$this, 'onTaskAfterInsert']);
     }
 
     /**
