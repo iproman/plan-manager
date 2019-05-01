@@ -129,8 +129,9 @@ class ProjectController extends BaseController
     {
         $t = $id;
         if ($this->findModel($id)->delete()) {
+
             /**
-             * Add new event for project creating.
+             * Add new event for project deleting.
              */
             ED::createEvent(
                 'Project was deleted',

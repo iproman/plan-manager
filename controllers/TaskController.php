@@ -7,6 +7,8 @@ use yii\web\NotFoundHttpException;
 use app\models\entities\Task;
 use app\models\entities\TaskSearch;
 use app\models\entities\Project;
+use app\models\service\EventDispatcher as ED;
+use rmrevin\yii\fontawesome\FA;
 
 /**
  * TaskController implements the CRUD actions for Task model.
@@ -54,6 +56,7 @@ class TaskController extends BaseController
      *
      * @param null $project_id
      * @return string|\yii\web\Response
+     * @throws \yii\db\Exception
      */
     public function actionCreate($project_id = null)
     {
@@ -61,6 +64,16 @@ class TaskController extends BaseController
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->save()) {
+
+                /**
+                 * Add new event for created task.
+                 */
+                ED::createEvent(
+                    'New task created #' . $model->id,
+                    FA::_TASKS,
+                    $model->id,
+                    'task'
+                );
                 $this->flashMessages('success', 'New task successfully created');
             } else {
                 $this->flashMessages('error', 'Can not create new project');
@@ -85,6 +98,7 @@ class TaskController extends BaseController
      * @param null $page
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException
+     * @throws \yii\db\Exception
      */
     public function actionUpdate($id, $project_id = null, $page = null)
     {
@@ -92,6 +106,17 @@ class TaskController extends BaseController
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->save()) {
+
+                /**
+                 * Add new event for task updating.
+                 */
+                ED::createEvent(
+                    'Task successfully updated #' . $model->id,
+                    FA::_PENCIL,
+                    $model->id,
+                    'task'
+                );
+
                 $this->flashMessages('success', 'Successful update');
             } else {
                 $this->flashMessages('error', 'Can\'t update task');
@@ -119,7 +144,20 @@ class TaskController extends BaseController
      */
     public function actionDelete($id, $project_id = null, $page = null)
     {
+        $t = $id;
+
         if ($this->findModel($id)->delete()) {
+
+            /**
+             * Add new event for task deleting.
+             */
+            ED::createEvent(
+                'Task was deleted',
+                FA::_TRASH,
+                $t,
+                ''
+            );
+
             $this->flashMessages('success', 'Successful delete #' . $id);
         } else {
             $this->flashMessages('error', 'Can\'t delete #' . $id);
