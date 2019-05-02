@@ -16,6 +16,7 @@ use app\models\service\Statuses;
 /* @var $new \app\models\entities\Task */
 /* @var $dayLabels \app\models\entities\Task */
 /* @var $recentEvents \app\models\entities\Event */
+/** @var $event \app\models\entities\Event */
 
 $this->title = 'My Yii Application';
 
@@ -97,7 +98,12 @@ $this->title = 'My Yii Application';
                 <div class="panel-body">
                     <div class="list-group">
                         <?php foreach ($recentEvents as $event): ?>
-                            <a href="<?= Url::to(['task/view', 'id' => $event->event_id]) ?>" class="list-group-item">
+                            <a href="<?=
+                            !empty($event->event_name)
+                                ? Url::to([$event->event_name . '/view', 'id' => $event->event_id])
+                                : false;
+                            ?>"
+                               class="list-group-item">
                                 <i class="fa fa-<?= $event->icon_name ?> fa-fw"></i> <?= $event->title ?>
                                 <span class="pull-right text-muted small">
                                     <em><?= Yii::$app->formatter->asTime($event->created_at) ?></em>
