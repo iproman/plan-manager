@@ -24,6 +24,9 @@ $this->registerCss('
     .ml-10{
         margin-left: 10px;
     }
+    .m-0{
+        margin: 0;
+    }
 ');
 ?>
 <div class="plan-index">
@@ -81,11 +84,16 @@ $this->registerCss('
                     'attribute' => 'Number of tasks',
                     'format' => 'raw',
                     'value' => function ($model) {
-                        return 'Total: ' . count($model->task) .
+                        return 'Total: ' . count($model->task) . '<br><hr class="m-0">' .
                             Html::tag(
-                                'span',
-                                ' (New: ' . Task::getCountedTasks(Statuses::STATUS_NEW, $model->id) . ')',
-                                ['class' => 'text-muted']
+                                'p',
+                                ' (New: ' . Task::getCountedTasks(Statuses::STATUS_NEW, $model->id) . ','
+                                . ' In work: ' . Task::getCountedTasks(Statuses::STATUS_IN_WORK, $model->id) . ','
+                                . ' Warning: ' . Task::getCountedTasks(Statuses::STATUS_WARNING, $model->id) . ','
+                                . ' Rejected: ' . Task::getCountedTasks(Statuses::STATUS_REJECTED, $model->id) . ','
+                                . ' Done: ' . Task::getCountedTasks(Statuses::STATUS_DONE, $model->id) . ')'
+                                ,
+                                ['class' => 'text-muted small text-right m-0']
                             );
                     }
                 ],
