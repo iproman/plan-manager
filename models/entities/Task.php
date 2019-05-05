@@ -4,6 +4,7 @@ namespace app\models\entities;
 
 use yii\helpers\ArrayHelper;
 use app\models\service\Statuses;
+use Yii;
 
 /**
  * This is the model class for table "task".
@@ -58,14 +59,14 @@ class Task extends Base
                 'max' => 10
             ],
             [
-                'content',
-                'default',
-                'value' => null,
-            ],
-            [
                 'branch',
                 'default',
                 'value' => 'none',
+            ],
+            [
+                'content',
+                'default',
+                'value' => null,
             ],
             [
                 'content',
@@ -139,30 +140,32 @@ class Task extends Base
     }
 
     /**
-     * todo Bad experience, too much query and dirty code
-     *
-     * Return counted tasks
-     *
+     * Return counted tasks.
      * @param null $status
      * @param null $project
-     * @return int|string
+     * @return mixed
+     * @throws \Throwable
      */
     public static function getCountedTasks($status = null, $project = null)
     {
-        $task = Task::find();
+        $db = Yii::$app->db;
+        $result = $db->cache(function ($db) use ($status, $project) {
+            $task = Task::find();
+            if (null !== $status && null === $project) {
+                return (clone $task)
+                    ->where(['=', 'status', $status])
+                    ->count();
+            } elseif (null !== $status && null !== $project) {
+                return (clone $task)
+                    ->where(['=', 'status', $status])
+                    ->andWhere(['=', 'project_id', $project])
+                    ->count();
+            } else {
+                return (clone $task)
+                    ->count();
+            }
+        }, Yii::$app->cache['cache']['day']);
 
-        if (null !== $status && null === $project) {
-            return (clone $task)
-                ->where(['=', 'status', $status])
-                ->count();
-        } elseif (null !== $status && null !== $project) {
-            return (clone $task)
-                ->where(['=', 'status', $status])
-                ->andWhere(['=', 'project_id', $project])
-                ->count();
-        } else {
-            return (clone $task)
-                ->count();
-        }
+        return $result;
     }
 }
