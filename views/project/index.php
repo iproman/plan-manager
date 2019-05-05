@@ -113,8 +113,8 @@ $this->registerCss('
                         );
                     },
                     'contentOptions' => [
-                        'style' => 'text-align:center',
-                    ]
+                        'class' => 'text-center',
+                    ],
                 ],
                 [
                     'attribute' => 'branch',
@@ -142,6 +142,9 @@ $this->registerCss('
                             'showAjaxErrors' => true,
                         ]);
                     },
+                    'contentOptions' => [
+                        'class' => 'text-center',
+                    ],
                 ],
                 'created_at:date',
                 [
