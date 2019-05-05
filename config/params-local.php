@@ -1,3 +1,7 @@
 <?php
 
-return [];
+return [
+    'cache' => [
+        'day' => 86400,
+    ],
+];
