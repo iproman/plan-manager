@@ -155,6 +155,10 @@ class Task extends Base
                 return (clone $task)
                     ->where(['=', 'status', $status])
                     ->count();
+            } elseif (null === $status && null !== $project) {
+                return (clone $task)
+                    ->where(['=', 'project_id', $project])
+                    ->count();
             } elseif (null !== $status && null !== $project) {
                 return (clone $task)
                     ->where(['=', 'status', $status])

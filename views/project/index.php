@@ -84,7 +84,7 @@ $this->registerCss('
                     'attribute' => 'Number of tasks',
                     'format' => 'raw',
                     'value' => function ($model) {
-                        return 'Total: ' . count($model->task) . '<br><hr class="m-0">' .
+                        return 'Total: ' . Task::getCountedTasks(null, $model->id) . '<br><hr class="m-0">' .
                             Html::tag(
                                 'p',
                                 ' (New: ' . Task::getCountedTasks(Statuses::STATUS_NEW, $model->id) . ','
