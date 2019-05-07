@@ -8,7 +8,6 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => [
         'log',
-        'app\components\EventDispatcher',
     ],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
