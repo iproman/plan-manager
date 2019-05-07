@@ -14,6 +14,12 @@ use rmrevin\yii\fontawesome\FA;
  */
 class ProjectController extends BaseController
 {
+
+    /**
+     * Constants.
+     */
+    const EVENT_PROJECT = 'project';
+
     /**
      * Lists all Project models.
      * @return mixed
@@ -59,14 +65,14 @@ class ProjectController extends BaseController
                  * Add new event for project creating.
                  */
                 ED::createEvent(
-                    'New project created #' . $model->id,
+                    'New ' . self::EVENT_PROJECT . ' successfully created #' . $model->id,
                     FA::_FA,
                     $model->id,
-                    'project'
+                    self::EVENT_PROJECT
                 );
-                $this->flashMessages('success', 'New project successfully created');
+                $this->flashMessages('success', 'New ' . self::EVENT_PROJECT . '  successfully created');
             } else {
-                $this->flashMessages('error', 'Can\'t create new project');
+                $this->flashMessages('error', 'Can\'t create new ' . self::EVENT_PROJECT);
             }
             return $this->redirect(['index']);
         }
@@ -96,15 +102,15 @@ class ProjectController extends BaseController
                  * Add new event for project updating.
                  */
                 ED::createEvent(
-                    'Project successfully updated #' . $model->id,
+                    self::EVENT_PROJECT .' successfully updated #' . $model->id,
                     FA::_PENCIL_SQUARE,
                     $model->id,
-                    'project'
+                    self::EVENT_PROJECT
                 );
 
-                $this->flashMessages('success', 'Successful update');
+                $this->flashMessages('success', 'Successful ' . self::EVENT_PROJECT . ' update');
             } else {
-                $this->flashMessages('error', 'Can\'t update project');
+                $this->flashMessages('error', 'Can\'t update ' . self::EVENT_PROJECT);
             }
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -134,15 +140,15 @@ class ProjectController extends BaseController
              * Add new event for project deleting.
              */
             ED::createEvent(
-                'Project was deleted',
+                self::EVENT_PROJECT . ' was deleted',
                 FA::_TRASH_O,
                 $t,
                 ''
             );
 
-            $this->flashMessages('success', 'Successful delete');
+            $this->flashMessages('success', self::EVENT_PROJECT . ' deleted');
         } else {
-            $this->flashMessages('error', 'Can\'t delete project');
+            $this->flashMessages('error', 'Can\'t delete ' . self::EVENT_PROJECT);
         }
 
         return $this->redirect(['index']);
