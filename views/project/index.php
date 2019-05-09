@@ -61,6 +61,33 @@ $this->registerCss('
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
                 [
+                    'attribute' => 'name',
+                    'format' => 'raw',
+                    'value' => function ($model) {
+                        return Editable::widget([
+                            'name' => 'value',
+                            'formOptions' => [
+                                'method' => 'post',
+                                'action' => Url::to([
+                                    'attribute/change',
+                                    'id' => $model->id,
+                                    'att' => 'name',
+                                    'class' => Project::class
+                                ]),
+                            ],
+                            'pluginEvents' => [
+                                'editableSuccess' => 'function(event, val, form, data){ toastr.success(data.msg); }',
+                                "editableError" => "function(event, val, form, data) { toastr.error(data.message) }",
+                            ],
+                            'asPopover' => true,
+                            'value' => $model->name,
+                            'header' => 'name',
+                            'size' => 'sm',
+                            'showAjaxErrors' => true,
+                        ]);
+                    },
+                ],
+                [
                     'attribute' => '',
                     'format' => 'raw',
                     'value' => function ($model) {
