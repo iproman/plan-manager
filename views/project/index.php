@@ -61,11 +61,11 @@ $this->registerCss('
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
                 [
-                    'attribute' => 'name',
+                    'attribute' => '',
                     'format' => 'raw',
                     'value' => function ($model) {
                         /** @var \app\models\entities\Task $model */
-                        return $model->name . ' ' . Html::a(HB::icon('glyphicon glyphicon-plus'), ['/task/create', 'project_id' => $model->id],
+                        return Html::a(HB::icon('glyphicon glyphicon-plus'), ['/task/create', 'project_id' => $model->id],
                                 [
                                     'class' => 'btn-sm btn-success pull-right td-none ml-10',
                                     'title' => 'Create task',
