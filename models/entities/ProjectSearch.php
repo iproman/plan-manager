@@ -63,7 +63,7 @@ class ProjectSearch extends Project
                     'sort',
                 ],
                 'defaultOrder' => [
-                    'sort' => SORT_DESC,
+                    'sort' => SORT_ASC,
                 ],
             ],
         ]);
