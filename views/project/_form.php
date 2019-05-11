@@ -27,6 +27,13 @@ use app\models\service\Statuses;
     </div>
     <div class="row">
         <div class="col-lg-4">
+            <?= $form->field($model, 'sort')->textInput([
+                'maxlength' => true,
+            ]) ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
             <?= $form->field($model, 'status', ['labelOptions' => ['style' => 'display: block']])->radioList(
                 Statuses::getStatusLabels(),
                 [

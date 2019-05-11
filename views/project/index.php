@@ -174,6 +174,7 @@ $this->registerCss('
                     ],
                 ],
                 'created_at:date',
+                'sort',
                 [
                     'class' => 'yii\grid\ActionColumn',
                     'template' => '{view} {update} {delete}',
