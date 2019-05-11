@@ -9,8 +9,12 @@ use app\models\service\Statuses;
  * This is the model class for table "project".
  *
  * @property int $id ID
- * @property int $created_at Создано
- * @property int $updated_at Обновлено
+ * @property int $created_at Created at
+ * @property int $updated_at Updated at
+ * @property string $name Name
+ * @property string $branch Branch
+ * @property integer $status Status
+ * @property int $sort Sort
  *
  * @property Task $task
  */
@@ -66,6 +70,15 @@ class Project extends Base
                 'default',
                 'value' => Statuses::STATUS_NEW,
             ],
+            [
+                'sort',
+                'integer',
+            ],
+            [
+                'sort',
+                'default',
+                'value' => 0,
+            ],
         ];
     }
 
@@ -79,6 +92,7 @@ class Project extends Base
             'name' => 'Project name',
             'branch' => 'Branch prefix',
             'status' => 'Status',
+            'sort' => 'Sort',
             'created_at' => 'Created at',
             'updated_at' => 'Updated at',
         ];

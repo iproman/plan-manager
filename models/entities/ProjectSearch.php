@@ -20,7 +20,8 @@ class ProjectSearch extends Project
                 [
                     'id',
                     'created_at',
-                    'updated_at'
+                    'updated_at',
+                    'sort',
                 ],
                 'integer'
             ],
@@ -55,6 +56,16 @@ class ProjectSearch extends Project
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'attributes' => [
+                    'id',
+                    'name',
+                    'sort',
+                ],
+                'defaultOrder' => [
+                    'sort' => SORT_DESC,
+                ],
+            ],
         ]);
 
         $this->load($params);
