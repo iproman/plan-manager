@@ -18,7 +18,7 @@ use Yii;
  * @property int $created_at Создано
  * @property int $updated_at Обновлено
  *
- * @property Project[] $projects
+ * @property Project[] $project
  */
 class Task extends Base
 {
