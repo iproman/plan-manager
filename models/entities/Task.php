@@ -61,7 +61,10 @@ class Task extends Base
             [
                 'branch',
                 'default',
-                'value' => 'none',
+                'value' => function ($model, $attribute) {
+                    /** @var Task $model */
+                    return $model->project->branch;
+                }
             ],
             [
                 'content',
