@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\helpers\Url;
+use app\models\service\Statuses;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\entities\Task */
@@ -42,8 +43,25 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'name',
             'content',
-            'status',
-            'project_id',
+            [
+                'attribute' => 'status',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    /** @var $model app\models\entities\Task */
+                    return '<p class="label label-' . Statuses::getStatusCss()[$model->status] . '">
+                    '
+                        . Statuses::getStatusNames()[$model->status] .
+                        '</p>';
+                },
+            ],
+            [
+                'attribute' => 'project_id',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    /** @var $model app\models\entities\Task */
+                    return $model->project->name;
+                },
+            ],
             'branch',
             'created_at:datetime',
             'updated_at:datetime',
