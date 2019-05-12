@@ -114,13 +114,13 @@ class Task extends Base
     {
         return [
             'id' => 'ID',
-            'name' => 'Имя',
-            'content' => 'Содержание',
-            'status' => 'Статус',
-            'branch' => 'Ветка',
-            'project_id' => 'Проект',
-            'created_at' => 'Создано',
-            'updated_at' => 'Обновлено',
+            'name' => 'Name',
+            'content' => 'Content',
+            'status' => 'Status',
+            'branch' => 'Branch',
+            'project_id' => 'Project',
+            'created_at' => 'Created at',
+            'updated_at' => 'Updated at',
         ];
     }
 
