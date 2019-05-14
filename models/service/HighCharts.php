@@ -16,9 +16,9 @@ use yii\helpers\ArrayHelper;
 
 /**
  * Class HighCharts
- * @package service
+ * @package app\models\service
  */
-class HighCharts
+abstract class HighCharts
 {
     /**
      * Returns query of all tasks
