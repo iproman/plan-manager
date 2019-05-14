@@ -118,4 +118,95 @@ $this->title = 'My Yii Application';
         </div>
     </div>
     <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-bars fa-fw"></i> Project completion
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <ul>
+                        <li><a tabindex="-1"></a><a href="/project">
+                                <div><p><strong>Task 1</strong>
+                                        <span class="pull-right text-muted">40% Complete</span></p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-success" role="progressbar"
+                                             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+                                            <span class="sr-only">40% Complete (success)</span></div>
+                                    </div>
+                                </div>
+                            </a></li>
+                        <hr>
+                        <li><a tabindex="-1"></a><a href="/project">
+                                <div><p><strong>Task 2</strong>
+                                        <span class="pull-right text-muted">20% Complete</span></p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-info" role="progressbar"
+                                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width:20%">
+                                            <span class="sr-only">20% Complete (success)</span></div>
+                                    </div>
+                                </div>
+                            </a></li>
+                        <hr>
+                        <li><a tabindex="-1"></a><a href="/project">
+                                <div><p><strong>Task 3</strong>
+                                        <span class="pull-right text-muted">60% Complete</span></p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar"
+                                             aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:20%">
+                                            <span class="sr-only">60% Complete (success)</span></div>
+                                    </div>
+                                </div>
+                            </a></li>
+                        <hr>
+                        <li><a tabindex="-1"></a><a href="/project">
+                                <div><p><strong>Task 4</strong>
+                                        <span class="pull-right text-muted">80% Complete</span></p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar"
+                                             aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:80%">
+                                            <span class="sr-only">80% Complete (success)</span></div>
+                                    </div>
+                                </div>
+                            </a></li>
+                        <hr>
+                        <li><a tabindex="-1"></a><a class="text-center" href="<?= Url::to('/project/index') ?>"><strong>See
+                                    All Tasks</strong>
+                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a></li>
+                    </ul>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-8 -->
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-bell fa-fw"></i> Notifications Panel
+                </div>
+                <div class="panel-body">
+                    <div class="list-group">
+                        <?php foreach ($recentEvents as $event): ?>
+                            <a href="<?=
+                            !empty($event->event_name)
+                                ? Url::to([$event->event_name . '/view', 'id' => $event->event_id])
+                                : false;
+                            ?>"
+                               class="list-group-item">
+                                <i class="fa fa-<?= $event->icon_name ?> fa-fw"></i> <?= $event->title ?>
+                                <span class="pull-right text-muted small">
+                                    <em><?= Yii::$app->formatter->asTime($event->created_at) ?></em>
+                                </span>
+                            </a>
+                        <?php endforeach; ?>
+                        <?php // todo Need time word endings ?>
+                    </div>
+                    <a href="<?= Url::to('/event/') ?>" class="btn btn-default btn-block">View All Alerts</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
 </div>
