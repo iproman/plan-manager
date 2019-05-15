@@ -4,19 +4,27 @@ use yii\helpers\Url;
 use app\widgets\ViewDetails;
 use miloschuman\highcharts\Highcharts;
 use app\models\service\Statuses;
+use app\models\entities\{
+    Task,
+    Event
+};
 
 /* @var $this yii\web\View */
-/* @var $taskNew \app\models\entities\Task */
-/* @var $taskDone \app\models\entities\Task */
-/* @var $taskInWork \app\models\entities\Task */
-/* @var $taskWarning \app\models\entities\Task */
-/* @var $done \app\models\entities\Task */
-/* @var $in_work \app\models\entities\Task */
-/* @var $warning \app\models\entities\Task */
-/* @var $new \app\models\entities\Task */
-/* @var $dayLabels \app\models\entities\Task */
-/* @var $recentEvents \app\models\entities\Event */
-/** @var $event \app\models\entities\Event */
+/* @var $taskNew , $taskDone Task */
+/* @var $taskDone Task */
+/* @var $taskInWork Task */
+/* @var $taskWarning Task */
+/* @var $taskNew Task */
+/* @var $taskRejected Task */
+/* @var $done Task */
+/* @var $in_work Task */
+/* @var $warning Task */
+/* @var $new Task */
+/* @var $dayLabels Task */
+/* @var $totalTasks Task */
+/* @var $recentEvents Event */
+/** @var $event Event */
+/** @var $countedTasks Task */
 
 $this->title = 'My Yii Application';
 
