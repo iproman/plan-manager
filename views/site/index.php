@@ -135,53 +135,22 @@ $this->title = 'My Yii Application';
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     <ul>
-                        <li><a tabindex="-1"></a><a href="/project">
-                                <div><p><strong>Task 1</strong>
-                                        <span class="pull-right text-muted">40% Complete</span></p>
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-success" role="progressbar"
-                                             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
-                                            <span class="sr-only">40% Complete (success)</span></div>
+                        <?php foreach (Statuses::getStatuses() as $name): ?>
+                            <?php $percent = $countedTasks[$name] * 100 / $totalTasks ^ 0 ?>
+                            <li><a tabindex="-1"></a><a href="#">
+                                    <div><p><strong><?= Statuses::getStatusNames()[$name] ?></strong>
+                                            <span class="pull-right text-muted"><?= $percent ?>% Complete</span></p>
+                                        <div class="progress progress-striped active">
+                                            <div class="progress-bar progress-bar-<?= Statuses::getStatusCss()[$name] ?>"
+                                                 role="progressbar"
+                                                 aria-valuenow="<?= $percent ?>" aria-valuemin="0" aria-valuemax="100"
+                                                 style="width: <?= $percent ?>%">
+                                                <span class="sr-only"><?= $percent ?>% Complete (success)</span></div>
+                                        </div>
                                     </div>
-                                </div>
-                            </a></li>
-                        <hr>
-                        <li><a tabindex="-1"></a><a href="/project">
-                                <div><p><strong>Task 2</strong>
-                                        <span class="pull-right text-muted">20% Complete</span></p>
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-info" role="progressbar"
-                                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width:20%">
-                                            <span class="sr-only">20% Complete (success)</span></div>
-                                    </div>
-                                </div>
-                            </a></li>
-                        <hr>
-                        <li><a tabindex="-1"></a><a href="/project">
-                                <div><p><strong>Task 3</strong>
-                                        <span class="pull-right text-muted">60% Complete</span></p>
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-warning" role="progressbar"
-                                             aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:20%">
-                                            <span class="sr-only">60% Complete (success)</span></div>
-                                    </div>
-                                </div>
-                            </a></li>
-                        <hr>
-                        <li><a tabindex="-1"></a><a href="/project">
-                                <div><p><strong>Task 4</strong>
-                                        <span class="pull-right text-muted">80% Complete</span></p>
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-danger" role="progressbar"
-                                             aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:80%">
-                                            <span class="sr-only">80% Complete (success)</span></div>
-                                    </div>
-                                </div>
-                            </a></li>
-                        <hr>
-                        <li><a tabindex="-1"></a><a class="text-center" href="<?= Url::to('/project/index') ?>"><strong>See
-                                    All Tasks</strong>
-                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a></li>
+                                </a></li>
+                            <hr>
+                        <?php endforeach; ?>
                     </ul>
                 </div>
                 <!-- /.panel-body -->
