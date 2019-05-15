@@ -54,6 +54,7 @@ class SiteController extends BaseController
      * Displays homepage.
      *
      * @return string
+     * @throws \Throwable
      */
     public function actionIndex()
     {
@@ -73,6 +74,14 @@ class SiteController extends BaseController
 
         $recentEvents = Event::getRecentEvents();
 
+        $countedTasks = [
+            0 => $taskNew,
+            1 => $taskInWork,
+            2 => $taskDone,
+            3 => $taskDone,
+            4 => $taskRejected,
+        ];
+
         return $this->render(
             'index',
             compact(
@@ -86,7 +95,9 @@ class SiteController extends BaseController
                 'in_work',
                 'warning',
                 'dayLabels',
-                'recentEvents'
+                'recentEvents',
+                'totalTasks',
+                'countedTasks'
             )
         );
     }
