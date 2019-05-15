@@ -60,6 +60,10 @@ class SiteController extends BaseController
         $taskDone = Task::getCountedTasks(Statuses::STATUS_DONE);
         $taskInWork = Task::getCountedTasks(Statuses::STATUS_IN_WORK);
         $taskWarning = Task::getCountedTasks(Statuses::STATUS_WARNING);
+        $taskNew = Task::getCountedTasks(Statuses::STATUS_NEW);
+        $taskRejected = Task::getCountedTasks(Statuses::STATUS_REJECTED);
+
+        $totalTasks = Task::find()->count('*');
 
         $done = HighCharts::getCountedHighChartsResults('done');
         $new = HighCharts::getCountedHighChartsResults('new');
@@ -75,6 +79,8 @@ class SiteController extends BaseController
                 'taskDone',
                 'taskInWork',
                 'taskWarning',
+                'taskNew',
+                'taskRejected',
                 'done',
                 'new',
                 'in_work',
