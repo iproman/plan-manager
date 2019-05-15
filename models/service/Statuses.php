@@ -12,7 +12,7 @@ namespace app\models\service;
  * Class Statuses
  * @package app\models\service
  */
-class Statuses
+abstract class Statuses
 {
     /**
      * Constants
