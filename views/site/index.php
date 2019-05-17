@@ -137,7 +137,7 @@ $this->title = 'My Yii Application';
                     <ul>
                         <?php foreach (Statuses::getStatuses() as $name): ?>
                             <?php $percent = $countedTasks[$name] * 100 / $totalTasks ^ 0 ?>
-                            <li><a tabindex="-1"></a><a href="#">
+                            <li><a tabindex="-1"></a><a href="<?= Url::to(['task/', 'TaskSearch[status]' => $name]) ?>">
                                     <div><p><strong><?= Statuses::getStatusNames()[$name] ?></strong>
                                             <span class="pull-right text-muted"><?= $percent ?>% Complete</span></p>
                                         <div class="progress progress-striped active">
