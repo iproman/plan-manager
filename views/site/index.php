@@ -158,32 +158,6 @@ $this->title = 'My Yii Application';
             <!-- /.panel -->
         </div>
         <!-- /.col-lg-8 -->
-        <div class="col-lg-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <i class="fa fa-bell fa-fw"></i> Notifications Panel
-                </div>
-                <div class="panel-body">
-                    <div class="list-group">
-                        <?php foreach ($recentEvents as $event): ?>
-                            <a href="<?=
-                            !empty($event->event_name)
-                                ? Url::to([$event->event_name . '/view', 'id' => $event->event_id])
-                                : false;
-                            ?>"
-                               class="list-group-item">
-                                <i class="fa fa-<?= $event->icon_name ?> fa-fw"></i> <?= $event->title ?>
-                                <span class="pull-right text-muted small">
-                                    <em><?= Yii::$app->formatter->asTime($event->created_at) ?></em>
-                                </span>
-                            </a>
-                        <?php endforeach; ?>
-                        <?php // todo Need time word endings ?>
-                    </div>
-                    <a href="<?= Url::to('/event/') ?>" class="btn btn-default btn-block">View All Alerts</a>
-                </div>
-            </div>
-        </div>
     </div>
     <!-- /.row -->
 </div>
