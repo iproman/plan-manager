@@ -22,7 +22,7 @@ use app\models\service\Statuses;
         <div class="col-lg-3"> <?= $form->field($model, 'name') ?></div>
         <div class="col-lg-2"><?= $form->field($model, 'status')->dropDownList(
                 Statuses::getStatusNames(),
-                ['prompt' => 'Выберите статус']
+                ['prompt' => 'Choose status']
             ) ?>
         </div>
         <div class="col-lg-2"><?= $form->field($model, 'branch') ?></div>
@@ -35,7 +35,7 @@ use app\models\service\Statuses;
                 <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
                 <?= Html::a(
                     'Reset',
-                    Url::to(['task/index', 'project_id' => Yii::$app->request->get('project_id')]),
+                    Url::to(['index', 'project_id' => Yii::$app->request->get('project_id')]),
                     ['class' => 'btn btn-default',]) ?>
             </div>
         </div>

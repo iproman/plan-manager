@@ -15,7 +15,7 @@ use yii\bootstrap\Collapse;
 /* @var $searchModel app\models\entities\TaskSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Задачи ' . (!$projectName ? 'всех проектов' : $projectName);
+$this->title = 'Tasks of ' . (!$projectName ? 'all projects' : $projectName);
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="task-index">
@@ -46,16 +46,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 'fontAwesome' => true,
                 'pjaxContainerId' => 'kv-pjax-container',
                 'dropdownOptions' => [
-                    'label' => 'Скачать задачи',
+                    'label' => 'Download tasks',
                     'class' => 'btn btn-default',
                     'itemsBefore' => [
-                        '<li class="dropdown-header">Выберите формат</li>',
+                        '<li class="dropdown-header">Choose format</li>',
                     ],
                 ],
             ]); ?>
         </div>
         <div class="col-lg-2 flex-right vertical-align">
-            <?= Html::a('Создать задачу', [
+            <?= Html::a('Create task', [
                 'create',
                 'project_id' => Yii::$app->request->get('project_id')
             ], ['class' => 'btn btn-success']) ?>
