@@ -174,7 +174,36 @@ $this->registerCss('
                     ],
                 ],
                 'created_at:date',
-                'sort',
+                [
+                    'attribute' => 'sort',
+                    'format' => 'raw',
+                    'value' => function ($model) {
+                        return Editable::widget([
+                            'name' => 'value',
+                            'formOptions' => [
+                                'method' => 'post',
+                                'action' => Url::to([
+                                    'attribute/change',
+                                    'id' => $model->id,
+                                    'att' => 'sort',
+                                    'class' => Project::class
+                                ]),
+                            ],
+                            'pluginEvents' => [
+                                'editableSuccess' => 'function(event, val, form, data){ toastr.success(data.msg); }',
+                                "editableError" => "function(event, val, form, data) { toastr.error(data.message) }",
+                            ],
+                            'asPopover' => true,
+                            'value' => $model->sort,
+                            'header' => 'sort',
+                            'size' => 'sm',
+                            'showAjaxErrors' => true,
+                        ]);
+                    },
+                    'contentOptions' => [
+                        'class' => 'text-center',
+                    ],
+                ],
                 [
                     'class' => 'yii\grid\ActionColumn',
                     'template' => '{view} {update} {delete}',

@@ -33,6 +33,7 @@ class AttributeController extends BaseController
         'app\models\entities\Project' => [
             'name',
             'branch',
+            'sort',
         ],
     ];
 
