@@ -6,7 +6,8 @@ use miloschuman\highcharts\Highcharts;
 use app\models\service\Statuses;
 use app\models\entities\{
     Task,
-    Event
+    Event,
+    Project
 };
 
 /* @var $this yii\web\View */
@@ -25,7 +26,7 @@ use app\models\entities\{
 /* @var $recentEvents Event */
 /** @var $event Event */
 /** @var $countedTasks Task */
-
+/** @var $projects Project */
 $this->title = 'My Yii Application';
 
 ?>
@@ -158,6 +159,29 @@ $this->title = 'My Yii Application';
             <!-- /.panel -->
         </div>
         <!-- /.col-lg-8 -->
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-bell fa-fw"></i> Projects Panel
+                </div>
+                <div class="panel-body">
+                    <div class="list-group">
+                        <?php foreach ($projects as $project): ?>
+                            <?php /** @var $project Project */ ?>
+                            <a href="<?= Url::to(['/task/index', 'project_id' => $project->id]) ?>"
+                               class="list-group-item">
+                                <i class="fa fa-diamond fa-fw"></i> <?= $project->name ?>
+                                <span class="pull-right text-muted small">
+                                    <em><?= $project->tasksCount ?></em>
+                                </span>
+                            </a>
+                        <?php endforeach; ?>
+                    </div>
+                    <a href="<?= Url::to('/project/') ?>" class="btn btn-default btn-block">View All Projects</a>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-4 -->
     </div>
     <!-- /.row -->
 </div>
