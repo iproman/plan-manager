@@ -5,12 +5,19 @@ namespace app\controllers;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Response;
-use app\models\forms\LoginForm;
-use app\models\forms\ContactForm;
-use app\models\entities\Task;
-use app\models\entities\Event;
-use app\models\service\Statuses;
-use app\models\service\HighCharts;
+use app\models\forms\{
+    LoginForm,
+    ContactForm
+};
+use app\models\entities\{
+    Task,
+    Event,
+    Project
+};
+use app\models\service\{
+    Statuses,
+    HighCharts
+};
 
 class SiteController extends BaseController
 {
@@ -63,6 +70,13 @@ class SiteController extends BaseController
         $taskWarning = Task::getCountedTasks(Statuses::STATUS_WARNING);
         $taskNew = Task::getCountedTasks(Statuses::STATUS_NEW);
         $taskRejected = Task::getCountedTasks(Statuses::STATUS_REJECTED);
+        $countedTasks = [
+            0 => $taskNew,
+            1 => $taskInWork,
+            2 => $taskDone,
+            3 => $taskDone,
+            4 => $taskRejected,
+        ];
 
         $totalTasks = Task::find()->count('*');
 
@@ -74,13 +88,15 @@ class SiteController extends BaseController
 
         $recentEvents = Event::getRecentEvents();
 
-        $countedTasks = [
-            0 => $taskNew,
-            1 => $taskInWork,
-            2 => $taskDone,
-            3 => $taskDone,
-            4 => $taskRejected,
-        ];
+        $projects = Project::find()
+            ->select([
+                '{{project}}.*',
+                'COUNT({{task}}.id) AS tasksCount'
+            ])
+            ->joinWith('tasks')
+            ->groupBy('{{project}}.id')
+            ->limit(10)
+            ->all();
 
         return $this->render(
             'index',
@@ -97,7 +113,8 @@ class SiteController extends BaseController
                 'dayLabels',
                 'recentEvents',
                 'totalTasks',
-                'countedTasks'
+                'countedTasks',
+                'projects'
             )
         );
     }

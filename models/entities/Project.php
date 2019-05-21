@@ -21,6 +21,8 @@ use app\models\service\Statuses;
 class Project extends Base
 {
 
+    public $tasksCount;
+
     /**
      * @inheritdoc
      */
