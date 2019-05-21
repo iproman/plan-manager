@@ -129,7 +129,7 @@ class Project extends Base
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getTask()
+    public function getTasks()
     {
         return $this->hasMany(
             Task::class,
