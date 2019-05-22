@@ -116,6 +116,19 @@ class Project extends Base
         return $project['name'];
     }
 
+    final public static function getProjectsAndCountedTasks()
+    {
+        return Project::find()
+            ->select([
+                '{{project}}.*',
+                'COUNT({{task}}.id) AS tasksCount'
+            ])
+            ->joinWith('tasks')
+            ->groupBy('{{project}}.id')
+            ->limit(10)
+            ->all();
+    }
+
     /**
      * Returns all projects
      *

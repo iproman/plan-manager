@@ -88,15 +88,7 @@ class SiteController extends BaseController
 
         $recentEvents = Event::getRecentEvents();
 
-        $projects = Project::find()
-            ->select([
-                '{{project}}.*',
-                'COUNT({{task}}.id) AS tasksCount'
-            ])
-            ->joinWith('tasks')
-            ->groupBy('{{project}}.id')
-            ->limit(10)
-            ->all();
+        $projects = Project::getProjectsAndCountedTasks();
 
         return $this->render(
             'index',
