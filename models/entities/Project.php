@@ -118,15 +118,21 @@ class Project extends Base
 
     final public static function getProjectsAndCountedTasks()
     {
-        return Project::find()
-            ->select([
-                '{{project}}.*',
-                'COUNT({{task}}.id) AS tasksCount'
-            ])
-            ->joinWith('tasks')
-            ->groupBy('{{project}}.id')
-            ->limit(10)
-            ->all();
+
+        return Yii::$app->cache->getOrSet(
+            'projects-and-counted-tasks',
+            function () {
+                return Project::find()
+                    ->select([
+                        '{{project}}.*',
+                        'COUNT({{task}}.id) AS tasksCount'
+                    ])
+                    ->joinWith('tasks')
+                    ->groupBy('{{project}}.id')
+                    ->limit(10)
+                    ->all();
+            },
+            Yii::$app->params['cache']['day']);
     }
 
     /**
