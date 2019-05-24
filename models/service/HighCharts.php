@@ -13,6 +13,7 @@ use yii\db\Query;
 use yii\db\Expression;
 use app\models\entities\Task;
 use yii\helpers\ArrayHelper;
+use Yii;
 
 /**
  * Class HighCharts
@@ -38,39 +39,45 @@ abstract class HighCharts
         $endTimestamp = (DateTime::createFromFormat('d.m.Y H:i:s', $endDate . ' 23:59:59'))
             ->getTimestamp();
 
-        return (new Query())
-            ->select([
-                'done' => new Expression(
-                    'SUM(CASE WHEN status = :done THEN 1 ELSE 0 END)',
-                    [':done' => Statuses::STATUS_DONE]
-                ),
-                'new' => new Expression(
-                    'SUM(CASE WHEN status = :new THEN 1 ELSE 0 END)',
-                    [':new' => Statuses::STATUS_NEW]
-                ),
-                'in_work' => new Expression(
-                    'SUM(CASE WHEN status = :in_work THEN 1 ELSE 0 END)',
-                    [':in_work' => Statuses::STATUS_IN_WORK]
-                ),
-                'warning' => new Expression(
-                    'SUM(CASE WHEN status = :warning THEN 1 ELSE 0 END)',
-                    [':warning' => Statuses::STATUS_WARNING]
-                ),
-                'week_day' => new Expression(
-                    'DATE(FROM_UNIXTIME(updated_at))'
-                ),
-            ])
-            ->from(Task::tableName())
-            ->where(
-                'updated_at >= :start AND updated_at <= :end',
-                [
-                    ':start' => $startTimestamp,
-                    ':end' => $endTimestamp,
-                ]
-            )
-            ->groupBy([
-                'week_day',
-            ]);
+        return Yii::$app->cache->getOrSet(
+            'high-charts-query',
+            function () use ($startTimestamp, $endTimestamp) {
+                return (new Query())
+                    ->select([
+                        'done' => new Expression(
+                            'SUM(CASE WHEN status = :done THEN 1 ELSE 0 END)',
+                            [':done' => Statuses::STATUS_DONE]
+                        ),
+                        'new' => new Expression(
+                            'SUM(CASE WHEN status = :new THEN 1 ELSE 0 END)',
+                            [':new' => Statuses::STATUS_NEW]
+                        ),
+                        'in_work' => new Expression(
+                            'SUM(CASE WHEN status = :in_work THEN 1 ELSE 0 END)',
+                            [':in_work' => Statuses::STATUS_IN_WORK]
+                        ),
+                        'warning' => new Expression(
+                            'SUM(CASE WHEN status = :warning THEN 1 ELSE 0 END)',
+                            [':warning' => Statuses::STATUS_WARNING]
+                        ),
+                        'week_day' => new Expression(
+                            'DATE(FROM_UNIXTIME(updated_at))'
+                        ),
+                    ])
+                    ->from(Task::tableName())
+                    ->where(
+                        'updated_at >= :start AND updated_at <= :end',
+                        [
+                            ':start' => $startTimestamp,
+                            ':end' => $endTimestamp,
+                        ]
+                    )
+                    ->groupBy([
+                        'week_day',
+                    ]);
+            },
+            Yii::$app->params['cache']['day']
+        );
     }
 
     /**
