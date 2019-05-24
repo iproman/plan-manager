@@ -84,8 +84,6 @@ abstract class HighCharts
      * If label exist count selected element from query
      * Else returns week days
      *
-     * todo every time new 4 unnecessary queries
-     * todo change names
      *
      * @param null $label
      * @return array
@@ -94,22 +92,34 @@ abstract class HighCharts
     {
         $query = self::getHighChartsQuery();
         if (!empty($label)) {
-            return array_map(
-                'intval',
-                ArrayHelper::getColumn(
-                    $query->all(),
-                    $label
-                )
+            return Yii::$app->cache->getOrSet(
+                'counted-high-charts-results-' . $label,
+                function () use ($query, $label) {
+                    return array_map(
+                        'intval',
+                        ArrayHelper::getColumn(
+                            $query->all(),
+                            $label
+                        )
+                    );
+                },
+                Yii::$app->params['cache']['day']
             );
         } else {
-            return array_map(
-                function ($v) {
-                    return date('D', strtotime($v));
+            return Yii::$app->cache->getOrSet(
+                'counted-high-charts-results',
+                function () use ($query) {
+                    return array_map(
+                        function ($v) {
+                            return date('D', strtotime($v));
+                        },
+                        ArrayHelper::getColumn(
+                            $query->all(),
+                            'week_day'
+                        ));
                 },
-                ArrayHelper::getColumn(
-                    $query->all(),
-                    'week_day'
-                ));
+                Yii::$app->params['cache']['day']
+            );
         }
     }
 }
