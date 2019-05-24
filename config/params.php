@@ -9,4 +9,7 @@ return [
         'version' => 1.1,
         'author' => 'iproman',
     ],
+    'cache' => [
+        'day' => 86400,
+    ],
 ];
