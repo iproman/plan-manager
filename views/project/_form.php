@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\models\service\Statuses;
+use kartik\color\ColorInput;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\entities\Project */
@@ -30,6 +31,11 @@ use app\models\service\Statuses;
             <?= $form->field($model, 'sort')->textInput([
                 'maxlength' => true,
             ]) ?>
+        </div>
+        <div class="col-lg-4">
+            <?= $form->field($model, 'color')->widget(ColorInput::classname(), [
+                'options' => ['placeholder' => 'Select color ...'],
+            ]); ?>
         </div>
     </div>
     <div class="row">
