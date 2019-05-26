@@ -15,6 +15,7 @@ use app\models\service\Statuses;
  * @property string $branch Branch
  * @property integer $status Status
  * @property int $sort Sort
+ * @property string $color Color
  *
  * @property Task $task
  */
@@ -81,6 +82,16 @@ class Project extends Base
                 'default',
                 'value' => 0,
             ],
+            [
+                'color',
+                'string',
+                'max' => 7
+            ],
+            [
+                'color',
+                'default',
+                'value' => '#b6d7a8',
+            ]
         ];
     }
 
@@ -97,6 +108,7 @@ class Project extends Base
             'sort' => 'Sort',
             'created_at' => 'Created at',
             'updated_at' => 'Updated at',
+            'color' => 'Color',
         ];
     }
 
