@@ -173,6 +173,37 @@ $this->registerCss('
                         'class' => 'text-center',
                     ],
                 ],
+                [
+                    'attribute' => 'color',
+                    'format' => 'raw',
+                    'value' => function ($model) {
+                        return Editable::widget([
+                            'name' => 'value',
+                            'formOptions' => [
+                                'method' => 'post',
+                                'action' => Url::to([
+                                    'attribute/change',
+                                    'id' => $model->id,
+                                    'att' => 'color',
+                                    'class' => Project::class
+                                ]),
+                            ],
+                            'pluginEvents' => [
+                                'editableSuccess' => 'function(event, val, form, data){ toastr.success(data.msg); }',
+                                "editableError" => "function(event, val, form, data) { toastr.error(data.message) }",
+                            ],
+                            'asPopover' => true,
+                            'value' => $model->color,
+                            'header' => 'color',
+                            'size' => 'sm',
+                            'showAjaxErrors' => true,
+                            'inputType' => Editable::INPUT_COLOR,
+                        ]);
+                    },
+                    'contentOptions' => [
+                        'class' => 'text-center',
+                    ],
+                ],
                 'created_at:date',
                 [
                     'attribute' => 'sort',

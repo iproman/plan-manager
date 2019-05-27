@@ -34,6 +34,7 @@ class AttributeController extends BaseController
             'name',
             'branch',
             'sort',
+            'color',
         ],
     ];
 
