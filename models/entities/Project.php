@@ -141,6 +141,7 @@ class Project extends Base
                     ])
                     ->joinWith('tasks')
                     ->groupBy('{{project}}.id')
+                    ->orderBy(['sort' => SORT_ASC])
                     ->limit(10)
                     ->all();
             },
