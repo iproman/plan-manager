@@ -18,27 +18,6 @@ use yii\db\ActiveRecord;
 class AttributeController extends BaseController
 {
     /**
-     * Mapping between model classes and there attributes.
-     * Key represents a fully qualified model class name and value is an array
-     * with model's attribute names which should be changed.
-     *
-     * @var array
-     */
-    private static $_attributesMap = [
-        'app\models\entities\Task' => [
-            'name',
-            'branch',
-            'status',
-        ],
-        'app\models\entities\Project' => [
-            'name',
-            'branch',
-            'sort',
-            'color',
-        ],
-    ];
-
-    /**
      * Return new value
      *
      * @return array
@@ -53,13 +32,13 @@ class AttributeController extends BaseController
             if (null === ($class = Yii::$app->getRequest()->get('class'))) {
                 return ['message' => "Не указано fully qualified имя класса ActiveRecord."];
             } else {
-                if (!array_key_exists($class, self::$_attributesMap)) {
+                if (!array_key_exists($class, Yii::$app->params['editableAttributesMap'])) {
                     return ['message' => "Изменение атрибутов класса $class не поддерживается."];
                 } else {
                     if (null === ($attribute = Yii::$app->getRequest()->get('att'))) {
                         return ['message' => "Необходимо указать название атрибута через параметр 'name'."];
                     } else {
-                        if (!in_array($attribute, self::$_attributesMap[$class])) {
+                        if (!in_array($attribute, Yii::$app->params['editableAttributesMap'][$class])) {
                             return ['message' => "Изменение значения атрибута $attribute не поддерживается."];
                         } else {
                             if (null === ($value = (Yii::$app->getRequest()->post('value')))

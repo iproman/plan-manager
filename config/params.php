@@ -12,4 +12,17 @@ return [
     'cache' => [
         'day' => 86400,
     ],
+    'editableAttributesMap' => [
+        'app\models\entities\Task' => [
+            'name',
+            'branch',
+            'status',
+        ],
+        'app\models\entities\Project' => [
+            'name',
+            'branch',
+            'sort',
+            'color',
+        ],
+    ]
 ];
