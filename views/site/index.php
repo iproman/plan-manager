@@ -109,7 +109,7 @@ $this->title = 'My Yii Application';
                         <?php foreach ($projects as $project): ?>
                             <?php /** @var $project Project */ ?>
                             <a href="<?= Url::to(['/task/index', 'project_id' => $project->id]) ?>"
-                               class="list-group-item">
+                               class="list-group-item" style="background-color: <?= $project->color ?>">
                                 <i class="fa fa-diamond fa-fw"></i> <?= $project->name ?>
                                 <span class="pull-right text-muted small">
                                     <em><?= $project->tasksCount ?></em>
