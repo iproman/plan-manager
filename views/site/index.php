@@ -4,6 +4,8 @@ use yii\helpers\Url;
 use app\widgets\ViewDetails;
 use miloschuman\highcharts\Highcharts;
 use app\models\service\Statuses;
+use yii\bootstrap\Html as HB;
+use yii\helpers\Html;
 use app\models\entities\{
     Task,
     Event,
@@ -29,6 +31,7 @@ use app\models\entities\{
 /** @var $projects Project */
 $this->title = 'My Yii Application';
 
+$this->registerCss(".ml-10{margin-left:10px}")
 ?>
 <div class="site-index">
     <div class="row">
@@ -107,14 +110,28 @@ $this->title = 'My Yii Application';
                 <div class="panel-body">
                     <div class="list-group">
                         <?php foreach ($projects as $project): ?>
-                            <?php /** @var $project Project */ ?>
-                            <a href="<?= Url::to(['/task/index', 'project_id' => $project->id]) ?>"
-                               class="list-group-item" style="background-color: <?= $project->color ?>">
-                                <i class="fa fa-diamond fa-fw"></i> <?= $project->name ?>
-                                <span class="pull-right text-muted small">
-                                    <em><?= $project->tasksCount ?></em>
-                                </span>
-                            </a>
+                            <div class="list-group-item" style="background-color: <?= $project->color ?>">
+                                <?php /** @var $project Project */ ?>
+                                <a href="<?= Url::to(['/task/index', 'project_id' => $project->id]) ?>">
+                                    <i class="fa fa-diamond fa-fw"></i> <?= $project->name ?>
+                                </a>
+                                <span class="text-muted small"><em><?= $project->tasksCount ?></em></span>
+                                <?= Html::a(HB::icon('glyphicon glyphicon-plus'), ['/task/create', 'project_id' => $project->id],
+                                    [
+                                        'class' => 'btn-sm btn-success pull-right td-none ml-10',
+                                        'title' => 'Create task',
+                                        'style' => 'display: inline',
+                                    ]
+                                ) .
+                                Html::a(HB::icon('glyphicon glyphicon-tasks'), ['/task/index', 'project_id' => $project->id],
+                                    [
+                                        'class' => 'btn-sm btn-primary pull-right td-none',
+                                        'title' => 'All tasks',
+                                    ]
+                                )
+                                ?>
+
+                            </div>
                         <?php endforeach; ?>
                     </div>
                     <a href="<?= Url::to('/project/') ?>" class="btn btn-default btn-block">View All Projects</a>
