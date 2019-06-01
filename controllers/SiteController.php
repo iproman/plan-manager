@@ -74,7 +74,7 @@ class SiteController extends BaseController
             0 => $taskNew,
             1 => $taskInWork,
             2 => $taskDone,
-            3 => $taskDone,
+            3 => $taskWarning,
             4 => $taskRejected,
         ];
 
