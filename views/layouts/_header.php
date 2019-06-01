@@ -1,8 +1,10 @@
 <?php
-    use yii\bootstrap\NavBar;
-    use yii\bootstrap\Nav;
-    use yii\helpers\Html;
-    use yii\helpers\Url;
+
+use yii\bootstrap\NavBar;
+use yii\bootstrap\Nav;
+use yii\helpers\Html;
+use yii\helpers\Url;
+
 ?>
 <?php NavBar::begin([
     'brandLabel' => Yii::$app->params['project']['name'] . ' ' . Yii::$app->params['project']['version'],
@@ -29,7 +31,26 @@ echo Nav::widget([
     'encodeLabels' => false,
     'items' => [
         [
-            'label' => '<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>',
+            'label' => '<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>',
+            'dropDownOptions' => [
+                'class' => 'dropdown-messages',
+            ],
+            'items' => [
+                ['label' => Html::a(
+                    '<div class="btn btn-warning"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> ' .
+                    'Clear cache</div>',
+                    [
+                        'cache/flush',
+                        'returnUrl' => Url::current(),
+                    ],
+                    ['class' => 'text-center']
+                ), 'url' => false,
+                ],
+                ['label' => '', 'options' => ['class' => 'divider'], 'url' => false],
+            ],
+        ],
+        [
+            'label' => '<span class="glyphicon glyphicon-envelope " aria-hidden="true"></span>',
             'dropDownOptions' => [
                 'class' => 'dropdown-messages',
             ],
