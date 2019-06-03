@@ -196,17 +196,17 @@ $this->params['breadcrumbs'][] = $this->title;
                         return Html::a(
                             HB::icon('glyphicon glyphicon-trash'),
                             Url::to([
-                                    'task/delete',
-                                    'id' => $model->id,
-                                    'project_id' => Yii::$app->request->get('project_id'),
-                                    'page' => Yii::$app->request->get('page'),
-                                ]
-                            ),
+                                'delete',
+                                'id' => $model->id,
+                            ]),
                             [
-                                'class' => 'btn btn-default btn-hover-danger',
-                                'onclick' => 'return confirm("Вы уверены, что хотите удалить задачу #' . $model->id . ' ?");',
-                                'pjax' => '0',
-                                'data-method' => 'POST',
+                                'class' => 'btn btn-danger',
+                                'title' => 'delete task',
+                                'onclick' => 'confirmDeletion("' . Url::to([
+                                        'delete',
+                                        'id' => $model->id,
+                                    ]) . '");return false;',
+                                'data-pjax' => '0',
                             ]
                         );
                     },
