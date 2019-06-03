@@ -25,12 +25,12 @@
         "beaten-sect0r/yii2-db-manager": "*",
         "2amigos/yii2-chartjs-widget": "~2.0",
         "2amigos/yii2-ckeditor-widget": "^2.1",
-        "yii2mod/yii2-sweet-alert": "*",
         "lavrentiev/yii2-toastr": "^2.0",
         "ogheo/yii2-htmlcompress": "*",
         "yii2mod/yii2-comments": "*",
         "dmstr/yii2-adminlte-asset": "^2.1",
-        "kartik-v/yii2-widget-colorinput": "*"
+        "kartik-v/yii2-widget-colorinput": "*",
+        "dominus77/yii2-sweetalert2-widget": "~1.3"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
