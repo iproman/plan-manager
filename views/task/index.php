@@ -9,6 +9,7 @@ use kartik\export\ExportMenu;
 use yii\bootstrap\Html as HB;
 use app\models\service\Statuses;
 use yii\bootstrap\Collapse;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $projectName app\models\entities\Project */
@@ -75,7 +76,7 @@ $this->params['breadcrumbs'][] = $this->title;
     ?>
 
     <hr>
-
+    <?php Pjax::begin(); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'condensed' => true,
@@ -213,4 +214,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ]
         ],
     ]); ?>
+    <?php Pjax::end(); ?>
 </div>
