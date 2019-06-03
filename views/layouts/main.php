@@ -9,8 +9,11 @@ use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 use app\assets\themes\SBAdmin2Asset;
 use lavrentiev\widgets\toastr\NotificationFlash;
+use dominus77\sweetalert2\assets\SweetAlert2Asset;
 
 $appAsset = SBAdmin2Asset::register($this);
+SweetAlert2Asset::register($this);
+$this->registerJsFile('/js/custom.js', ['depends' => '\dominus77\sweetalert2\assets\SweetAlert2Asset']);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -28,7 +31,7 @@ $appAsset = SBAdmin2Asset::register($this);
     <link rel="apple-touch-icon" sizes="144x144" href="/img/favicon/apple-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="/img/favicon/apple-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="/img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon/android-icon-192x192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
@@ -62,7 +65,7 @@ $appAsset = SBAdmin2Asset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; <?= Yii::$app->params['project']['name']?> <?= date('Y') ?></p>
+        <p class="pull-left">&copy; <?= Yii::$app->params['project']['name'] ?> <?= date('Y') ?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
