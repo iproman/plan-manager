@@ -9,6 +9,7 @@ use app\models\service\Statuses;
 use yii\bootstrap\Collapse;
 use kartik\editable\Editable;
 use app\models\entities\Project;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\entities\ProjectSearch */
@@ -53,6 +54,7 @@ $this->registerCss('
     ?>
 
     <div class="row">
+        <?php Pjax::begin(); ?>
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
             'condensed' => true,
@@ -269,15 +271,17 @@ $this->registerCss('
                             return Html::a(
                                 HB::icon('glyphicon glyphicon-trash'),
                                 Url::to([
-                                        'delete',
-                                        'id' => $model->id,
-                                    ]
-                                ),
+                                    'delete',
+                                    'id' => $model->id,
+                                ]),
                                 [
-                                    'class' => 'btn btn-default btn-hover-danger',
-                                    'onclick' => 'return confirm("Are you sure, you want to delete task #' . $model->id . ' ?");',
-                                    'pjax' => '0',
-                                    'data-method' => 'POST',
+                                    'class' => 'btn btn-danger',
+                                    'title' => 'delete task',
+                                    'onclick' => 'confirmDeletion("' . Url::to([
+                                            'delete',
+                                            'id' => $model->id,
+                                        ]) . '");return false;',
+                                    'data-pjax' => '0',
                                 ]
                             );
                         },
@@ -285,5 +289,6 @@ $this->registerCss('
                 ]
             ],
         ]); ?>
+        <?php Pjax::end(); ?>
     </div>
 </div>
