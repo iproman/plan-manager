@@ -63,7 +63,18 @@ class Task extends Base
                 'default',
                 'value' => function ($model, $attribute) {
                     /** @var Task $model */
-                    return $model->project->branch;
+                    $task = Task::find()
+                        ->where(['project_id' => $model->project_id])
+                        ->asArray()
+                        ->orderBy(['id' => SORT_DESC])
+                        ->limit(1)->one();
+                    $branch = $model->project->branch;
+                    $num = preg_split("/$branch/", $task['branch']);
+                    if (is_numeric($num[1]) && !empty($num)) {
+                        $num = $num[1] + 1;
+                        return $branch . "$num";
+                    };
+                    return $branch;
                 }
             ],
             [
