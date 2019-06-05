@@ -1,15 +1,20 @@
 <?php
 
-use yii\helpers\Html;
-use kartik\grid\GridView;
+use yii\helpers\{
+    Html,
+    Url
+};
+use kartik\{
+    grid\GridView,
+    editable\Editable
+};
+use app\models\{
+    entities\Task,
+    service\Statuses,
+    entities\Project
+};
 use yii\bootstrap\Html as HB;
-use yii\helpers\Url;
-use app\models\entities\Task;
-use app\models\service\Statuses;
 use yii\bootstrap\Collapse;
-use kartik\editable\Editable;
-use app\models\entities\Project;
-use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\entities\ProjectSearch */
@@ -54,7 +59,6 @@ $this->registerCss('
     ?>
 
     <div class="row">
-        <?php Pjax::begin(); ?>
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
             'condensed' => true,
@@ -289,6 +293,5 @@ $this->registerCss('
                 ]
             ],
         ]); ?>
-        <?php Pjax::end(); ?>
     </div>
 </div>
