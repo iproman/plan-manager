@@ -193,11 +193,13 @@ $this->params['breadcrumbs'][] = $this->title;
                         );
                     },
                     'delete' => function ($url, $model, $key) {
+                        /** @var $model Task */
                         return Html::a(
                             HB::icon('glyphicon glyphicon-trash'),
                             Url::to([
                                 'delete',
                                 'id' => $model->id,
+                                'project_id' => $model->project_id,
                             ]),
                             [
                                 'class' => 'btn btn-danger',
@@ -205,6 +207,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'onclick' => 'confirmDeletion("' . Url::to([
                                         'delete',
                                         'id' => $model->id,
+                                        'project_id' => $model->project_id,
                                     ]) . '");return false;',
                                 'data-pjax' => '0',
                             ]
