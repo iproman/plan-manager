@@ -1,15 +1,18 @@
 <?php
 
 use yii\helpers\Html;
-use kartik\grid\GridView;
 use app\models\entities\Task;
 use yii\helpers\Url;
-use kartik\editable\Editable;
-use kartik\export\ExportMenu;
 use yii\bootstrap\Html as HB;
 use app\models\service\Statuses;
 use yii\bootstrap\Collapse;
 use yii\widgets\Pjax;
+use kartik\{
+    grid\GridView,
+    editable\Editable,
+    export\ExportMenu,
+    switchinput\SwitchInput
+};
 
 /* @var $this yii\web\View */
 /* @var $projectName app\models\entities\Project */
@@ -214,7 +217,41 @@ $this->params['breadcrumbs'][] = $this->title;
                         );
                     },
                 ]
-            ]
+            ],
+            [
+                'attribute' => 'done?',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    /** @var \app\models\entities\Task $model */
+                    return SwitchInput::widget([
+                        'name' => 'status_12',
+                        'pluginOptions' => [
+                            'size' => 'mini',
+                            'onText' => 'Y',
+                            'offText' => 'N',
+                            'state' => $model->status == 2 ? 1 : 0
+                        ],
+                        'pluginEvents' => [
+                            'switchChange.bootstrapSwitch' => 'function(event, state) {
+                                $.ajax({
+                                        url: "' . Yii::$app->urlManager->createUrl([
+                                    'attribute/change',
+                                    'id' => $model->id,
+                                    'hasEditable' => 1,
+                                    'att' => 'status',
+                                    'class' => Task::class
+                                ]) . '",
+                                        type: "post",
+                                        data: {"value": +state, "hasEditable": 1},
+                                        cache: false,
+                                        success: function(event, val, form, data){toastr.success(data); },
+                                        error: function(event, val, form, data) { toastr.error(data) }
+                                });
+                            }'
+                        ],
+                    ]);
+                }
+            ],
         ],
     ]); ?>
     <?php Pjax::end(); ?>
