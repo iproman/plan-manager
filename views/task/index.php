@@ -233,6 +233,12 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                         'pluginEvents' => [
                             'switchChange.bootstrapSwitch' => 'function(event, state) {
+                                // Not default, because status `done` is 2
+                                function stateValue(state){
+                                    if(state >= 1) return 2;
+                                    else return state;
+                                }
+                            
                                 $.ajax({
                                         url: "' . Yii::$app->urlManager->createUrl([
                                     'attribute/change',
@@ -242,7 +248,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'class' => Task::class
                                 ]) . '",
                                         type: "post",
-                                        data: {"value": +state, "hasEditable": 1},
+                                        data: {"value": stateValue(+state), "hasEditable": 1},
                                         cache: false,
                                         success: function(event, val, form, data){toastr.success(data); },
                                         error: function(event, val, form, data) { toastr.error(data) }
