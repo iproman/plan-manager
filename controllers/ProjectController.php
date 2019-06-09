@@ -133,20 +133,23 @@ class ProjectController extends BaseController
      */
     public function actionDelete($id)
     {
-        $t = $id;
-        if ($this->findModel($id)->delete()) {
+        $model = $this->findModel($id);
+        if ($model->delete()) {
+            /** @var Project $model */
 
             /**
              * Add new event for project deleting.
              */
+            $message = self::EVENT_PROJECT . ' `' . $model->name . '` was deleted';
+
             ED::createEvent(
-                self::EVENT_PROJECT . ' was deleted',
+                $message,
                 FA::_TRASH_O,
-                $t,
+                $id,
                 ''
             );
 
-            $this->flashMessages('success', self::EVENT_PROJECT . ' deleted');
+            $this->flashMessages('success', ucfirst($message));
         } else {
             $this->flashMessages('error', 'Can\'t delete ' . self::EVENT_PROJECT);
         }
