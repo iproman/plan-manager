@@ -10,13 +10,14 @@ use Yii;
  * This is the model class for table "task".
  *
  * @property int $id ID
- * @property string $name Название
- * @property string $content Содержание
- * @property int $status Статус
- * @property string $branch Ветка
- * @property int $project_id Название проекта
- * @property int $created_at Создано
- * @property int $updated_at Обновлено
+ * @property string $name Name
+ * @property string $content Content
+ * @property int $status Status
+ * @property string $branch Branch
+ * @property int $project_id Project
+ * @property int $created_at Created at
+ * @property int $updated_at Updated at
+ * @property string $event_time Event Time
  *
  * @property Project[] $project
  */
@@ -115,6 +116,7 @@ class Task extends Base
                     'project_id' => 'id'
                 ]
             ],
+            [['event_time'], 'safe'],
         ];
     }
 
@@ -132,6 +134,7 @@ class Task extends Base
             'project_id' => 'Project',
             'created_at' => 'Created at',
             'updated_at' => 'Updated at',
+            'event_time' => 'Event Time',
         ];
     }
 

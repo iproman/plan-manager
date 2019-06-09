@@ -12,7 +12,7 @@ class m190609_230416_add_event_time_column_to_task_table extends Migration
      */
     public function safeUp()
     {
-        $this->addColumn('{{%task}}', 'event_time', $this->time());
+        $this->addColumn('{{%task}}', 'event_time', $this->time()->comment('Event time'));
     }
 
     /**
