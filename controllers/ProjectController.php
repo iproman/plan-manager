@@ -60,17 +60,20 @@ class ProjectController extends BaseController
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->save()) {
+                /** @var Project $model */
 
                 /**
                  * Add new event for project creating.
                  */
+                $message = 'New ' . self::EVENT_PROJECT . ' `' . $model->name . '`` successfully created';
+
                 ED::createEvent(
-                    'New ' . self::EVENT_PROJECT . ' successfully created #' . $model->id,
+                    $message,
                     FA::_FA,
                     $model->id,
                     self::EVENT_PROJECT
                 );
-                $this->flashMessages('success', 'New ' . self::EVENT_PROJECT . '  successfully created');
+                $this->flashMessages('success', $message);
             } else {
                 $this->flashMessages('error', 'Can\'t create new ' . self::EVENT_PROJECT);
             }
@@ -102,7 +105,7 @@ class ProjectController extends BaseController
                  * Add new event for project updating.
                  */
                 ED::createEvent(
-                    self::EVENT_PROJECT .' successfully updated #' . $model->id,
+                    self::EVENT_PROJECT . ' successfully updated #' . $model->id,
                     FA::_PENCIL_SQUARE,
                     $model->id,
                     self::EVENT_PROJECT
