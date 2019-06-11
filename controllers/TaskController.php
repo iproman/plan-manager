@@ -61,6 +61,7 @@ class TaskController extends BaseController
     public function actionCreate($project_id = null)
     {
         $model = new Task();
+        $project = $model::getCurrentProject($project_id);
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->save()) {
@@ -86,6 +87,7 @@ class TaskController extends BaseController
 
         return $this->render('create', [
             'model' => $model,
+            'project' => $project,
         ]);
     }
 
