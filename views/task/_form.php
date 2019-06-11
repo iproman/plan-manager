@@ -24,6 +24,7 @@ use kartik\time\TimePicker;
             <?php echo $form->field($model, 'event_time')->widget(TimePicker::class, [
                     'pluginOptions' => [
                             'showMeridian' => false,
+                            'defaultTime' => '00:00'
                     ],
             ]); ?>
         </div>
