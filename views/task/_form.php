@@ -6,6 +6,7 @@ use app\models\entities\Project;
 use yii\helpers\ArrayHelper;
 use dosamigos\ckeditor\CKEditor;
 use app\models\service\Statuses;
+use kartik\time\TimePicker;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\entities\Task */
@@ -16,8 +17,15 @@ use app\models\service\Statuses;
 
     <?php $form = ActiveForm::begin(); ?>
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-6">
             <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-lg-6">
+            <?php echo $form->field($model, 'event_time')->widget(TimePicker::class, [
+                    'pluginOptions' => [
+                            'showMeridian' => false,
+                    ],
+            ]); ?>
         </div>
     </div>
     <div class="row">
