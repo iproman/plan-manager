@@ -147,6 +147,15 @@ class Task extends Base
     }
 
     /**
+     * @param $project_id
+     * @return array|\yii\db\ActiveRecord|null
+     */
+    public static function getCurrentProject($project_id)
+    {
+        return !empty($project_id) ? self::find()->where(['project_id' => $project_id])->limit(1)->one() : null;
+    }
+
+    /**
      * @return array
      */
     public static function getTaskNames()
