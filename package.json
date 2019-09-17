@@ -26,19 +26,19 @@
   },
   "homepage": "https://github.com/iproman/plan-manager1.1#readme",
   "dependencies": {
-    "gulp": "^4.0.1",
-    "gulp-autoprefixer": "^6.1.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.0",
     "gulp-clean": "^0.4.0",
     "gulp-combine-mq": "^0.4.0",
     "gulp-notify": "^3.2.0",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
-    "gulp.spritesmith": "^6.9.0"
+    "gulp.spritesmith": "^6.11.0"
   },
   "devDependencies": {
     "gulp-clean-css": "^4.2.0",
     "gulp-concat": "^2.6.1",
-    "gulp-if": "^2.0.2",
+    "gulp-if": "^3.0.0",
     "gulp-minify": "^3.1.0",
     "gulp-sourcemaps": "^2.6.5"
   }
