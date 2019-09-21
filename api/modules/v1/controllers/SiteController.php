@@ -4,6 +4,7 @@
 namespace api\modules\v1\controllers;
 
 
+use api\modules\v1\controllers\base\BehaviourTrait;
 use yii\rest\Controller;
 
 /**
@@ -12,6 +13,8 @@ use yii\rest\Controller;
  */
 class SiteController extends Controller
 {
+
+    use BehaviourTrait;
 
     /**
      * @return string
