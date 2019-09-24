@@ -3,7 +3,7 @@ modules:
   enabled:
     - REST:
         depends: PhpBrowser
-        url: ''
+        url: 'http://api.site.loc/index-test.php' ### Url for api testing.
         part: [json]
     - Yii2:
         part: [orm, fixtures]
