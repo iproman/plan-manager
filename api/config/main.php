@@ -53,6 +53,12 @@ return [
             'showScriptName' => false,
             'rules' => [
                 '' => 'v1/site/index',
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => [
+                        'v1/task',
+                    ],
+                ],
             ],
         ],
     ],
