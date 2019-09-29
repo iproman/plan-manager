@@ -60,11 +60,6 @@ $config = [
         ]
     ],
     'modules' => [
-        'admin' => [
-            'class' => 'app\app\modules\admin\Module',
-            'layout' => 'main',
-            'defaultRoute' => 'default/index',
-        ],
         'gridview' => ['class' => 'kartik\grid\Module'],
         'db-manager' => [
             'class' => 'bs\dbManager\Module',
