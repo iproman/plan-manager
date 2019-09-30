@@ -1,7 +1,7 @@
 <?php
 
 
-namespace api\modules\v1\fixtures\base;
+namespace api\tests\fixtures\base;
 
 
 use yii\test\ActiveFixture;

@@ -1,10 +1,10 @@
 <?php
 
 
-namespace api\modules\v1\fixtures;
+namespace api\tests\fixtures;
 
 
-use api\modules\v1\fixtures\base\BaseFixture;
+use api\tests\fixtures\base\BaseFixture;
 
 /**
  * Class ArticleFixture
