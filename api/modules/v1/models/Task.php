@@ -5,8 +5,6 @@ namespace api\modules\v1\models;
 
 
 use api\modules\v1\models\base\BaseModel;
-use app\models\entities\Project;
-use app\models\service\Statuses;
 
 class Task extends BaseModel
 {
