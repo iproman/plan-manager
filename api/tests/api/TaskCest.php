@@ -12,21 +12,8 @@ use \api\tests\ApiTester;
  * Class TaskCest
  * @package api\tests\api
  */
-class TaskCest
+class TaskCest extends BaseCest
 {
-    public function _before(ApiTester $I)
-    {
-        $I->haveFixtures([
-            'task' => [
-                'class' => TaskFixture::class,
-                'dataFile' => codecept_data_dir() . 'task.php'
-            ],
-            'project' => [
-                'class' => ProjectFixture::class,
-                'dataFile' => codecept_data_dir() . 'project.php'
-            ]
-        ]);
-    }
 
     public function index(ApiTester $I)
     {
