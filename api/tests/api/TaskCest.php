@@ -2,7 +2,10 @@
 
 namespace api\tests\api;
 
-use api\modules\v1\fixtures\TaskFixture;
+use api\tests\fixtures\{
+    TaskFixture,
+    ProjectFixture
+};
 use \api\tests\ApiTester;
 
 /**
@@ -18,6 +21,10 @@ class TaskCest
                 'class' => TaskFixture::class,
                 'dataFile' => codecept_data_dir() . 'task.php'
             ],
+            'project' => [
+                'class' => ProjectFixture::class,
+                'dataFile' => codecept_data_dir() . 'project.php'
+            ]
         ]);
     }
 
