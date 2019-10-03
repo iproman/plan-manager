@@ -3,7 +3,10 @@
 namespace api\modules\v1\models;
 
 use Yii;
-use api\modules\v1\models\base\BaseModel;
+use api\modules\v1\models\base\{
+    BaseModel,
+    Statuses
+};
 
 /**
  * This is the model class for table "project".

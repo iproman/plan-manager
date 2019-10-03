@@ -4,7 +4,10 @@
 namespace api\modules\v1\models;
 
 
-use api\modules\v1\models\base\BaseModel;
+use api\modules\v1\models\base\{
+    BaseModel,
+    Statuses
+};
 
 class Task extends BaseModel
 {
