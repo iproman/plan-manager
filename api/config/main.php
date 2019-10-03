@@ -59,6 +59,7 @@ return [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => [
                         'v1/task',
+                        'v1/project',
                     ],
                 ],
             ],
