@@ -10,6 +10,9 @@ const routes: Routes = [
       {path: '', redirectTo: '/', pathMatch: 'full'},
       {path: '', component: HomePageComponent}
     ]
+  },
+  {
+    path: 'admin', loadChildren: './admin/admin.module#AdminModule'
   }
 ];
 
