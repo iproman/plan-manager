@@ -1,1 +1,50 @@
-<p>login-page works!</p>
+<div class="row justify-content-center pt-5 pb-5">
+  <div class="col-6">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <h2 class="h2 pb-5">User Authentication</h2>
+      <div class="form-row">
+        <div class="form-group col">
+          <label for="email">Email</label>
+          <input
+            formControlName="email"
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="Email"
+            [ngClass]="{
+              'is-invalid': checkInput('email'),
+              'is-valid': checkInput('email', 'valid')
+            }"
+          >
+          <div class="invalid-feedback" *ngIf="checkInput('email')">
+            <span *ngIf="form.get('email').errors.required">Email is required.</span>
+            <span *ngIf="form.get('email').errors.email">Please provide a valid email.</span>
+          </div>
+
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col">
+          <label for="password">Password</label>
+          <input
+            formControlName="password"
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Password"
+            [ngClass]="{
+              'is-invalid': checkInput('password'),
+              'is-valid': checkInput('password', 'valid')
+            }"
+          >
+          <div class="invalid-feedback" *ngIf="checkInput('password')">
+            <span *ngIf="form.get('password').errors.required">Password is required.</span>
+            <span *ngIf="form.get('email').errors.minLength">Password min length is 6</span>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-info mt-4" [disabled]="form.invalid">Login</button>
+    </form>
+  </div>
+</div>

@@ -26,6 +26,14 @@ export class LoginPageComponent implements OnInit {
     });
   }
 
+  checkInput(input, valid = 'invalid') {
+    if (valid === 'valid') {
+      return this.form.get(input).touched && this.form.get(input).valid;
+    } else {
+      return this.form.get(input).touched && this.form.get(input).invalid;
+    }
+  }
+
   submit() {
     if (this.form.invalid) {
       return;
