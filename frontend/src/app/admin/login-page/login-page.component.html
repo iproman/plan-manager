@@ -39,7 +39,9 @@
           >
           <div class="invalid-feedback" *ngIf="checkInput('password')">
             <span *ngIf="form.get('password').errors.required">Password is required.</span>
-            <span *ngIf="form.get('email').errors.minLength">Password min length is 6</span>
+            <span *ngIf="form.get('password').errors.minlength">Password min length is
+              {{form.get('password').errors.minlength.requiredLength}}.
+              Now is {{form.get('password').errors.minlength.actualLength}}</span>
           </div>
         </div>
       </div>
